@@ -89,11 +89,9 @@ public class Connection
         WebSocketMessage messageToUser = new WebSocketMessage();
         messageToUser.setOperation(MessageType.LOGIN);
         messageToUser.setUser(webSocketMessage.getUser());
-        messageToUser.getUser().setLoggedIn(false);
         messageToUser.setMessage("[Server] : Failed to login!");
-        if (logic.login(webSocketMessage.getUser()))
+        if (logic.login(messageToUser.getUser()))
         {
-            messageToUser.getUser().setLoggedIn(true);
             messageToUser.setMessage("[Server] : Successfully logged in!");
         }
         currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));

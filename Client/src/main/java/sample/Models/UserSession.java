@@ -5,7 +5,6 @@ import javax.websocket.Session;
 public class UserSession
 {
     private Session session;
-    private String chatMessage;
     private static UserSession instance = null;
 
     public Session getSession()
@@ -22,15 +21,5 @@ public class UserSession
     {
         if (instance == null)instance = new UserSession();
         return instance;
-    }
-
-    public String getChatMessage()
-    {
-        return chatMessage;
-    }
-
-    public void setChatMessage(String chatMessage)
-    {
-        this.chatMessage = chatMessage;
     }
 }

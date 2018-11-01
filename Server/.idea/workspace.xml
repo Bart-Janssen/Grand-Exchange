@@ -2,63 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4c411ce-e0a7-4f1f-ac37-c6a1e39f44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../DataServer/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Connector/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Connector/RestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/DataServerLogic/DataServerLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/DataServerLogic/IDataServerLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/HashMapDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/IDatabaseConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/MySqlDatabaseConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Factory/DatabaseServerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Models/DatabaseType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/SharedServerModels/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Server/Models/DatabaseServerType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/GrandExchangeLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/GrandExchangeLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/WebSocketConnection/WebSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/WebSocketConnection/WebSocketConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/resources/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IGui.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeLogic$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeLogic$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/IGrandExchangeLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/IGrandExchangeLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/MessageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/MessageType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/UserSession.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/UserSession.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/WebSocketMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/WebSocketMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/WebSocketType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/WebSocketType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/IWebSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/IWebSocketConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/WebSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/WebSocketConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/UserSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/UserSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/HashMapDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/HashMapDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/IDatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/IDatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/SharedServerModels/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/SharedServerModels/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/SharedServerModels/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/SharedServerModels/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Factory/ServerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Factory/ServerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Models/DatabaseServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/IGrandExchangeServerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/IGrandExchangeServerLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Connector/Connection$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/Connector/Connection$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Connector/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/Connector/Connection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Factory/ServerFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/Factory/ServerFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Factory/ServerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/Factory/ServerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Models/DatabaseServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/ServerLogic/GrandExchangeServerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/ServerLogic/GrandExchangeServerLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/ServerLogic/IGrandExchangeServerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/ServerLogic/IGrandExchangeServerLogic.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,13 +44,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="30" />
-          <entry key="java" value="762" />
+          <entry key="java" value="771" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="762" />
+          <entry key="JAVA" value="771" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="1" />
         </counts>
@@ -130,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="27" column="58" lean-forward="true" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
+            <state relative-caret-position="298">
+              <caret line="26" column="58" lean-forward="true" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,11 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="604">
-              <caret line="95" column="54" lean-forward="true" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+            <state relative-caret-position="400">
+              <caret line="92" column="49" lean-forward="true" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
               <folding>
                 <element signature="e#1620#1621#0" expanded="true" />
                 <element signature="e#1717#1718#0" expanded="true" />
@@ -204,7 +158,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="29" />
+              <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
               <folding>
                 <element signature="e#282#283#0" expanded="true" />
                 <element signature="e#313#314#0" expanded="true" />
@@ -240,9 +194,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Server/Factory/ServerFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/ServerLogic/IGrandExchangeServerLogic.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java" />
       </list>
@@ -365,7 +319,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541091835096" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541092469580" />
     <property name="last_opened_file_path" value="F:/EtherChatServer/etherchatserver" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -412,12 +366,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541081892216</updated>
-      <workItem from="1541081893374" duration="7658000" />
+      <workItem from="1541081893374" duration="7906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7658000" />
+    <option name="totallyTimeSpent" value="7906000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -530,7 +484,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="29" />
+          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
           <folding>
             <element signature="e#282#283#0" expanded="true" />
             <element signature="e#313#314#0" expanded="true" />
@@ -544,23 +498,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="95" column="54" lean-forward="true" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+        <state relative-caret-position="298">
+          <caret line="26" column="58" lean-forward="true" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
           <folding>
-            <element signature="e#1620#1621#0" expanded="true" />
-            <element signature="e#1717#1718#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="27" column="58" lean-forward="true" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
+        <state relative-caret-position="400">
+          <caret line="92" column="49" lean-forward="true" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1620#1621#0" expanded="true" />
+            <element signature="e#1717#1718#0" expanded="true" />
           </folding>
         </state>
       </provider>

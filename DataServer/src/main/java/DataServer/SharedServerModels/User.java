@@ -4,7 +4,7 @@ public class User
 {
     private String username;
     private String password;
-    private boolean loggedIn;
+    private boolean loggedIn = false;
 
     public String getUsername()
     {

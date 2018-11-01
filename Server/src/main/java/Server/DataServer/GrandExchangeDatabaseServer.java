@@ -23,12 +23,10 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
             httpPost.setEntity(new StringEntity(new Gson().toJson(user)));
             if (EntityUtils.toString(HttpClients.createDefault().execute(httpPost).getEntity()).equals("success"))
             {
-                //message.setOperation(MessageType.LOGIN);
-                //message.setLoggedIn(true);
+                user.setLoggedIn(true);
                 System.out.println("Login Successfully.");
                 return true;
             }
-            //message.setOperation(MessageType.LOGIN);
             System.out.println("Login failed!");
         }
         catch (Exception ex)

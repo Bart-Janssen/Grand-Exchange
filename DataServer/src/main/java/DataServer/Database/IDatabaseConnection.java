@@ -1,5 +1,9 @@
 package DataServer.Database;
 
-public class IDatabase
+import DataServer.SharedServerModels.User;
+
+public interface IDatabaseConnection
 {
+    boolean login(User user);
+    void register(User user);
 }
