@@ -8,6 +8,7 @@ import sample.Models.WebSocketMessage;
 
 public class WebSocketConnection implements IWebSocketConnection
 {
+    @Override
     public void login(User user)
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();

@@ -1,6 +1,7 @@
 package Server.Factory;
 
-import Server.Models.DatabaseServer;
+import Server.DataServer.GrandExchangeDatabaseServer;
+import Server.Models.DatabaseServerType;
 import Server.ServerLogic.GrandExchangeServerLogic;
 import Server.ServerLogic.IGrandExchangeServerLogic;
 
@@ -16,12 +17,12 @@ public class ServerFactory
         return instance;
     }
 
-    public IGrandExchangeServerLogic makeNewGrandExchangeServerLogic(DatabaseServer server)
+    public IGrandExchangeServerLogic makeNewGrandExchangeServerLogic(DatabaseServerType server)
     {
         switch (server)
         {
-            case MYSQL:
-                return new GrandExchangeServerLogic();
+            case REST:
+                return new GrandExchangeServerLogic(new GrandExchangeDatabaseServer());
             default:
                 return null;
         }

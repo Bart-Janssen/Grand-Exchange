@@ -47,23 +47,26 @@ public class GrandExchangeLogic implements IGrandExchangeLogic
 
     private void handleServerMessage(String jsonMessage)
     {
-        WebSocketMessage socketMessage;
+        WebSocketMessage webSocketMessage;
         try
         {
-            socketMessage = new Gson().fromJson(jsonMessage, WebSocketMessage.class);
+            webSocketMessage = new Gson().fromJson(jsonMessage, WebSocketMessage.class);
         }
         catch(Exception e)
         {
             e.printStackTrace();
             return;
         }
-        MessageType type = socketMessage.getOperation();
+        MessageType type = webSocketMessage.getOperation();
         switch (type)
         {
-
+            case LOGIN:
+                System.out.println(webSocketMessage.getMessage() + ", Logged in: " + webSocketMessage.getUser().isLoggedIn());
+                break;
         }
     }
 
+    @Override
     public void login(String username, String password)
     {
         webSocketConnection.login(new User(username, password));

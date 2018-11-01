@@ -4,5 +4,5 @@ import Server.SharedClientModels.User;
 
 public interface IGrandExchangeServerLogic
 {
-    void login(User user);
+    boolean login(User user);
 }
