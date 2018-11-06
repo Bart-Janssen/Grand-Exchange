@@ -19,9 +19,8 @@ public class RestController
     @Produces("application/json")
     public Response login(User user)
     {
-        System.out.println("hai");
-        System.out.println("[" + user.getUsername() + "]");
         if (user == null) return Response.status(400).entity("400").build();
+        System.out.println("[" + user.getUsername() + "]");
         return logic.login(user) ? Response.status(200).entity("success").build() : Response.status(400).entity("error").build();
     }
 
@@ -30,9 +29,9 @@ public class RestController
     @Produces("application/json")
     public Response get(@PathParam("data") String data)
     {
+        if (data == null) return Response.status(400).entity("400").build();
         System.out.println("hai");
         System.out.println("[" + data + "]");
-        if (data == null) return Response.status(400).entity("400").build();
         return Response.status(200).entity("200").build();
     }
 }

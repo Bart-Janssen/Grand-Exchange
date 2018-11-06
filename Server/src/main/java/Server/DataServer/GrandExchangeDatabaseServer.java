@@ -14,8 +14,6 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     @Override
     public boolean login(User user)
     {
-        //WebSocketMessage message = new WebSocketMessage();
-        //message.setUser(user);
         HttpPost httpPost = new HttpPost(serverLocation + "/login");
         httpPost.addHeader("content-type", "application/json");
         try

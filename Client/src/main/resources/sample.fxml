@@ -17,9 +17,9 @@
    <children>
       <Pane prefHeight="300.0" prefWidth="300.0">
          <children>
-            <Button fx:id="buttonLogin" layoutX="127.0" layoutY="187.0" mnemonicParsing="false" onAction="#buttonLogin_Click" text="Login" />
-            <TextField fx:id="textFieldUsername" layoutX="76.0" layoutY="111.0" onKeyPressed="#textFieldUsername_KeyPress" />
-            <TextField fx:id="textFieldPassword" layoutX="76.0" layoutY="150.0" onKeyPressed="#textFieldPassword_KeyPress" />
+            <Button fx:id="buttonLogin" layoutX="127.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonLogin_Click" text="Login" />
+            <TextField fx:id="textFieldUsername" layoutX="76.0" layoutY="49.0" onKeyPressed="#textFieldUsername_KeyPress" />
+            <TextField fx:id="textFieldPassword" layoutX="76.0" layoutY="88.0" onKeyPressed="#textFieldPassword_KeyPress" />
          </children></Pane>
    </children>
 </GridPane>
