@@ -81,7 +81,24 @@ public class Connection
             case LOGIN:
                 login(webSocketMessage, currentUserSession);
                 break;
+            case SELLITEM:
+                sellItem(webSocketMessage, currentUserSession);
+                break;
         }
+    }
+
+    private void sellItem(WebSocketMessage webSocketMessage, Session currentUserSession)
+    {
+        WebSocketMessage messageToUser = new WebSocketMessage();
+        messageToUser.setOperation(MessageType.SELLITEM);
+        messageToUser.setUser(webSocketMessage.getUser());
+        messageToUser.setItem(webSocketMessage.getItem());
+        messageToUser.setMessage("[Server] : Failed to sell item!");
+        if (logic.sellItem(webSocketMessage.getItem()))
+        {
+            messageToUser.setMessage("[Server] : Successfully sold item.");
+        }
+        currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
     }
 
     private void login(WebSocketMessage webSocketMessage, Session currentUserSession)

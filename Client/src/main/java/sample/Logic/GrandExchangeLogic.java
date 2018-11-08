@@ -1,22 +1,19 @@
 package sample.Logic;
 
 import com.google.gson.Gson;
-import sample.Gui.IGui;
+import javafx.application.Platform;
+import sample.Gui.ILoginGui;
 import sample.Models.*;
 import sample.WebSocketConnection.IWebSocketConnection;
 import javax.websocket.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
 
 @ClientEndpoint
 public class GrandExchangeLogic implements IGrandExchangeLogic
 {
-    private IGui gui;
+    private ILoginGui gui;
     private IWebSocketConnection webSocketConnection;
 
-    public GrandExchangeLogic(IGui gui, IWebSocketConnection webSocketConnection)
+    public GrandExchangeLogic(ILoginGui gui, IWebSocketConnection webSocketConnection)
     {
         this.gui = gui;
         this.webSocketConnection = webSocketConnection;
@@ -63,7 +60,21 @@ public class GrandExchangeLogic implements IGrandExchangeLogic
         switch (type)
         {
             case LOGIN:
-                System.out.println(webSocketMessage.getMessage() + ", Logged in: " + webSocketMessage.getUser().isLoggedIn());
+                if (webSocketMessage.getUser().isLoggedIn())
+                {
+                    Platform.runLater(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            gui.callGameGui();
+                        }
+                    });
+                    System.out.println(webSocketMessage.getMessage() + ", Logged in: " + webSocketMessage.getUser().isLoggedIn());
+                }
+                break;
+            case SELLITEM:
+                System.out.println("Sold");
                 break;
         }
     }
@@ -74,37 +85,9 @@ public class GrandExchangeLogic implements IGrandExchangeLogic
         webSocketConnection.login(new User(username, password));
     }
 
-    public int calculateDateWeaponState(Item item)
-    {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-        long difference;
-        try
-        {
-            difference = TimeUnit.DAYS.convert(dateFormat.parse(item.getObtainDate()).getTime() - dateFormat.parse(new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime())).getTime(), TimeUnit.MILLISECONDS);
-            System.out.println(difference);
-            if (difference <= 10) return 15 * item.getItemLevel();
-            if (difference >= 150) return 0;
-            return (15 * item.getItemLevel()) - (int)Math.floor((double)difference / 10) * item.getItemLevel();
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
     @Override
-    public int sellItem(Item item)
+    public void sellItem(Item item)
     {
-        if (item.getDamagedState() == 100)
-        {
-            return 0;
-        }
-        int power = 0;
-        if (item instanceof Armor)
-        {
-            power = ((Armor)item).getDefence();
-        }
-        return ((item.getItemLevel() * item.getDamagedState()) * 1000) + ((power * item.getItemLevel()) + ((item.getAttackStyle().getValue() * calculateDateWeaponState(item))));
+        webSocketConnection.sellItem(item);
     }
 }

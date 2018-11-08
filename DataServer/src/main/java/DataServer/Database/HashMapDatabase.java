@@ -10,7 +10,7 @@ public class HashMapDatabase implements IDatabaseConnection
 
     public HashMapDatabase()
     {
-        users.put("bart", "secret password");
+        users.put("bart", "bart");
     }
 
     @Override

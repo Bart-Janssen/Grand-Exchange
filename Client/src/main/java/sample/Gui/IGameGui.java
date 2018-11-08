@@ -1,6 +1,6 @@
 package sample.Gui;
 
-public interface IGui
+public interface IGameGui
 {
 
 }

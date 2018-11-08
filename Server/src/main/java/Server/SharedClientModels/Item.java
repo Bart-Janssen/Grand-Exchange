@@ -1,4 +1,4 @@
-package sample.Models;
+package Server.SharedClientModels;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

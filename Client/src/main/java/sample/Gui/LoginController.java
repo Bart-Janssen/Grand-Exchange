@@ -1,35 +1,29 @@
 package sample.Gui;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.Factory.ClientFactory;
 import sample.Logic.IGrandExchangeLogic;
-import sample.Models.UserSession;
-import sample.Models.WebSocketType;
+import sample.Models.*;
 
 import javax.websocket.ContainerProvider;
 import javax.websocket.WebSocketContainer;
-import java.io.IOException;
 import java.net.URI;
-import java.util.Observable;
 
-public class Controller extends Observable implements IGui
+public class LoginController implements ILoginGui
 {
     public TextField textFieldUsername;
     public TextField textFieldPassword;
 
     private IGrandExchangeLogic logic = ClientFactory.getInstance().makeNewIGrandExchangeLogic(this, WebSocketType.WEBSOCKETSERVER);
 
-    public Controller()
+    public LoginController()
     {
         connectToServer("ws://localhost:6666/grandExchangeServer/");
     }
@@ -50,18 +44,14 @@ public class Controller extends Observable implements IGui
 
     public void buttonLogin_Click(ActionEvent actionEvent)
     {
-        openSecondScene(actionEvent);
-       // logic.login(textFieldUsername.getText(), textFieldPassword.getText());
+        logic.login(textFieldUsername.getText(), textFieldPassword.getText());
     }
 
     public void textFieldUsername_KeyPress(KeyEvent keyEvent)
     {
         if (keyEvent.getCode() == KeyCode.ENTER)
         {
-
-
-            //logic.login(textFieldUsername.getText(), textFieldPassword.getText());
-            //notifyObservers();
+            logic.login(textFieldUsername.getText(), textFieldPassword.getText());
         }
     }
 
@@ -73,14 +63,21 @@ public class Controller extends Observable implements IGui
         }
     }
 
-    private Scene secondScene;
-
-    public void setSecondScene(Scene scene) {
-        secondScene = scene;
-    }
-
-    public void openSecondScene(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(secondScene);
+    public void callGameGui()
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Option_Menu.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Exchange");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Stage)textFieldUsername.getScene().getWindow()).close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

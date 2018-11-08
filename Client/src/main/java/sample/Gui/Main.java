@@ -14,7 +14,7 @@ public class Main extends Application implements Observer
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Login.fxml"));
         primaryStage.setTitle("Grand Exchange");
         primaryStage.setScene(new Scene(root, 300, 300));
         primaryStage.show();

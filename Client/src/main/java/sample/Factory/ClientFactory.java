@@ -1,6 +1,6 @@
 package sample.Factory;
 
-import sample.Gui.IGui;
+import sample.Gui.ILoginGui;
 import sample.Logic.GrandExchangeLogic;
 import sample.Logic.IGrandExchangeLogic;
 import sample.Models.WebSocketType;
@@ -18,7 +18,7 @@ public class ClientFactory
         return instance;
     }
 
-    public IGrandExchangeLogic makeNewIGrandExchangeLogic(IGui gui, WebSocketType type)
+    public IGrandExchangeLogic makeNewIGrandExchangeLogic(ILoginGui gui, WebSocketType type)
     {
         switch (type)
         {
