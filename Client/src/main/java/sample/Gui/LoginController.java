@@ -8,50 +8,27 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import sample.Factory.ClientFactory;
-import sample.Logic.IGrandExchangeLogic;
-import sample.Models.*;
 
-import javax.websocket.ContainerProvider;
-import javax.websocket.WebSocketContainer;
-import java.net.URI;
-
-public class LoginController implements ILoginGui
+public class LoginController extends Gui implements ILoginGui
 {
     public TextField textFieldUsername;
     public TextField textFieldPassword;
 
-    private IGrandExchangeLogic logic = ClientFactory.getInstance().makeNewIGrandExchangeLogic(this, WebSocketType.WEBSOCKETSERVER);
-
     public LoginController()
     {
-        connectToServer("ws://localhost:6666/grandExchangeServer/");
-    }
-
-    private void connectToServer(String server)
-    {
-        WebSocketContainer container;
-        try
-        {
-            container = ContainerProvider.getWebSocketContainer();
-            UserSession.getInstance().setSession(container.connectToServer(logic, URI.create(server)));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace(System.err);
-        }
+        super.getReceiveLogic().setGui(this);
     }
 
     public void buttonLogin_Click(ActionEvent actionEvent)
     {
-        logic.login(textFieldUsername.getText(), textFieldPassword.getText());
+        super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
     }
 
     public void textFieldUsername_KeyPress(KeyEvent keyEvent)
     {
         if (keyEvent.getCode() == KeyCode.ENTER)
         {
-            logic.login(textFieldUsername.getText(), textFieldPassword.getText());
+            super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
         }
     }
 
@@ -59,10 +36,11 @@ public class LoginController implements ILoginGui
     {
         if (keyEvent.getCode() == KeyCode.ENTER)
         {
-            logic.login(textFieldUsername.getText(), textFieldPassword.getText());
+            super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
         }
     }
 
+    @Override
     public void callGameGui()
     {
         try

@@ -1,20 +1,16 @@
 import org.junit.Before;
-import org.junit.Test;
-import sample.Logic.GrandExchangeLogic;
-import sample.Models.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import sample.Logic.GrandExchangeSendLogic;
+
 import static org.junit.Assert.assertEquals;
 
 public class LogicUnitTest
 {
-    GrandExchangeLogic logic;
+    GrandExchangeSendLogic logic;
 
     @Before
     public void setup()
     {
-        logic = new GrandExchangeLogic(null, null);//ClientFactory.getInstance().makeNewIGrandExchangeLogic(null, WebSocketType.WEBSOCKETSERVER);
+        //logic = new GrandExchangeSendLogic(null, null);//ClientFactory.getInstance().makeNewIGrandExchangeLogic(null, WebSocketType.WEBSOCKETSERVER);
     }
 
     /*@Test
