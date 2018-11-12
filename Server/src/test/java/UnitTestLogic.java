@@ -1,8 +1,5 @@
 import Server.ServerLogic.GrandExchangeServerLogic;
-import Server.SharedClientModels.Armor;
-import Server.SharedClientModels.AttackStyle;
-import Server.SharedClientModels.Item;
-import Server.SharedClientModels.Weapon;
+import Server.SharedClientModels.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,77 +19,49 @@ public class UnitTestLogic
         logic = new GrandExchangeServerLogic(null);//ClientFactory.getInstance().makeNewIGrandExchangeLogic(null, WebSocketType.WEBSOCKETSERVER);
     }
 
-    @Test
-    public void testDateWeaponState90Days()
+    /*@Test
+    public void testCalculateDatePrice()
     {
-        int amount = -90;
+        int days = -15;
         String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         Calendar calendar = Calendar.getInstance();
         try
         {
             calendar.setTime(dateFormat.parse(date));
-            calendar.add(Calendar.DATE, amount);
+            calendar.add(Calendar.DATE, days);
             date = dateFormat.format(calendar.getTime());
         }
         catch (ParseException e)
         {
             e.printStackTrace();
         }
-        Item armor = new Armor(100, 15 , AttackStyle.MAGIC);
-        armor.setObtainDate(date);
-       /* try
-        {
-            armor.setObtainDate(new SimpleDateFormat("dd MM yyyy").format(new SimpleDateFormat("dd MM yyyy").parse("04 04 2019")));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        assertEquals(600, logic.calculateDateWeaponState(armor));
-    }
+        Item weapon = new Weapon(200, 15 , AttackStyle.MAGIC);
+        weapon.setObtainDate(date);
+        logic.calculateDatePrice(new User("a", "p", 100), weapon);
+        assertEquals(1500, weapon.getPrice());
+    }*/
 
     @Test
-    public void testDateWeaponState0Days()
+    public void testCalculatePrice()
     {
-        int amount = 0;
+        int days = -0;
         String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         Calendar calendar = Calendar.getInstance();
         try
         {
             calendar.setTime(dateFormat.parse(date));
-            calendar.add(Calendar.DATE, amount);
+            calendar.add(Calendar.DATE, days);
             date = dateFormat.format(calendar.getTime());
         }
         catch (ParseException e)
         {
             e.printStackTrace();
         }
-        Item armor = new Weapon(100, 15 , AttackStyle.MAGIC);
-        armor.setObtainDate(date);
-        assertEquals(1500, logic.calculateDateWeaponState(armor));
-    }
-
-    @Test
-    public void testSellArmor5Days()
-    {
-        int amount = -15;
-        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-        Calendar calendar = Calendar.getInstance();
-        try
-        {
-            calendar.setTime(dateFormat.parse(date));
-            calendar.add(Calendar.DATE, amount);
-            date = dateFormat.format(calendar.getTime());
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        Item armor = new Armor(150, 100 , AttackStyle.MELEE);
-        armor.setDamagedState(8);
-        armor.setObtainDate(date);
-        assertEquals(1305000, logic.calculateDateWeaponState(armor));
+        Item weapon = new Weapon(200, 15 , AttackStyle.MAGIC);
+        weapon.subtractItemHealth(0);
+        weapon.setObtainDate(date);
+        assertEquals(1500, logic.calculatePrice(new User("a", "p", 100), weapon));
     }
 }

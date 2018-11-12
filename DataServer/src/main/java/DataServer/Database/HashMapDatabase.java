@@ -11,12 +11,21 @@ public class HashMapDatabase implements IDatabaseConnection
     public HashMapDatabase()
     {
         users.put("bart", "bart");
+        users.put("", "");
     }
 
     @Override
     public boolean login(User user)
     {
-        return users.get(user.getUsername()).equals(user.getPassword());
+        try
+        {
+            return users.get(user.getUsername()).equals(user.getPassword());
+        }
+        catch (Exception ex)
+        {
+            System.out.println("User: " + user.getUsername() + " doesn't exist, cant login.");
+        }
+        return false;
     }
 
     @Override

@@ -23,6 +23,8 @@ public class ServerFactory
         {
             case REST:
                 return new GrandExchangeServerLogic(new GrandExchangeDatabaseServer());
+            case HASHMAP:
+                return new GrandExchangeServerLogic(new )
             default:
                 return null;
         }

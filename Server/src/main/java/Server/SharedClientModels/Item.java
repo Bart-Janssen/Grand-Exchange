@@ -8,7 +8,7 @@ public class Item
     private int price;
     private String obtainDate;
     private int itemLevel;
-    private int damagedState = 0;
+    private int itemHealth = 100;
     private AttackStyle attackStyle;
 
     public Item(int itemLevel, AttackStyle attackStyle)
@@ -43,14 +43,15 @@ public class Item
         return itemLevel;
     }
 
-    public int getDamagedState()
+    public int getItemHealth()
     {
-        return damagedState;
+        return itemHealth;
     }
 
-    public void setDamagedState(int damagedState)
+    public void subtractItemHealth(int amount)
     {
-        this.damagedState = damagedState;
+        if (amount > itemHealth) this.itemHealth = 0;
+        if (itemHealth > 0) this.itemHealth -= amount;
     }
 
     public AttackStyle getAttackStyle()

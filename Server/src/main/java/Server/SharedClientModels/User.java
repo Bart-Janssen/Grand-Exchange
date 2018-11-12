@@ -5,11 +5,13 @@ public class User
     private String username;
     private String password;
     private boolean loggedIn = false;
+    private int level;
 
-    public User(String username, String password)
+    public User(String username, String password, int level)
     {
         this.username = username;
         this.password = password;
+        this.level = level;
     }
 
     public String getUsername()
@@ -30,5 +32,10 @@ public class User
     public void setLoggedIn(boolean loggedIn)
     {
         this.loggedIn = loggedIn;
+    }
+
+    public int getLevel()
+    {
+        return level;
     }
 }

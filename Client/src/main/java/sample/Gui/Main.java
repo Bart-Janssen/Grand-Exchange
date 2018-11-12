@@ -9,14 +9,11 @@ import sample.Factory.ClientFactory;
 import sample.Logic.IGrandExchangeReceiveLogic;
 import sample.Models.UserSession;
 import sample.Models.WebSocketType;
-
 import javax.websocket.ContainerProvider;
 import javax.websocket.WebSocketContainer;
 import java.net.URI;
-import java.util.Observable;
-import java.util.Observer;
 
-public class Main extends Application implements Observer
+public class Main extends Application
 {
     private IGrandExchangeReceiveLogic logic = ClientFactory.getInstance().makeNewGrandExchangeReceiveLogic(WebSocketType.WEBSOCKETSERVER);
 
@@ -53,10 +50,5 @@ public class Main extends Application implements Observer
     public static void main(String[] args)
     {
         launch(args);
-    }
-
-    @Override
-    public void update(Observable o, Object arg)
-    {
     }
 }

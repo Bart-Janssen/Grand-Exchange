@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.GameController">
+<GridPane fx:id="gameForm" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.GameController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -16,7 +16,8 @@
    <children>
       <Pane prefHeight="300.0" prefWidth="300.0">
          <children>
-            <Button layoutX="124.0" layoutY="105.0" mnemonicParsing="false" onAction="#Button_Click" text="Button" />
+            <Button fx:id="buttonOpenBackpack" layoutX="30.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonOpenBackpack_Click" text="Open backpack" />
+            <Button fx:id="buttonOpenMarket" layoutX="139.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonOpenMarket_Click" text="Open market" />
          </children></Pane>
    </children>
 </GridPane>

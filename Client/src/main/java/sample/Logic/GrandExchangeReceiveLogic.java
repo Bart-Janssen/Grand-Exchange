@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import sample.Gui.Gui;
 import sample.Gui.IGameGui;
 import sample.Gui.ILoginGui;
+import sample.Gui.IMarketGui;
 import sample.Models.*;
 import javax.websocket.*;
 
@@ -31,7 +32,7 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
     @OnOpen
     public void onWebSocketConnect()
     {
-        System.out.println("[Connected]");
+        System.out.println("[Connected to server]");
     }
 
     @OnMessage
@@ -43,13 +44,13 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
     @OnClose
     public void onWebSocketClose(CloseReason reason)
     {
-        System.out.println("[Closed]: " + reason);
+        System.out.println("[Closed] : " + reason);
     }
 
     @OnError
     public void onWebSocketError(Throwable cause)
     {
-        System.out.println("[ERROR]: " + cause.getMessage());
+        System.out.println("[ERROR] : " + cause.getMessage());
     }
 
     private void handleServerMessage(String jsonMessage)
@@ -95,7 +96,8 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                     ((ILoginGui)gui).callGameGui();
                 }
             });
-            System.out.println(webSocketMessage.getMessage() + ", Logged in: " + webSocketMessage.getUser().isLoggedIn());
+            return;
         }
+        ((ILoginGui)gui).loginFailed();
     }
 }

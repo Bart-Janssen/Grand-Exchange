@@ -1,11 +1,7 @@
 package sample.Logic;
 
-import com.google.gson.Gson;
-import javafx.application.Platform;
-import sample.Gui.ILoginGui;
 import sample.Models.*;
 import sample.WebSocketConnection.IWebSocketConnection;
-import javax.websocket.*;
 
 public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
 {

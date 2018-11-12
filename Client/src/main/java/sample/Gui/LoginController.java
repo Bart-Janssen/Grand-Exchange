@@ -1,18 +1,19 @@
 package sample.Gui;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class LoginController extends Gui implements ILoginGui
 {
+    public GridPane loginForm;
     public TextField textFieldUsername;
     public TextField textFieldPassword;
+    public Label labelLoginFailed;
 
     public LoginController()
     {
@@ -43,19 +44,12 @@ public class LoginController extends Gui implements ILoginGui
     @Override
     public void callGameGui()
     {
-        try
-        {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Option_Menu.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Exchange");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Stage)textFieldUsername.getScene().getWindow()).close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        super.openForm(((Stage)loginForm.getScene().getWindow()),"Game","Game");
+    }
+
+    @Override
+    public void loginFailed()
+    {
+        labelLoginFailed.setVisible(true);
     }
 }

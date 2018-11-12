@@ -18,7 +18,6 @@ public class WebSocketConnection implements IWebSocketConnection
     @Override
     public void sellItem(Item item)
     {
-        System.out.println("hai");
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setItem(item);
         webSocketMessage.setOperation(MessageType.SELLITEM);

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @ServerEndpoint(value="/grandExchangeServer/")
 public class Connection
 {
-    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.REST);
+    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.HASHMAP);//TODO: database server to rest
 
     private HashMap<Session, WebSocketMessage> sessionAndUser = new HashMap<>();
 
@@ -89,16 +89,14 @@ public class Connection
 
     private void sellItem(WebSocketMessage webSocketMessage, Session currentUserSession)
     {
-        WebSocketMessage messageToUser = new WebSocketMessage();
-        messageToUser.setOperation(MessageType.SELLITEM);
-        messageToUser.setUser(webSocketMessage.getUser());
-        messageToUser.setItem(webSocketMessage.getItem());
-        messageToUser.setMessage("[Server] : Failed to sell item!");
-        if (logic.sellItem(webSocketMessage.getItem()))
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
-            messageToUser.setMessage("[Server] : Successfully sold item.");
+            WebSocketMessage messageToUser = logic.sellItem(sessionAndUser.get(currentUserSession).getUser(), sessionAndUser.get(currentUserSession).getItem());
+            {
+                messageToUser.setMessage("[Server] : Successfully sold item.");
+            }
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
-        currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
     }
 
     private void login(WebSocketMessage webSocketMessage, Session currentUserSession)
@@ -110,6 +108,7 @@ public class Connection
         if (logic.login(messageToUser.getUser()))
         {
             messageToUser.setMessage("[Server] : Successfully logged in!");
+            sessionAndUser.get(currentUserSession).getUser().setLoggedIn(true);
         }
         currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
     }

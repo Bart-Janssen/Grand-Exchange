@@ -2,5 +2,5 @@ package Server.Models;
 
 public enum DatabaseServerType
 {
-    REST
+    REST, HASHMAP
 }

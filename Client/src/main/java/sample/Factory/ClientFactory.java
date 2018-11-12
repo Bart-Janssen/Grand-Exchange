@@ -1,6 +1,5 @@
 package sample.Factory;
 
-import sample.Gui.ILoginGui;
 import sample.Logic.GrandExchangeReceiveLogic;
 import sample.Logic.GrandExchangeSendLogic;
 import sample.Logic.IGrandExchangeReceiveLogic;
@@ -41,15 +40,4 @@ public class ClientFactory
                 return null;
         }
     }
-
-    /*public IGrandExchangeReceiveLogic makeNewGrandExchangeReceiveLogic(ILoginGui gui, WebSocketType type)
-    {
-        switch (type)
-        {
-            case WEBSOCKETSERVER:
-                return new GrandExchangeReceiveLogic(gui);
-            default:
-                return null;
-        }
-    }*/
 }
