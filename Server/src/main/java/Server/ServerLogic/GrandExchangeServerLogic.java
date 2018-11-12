@@ -3,11 +3,14 @@ package Server.ServerLogic;
 import Server.DataServer.IGrandExchangeDatabaseServer;
 import Server.Models.WebSocketMessage;
 import Server.SharedClientModels.Item;
+import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.MessageType;
 import Server.SharedClientModels.User;
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
@@ -97,21 +100,28 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         calculateDatePrice(item);
         System.out.println("date price: " + item.getPrice());
 
-        calculateMarketPrice(item);
-
         calculateWeaponHealth(item);
         System.out.println("Wep health: " + item.getPrice());
 
+        calculateMarketPrice(item);
+        System.out.println("Market price: " + item.getPrice());
 
-        int price = item.getPrice();
-        System.out.println("price: " + price);
-
-        return price;
+        return item.getPrice();
     }
 
     private void calculateMarketPrice(Item item)
     {
-        databaseServer.
+        int totalPrices = item.getPrice();
+        int pricesCount = 1;
+        for (MarketOffer offer : databaseServer.getSellingItems(item.getName()))
+        {
+            if (offer.getItem().getItemLevel() > (item.getItemLevel() - item.getItemLevel() * 0.1) && offer.getItem().getItemLevel() < (item.getItemLevel() + item.getItemLevel() * 0.1))
+            {
+                totalPrices += offer.getPrice();
+                pricesCount++;
+            }
+        }
+        if (totalPrices != item.getPrice()) item.setPrice(totalPrices / pricesCount);
     }
 
     private void calculateWeaponHealth(Item item)
@@ -128,6 +138,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
             System.out.println("Can wear");
             defaultPrice += item.getItemLevel() * item.getAttackStyle().getValue() * item.getAttackStyle().getValue();
             item.setPrice(item.getPrice() + defaultPrice);
+            return;
         }
         System.out.println("can't wear");
         defaultPrice += (int)(item.getItemLevel() * item.getAttackStyle().getValue() * item.getAttackStyle().getValue() * 0.75);

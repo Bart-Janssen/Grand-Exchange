@@ -1,6 +1,7 @@
 package Server.Factory;
 
 import Server.DataServer.GrandExchangeDatabaseServer;
+import Server.DataServer.HashmapDatabase;
 import Server.Models.DatabaseServerType;
 import Server.ServerLogic.GrandExchangeServerLogic;
 import Server.ServerLogic.IGrandExchangeServerLogic;
@@ -24,7 +25,7 @@ public class ServerFactory
             case REST:
                 return new GrandExchangeServerLogic(new GrandExchangeDatabaseServer());
             case HASHMAP:
-                return new GrandExchangeServerLogic(new )
+                return new GrandExchangeServerLogic(new HashmapDatabase());
             default:
                 return null;
         }

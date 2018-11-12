@@ -1,3 +1,4 @@
+import Server.DataServer.HashmapDatabase;
 import Server.ServerLogic.GrandExchangeServerLogic;
 import Server.SharedClientModels.*;
 import org.junit.Before;
@@ -16,7 +17,7 @@ public class UnitTestLogic
     @Before
     public void setup()
     {
-        logic = new GrandExchangeServerLogic(null);//ClientFactory.getInstance().makeNewIGrandExchangeLogic(null, WebSocketType.WEBSOCKETSERVER);
+        logic = new GrandExchangeServerLogic(new HashmapDatabase());//ClientFactory.getInstance().makeNewIGrandExchangeLogic(null, WebSocketType.WEBSOCKETSERVER);
     }
 
     /*@Test
@@ -59,9 +60,9 @@ public class UnitTestLogic
         {
             e.printStackTrace();
         }
-        Item weapon = new Weapon(200, 15 , AttackStyle.MAGIC);
+        Item weapon = new Weapon(34, 15 , AttackStyle.MAGIC, "Staff");
         weapon.subtractItemHealth(0);
         weapon.setObtainDate(date);
-        assertEquals(1500, logic.calculatePrice(new User("a", "p", 100), weapon));
+        assertEquals(1500, logic.calculatePrice(new User("a", "p", 65), weapon));
     }
 }

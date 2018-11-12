@@ -1,11 +1,14 @@
 package Server.DataServer;
 
+import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
 import com.google.gson.Gson;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
+import java.util.ArrayList;
 
 public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
 {
@@ -38,5 +41,11 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     public void register(User user)
     {
 
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getSellingItems(String itemName)
+    {
+        return null;
     }
 }

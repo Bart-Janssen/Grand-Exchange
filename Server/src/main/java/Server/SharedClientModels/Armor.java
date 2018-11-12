@@ -2,8 +2,8 @@ package Server.SharedClientModels;
 
 public class Armor extends Item
 {
-    public Armor(int itemLevel, int defence, AttackStyle attackStyle)
+    public Armor(int itemLevel, int defence, AttackStyle attackStyle, String name)
     {
-        super(itemLevel, attackStyle);
+        super(itemLevel, attackStyle, name);
     }
 }
