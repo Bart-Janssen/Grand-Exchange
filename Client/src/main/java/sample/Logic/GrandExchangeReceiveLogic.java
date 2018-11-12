@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import sample.Gui.Gui;
 import sample.Gui.IGameGui;
 import sample.Gui.ILoginGui;
-import sample.Gui.IMarketGui;
 import sample.Models.*;
 import javax.websocket.*;
 
@@ -81,6 +80,8 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                     }
                 });
                 break;
+            case CALCULATEITEMPRICE:
+                System.out.println("NOT IMPLEMENTED!!!!!!");
         }
     }
 

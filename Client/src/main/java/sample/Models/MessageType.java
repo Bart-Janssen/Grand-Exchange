@@ -2,5 +2,5 @@ package sample.Models;
 
 public enum MessageType
 {
-    LOGIN, SELLITEM
+    LOGIN, SELLITEM, CALCULATEITEMPRICE, REGISTER
 }

@@ -4,9 +4,13 @@ import Server.Factory.ServerFactory;
 import Server.Models.DatabaseServerType;
 import Server.Models.WebSocketMessage;
 import Server.ServerLogic.IGrandExchangeServerLogic;
+import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MessageType;
+import Server.SharedClientModels.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
+import javax.persistence.Convert;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
@@ -84,6 +88,9 @@ public class Connection
             case SELLITEM:
                 sellItem(webSocketMessage, currentUserSession);
                 break;
+            case CALCULATEITEMPRICE:
+                calculateItemPrice(webSocketMessage, currentUserSession);
+                break;
         }
     }
 
@@ -91,11 +98,31 @@ public class Connection
     {
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
-            WebSocketMessage messageToUser = logic.sellItem(sessionAndUser.get(currentUserSession).getUser(), sessionAndUser.get(currentUserSession).getItem());
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setOperation(MessageType.SELLITEM);
+            messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
+            messageToUser.setItem(webSocketMessage.getItem());
+            messageToUser.setMessage("[Server] : Failed to sell item.");
+            if (logic.sellItem(Integer.parseInt(messageToUser.getMessage()), sessionAndUser.get(currentUserSession).getUser(), messageToUser.getItem()))
             {
                 messageToUser.setMessage("[Server] : Successfully sold item.");
             }
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        }
+    }
+
+    private void calculateItemPrice(WebSocketMessage webSocketMessage, Session currentUserSession)
+    {
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setOperation(MessageType.CALCULATEITEMPRICE);
+            messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
+            int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItem());
+            webSocketMessage.getItem().setPrice(price);
+            messageToUser.setMessage("Do you want to sell the item for " + price + " coins?");
+            if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
+            messageToUser.setItem(webSocketMessage.getItem());
         }
     }
 
@@ -111,5 +138,10 @@ public class Connection
             sessionAndUser.get(currentUserSession).getUser().setLoggedIn(true);
         }
         currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+    }
+
+    private void register()
+    {
+        //TODO: this
     }
 }

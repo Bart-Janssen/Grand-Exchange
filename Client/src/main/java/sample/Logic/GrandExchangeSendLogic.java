@@ -19,8 +19,8 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     }
 
     @Override
-    public void sellItem(Item item)
+    public void sellItem(int price, User user, Item item)
     {
-        webSocketConnection.sellItem(item);
+        webSocketConnection.sellItem(price, user, item);
     }
 }

@@ -48,4 +48,10 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         return null;
     }
+
+    @Override
+    public boolean sellItem()
+    {
+        return false;
+    }
 }

@@ -2,5 +2,5 @@ package Server.SharedClientModels;
 
 public enum MessageType
 {
-    LOGIN, SELLITEM
+    LOGIN, SELLITEM, CALCULATEITEMPRICE, REGISTER
 }

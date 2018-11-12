@@ -5,17 +5,19 @@ import java.util.Calendar;
 
 public class Item
 {
+    private String name;
     private int price;
     private String obtainDate;
     private int itemLevel;
-    private int damagedState = 0;
+    private int itemHealth = 100;
     private AttackStyle attackStyle;
 
-    public Item(int itemLevel, AttackStyle attackStyle)
+    public Item(int itemLevel, AttackStyle attackStyle, String name)
     {
         this.obtainDate = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
         this.attackStyle = attackStyle;
         this.itemLevel = itemLevel;
+        this.name = name;
     }
 
     public int getPrice()
@@ -43,18 +45,24 @@ public class Item
         return itemLevel;
     }
 
-    public int getDamagedState()
+    public int getItemHealth()
     {
-        return damagedState;
+        return itemHealth;
     }
 
-    public void setDamagedState(int damagedState)
+    public void subtractItemHealth(int amount)
     {
-        this.damagedState = damagedState;
+        if (amount > itemHealth) this.itemHealth = 0;
+        if (itemHealth > 0) this.itemHealth -= amount;
     }
 
     public AttackStyle getAttackStyle()
     {
         return attackStyle;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 }

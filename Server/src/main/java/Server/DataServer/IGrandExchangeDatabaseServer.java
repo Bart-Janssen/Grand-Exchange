@@ -1,5 +1,6 @@
 package Server.DataServer;
 
+import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
 
@@ -10,4 +11,5 @@ public interface IGrandExchangeDatabaseServer
     boolean login(User user);
     void register(User user);
     ArrayList<MarketOffer> getSellingItems(String itemName);
+    boolean sellItem(MarketOffer offer);
 }

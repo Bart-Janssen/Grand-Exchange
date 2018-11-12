@@ -7,5 +7,6 @@ import Server.SharedClientModels.User;
 public interface IGrandExchangeServerLogic
 {
     boolean login(User user);
-    WebSocketMessage sellItem(User user, Item item);
+    boolean sellItem(int price, User user, Item item);
+    int calculateItemPrice(User user, Item item);
 }

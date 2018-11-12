@@ -2,16 +2,8 @@ package sample.Models;
 
 public class Armor extends Item
 {
-    private int defence;
-
-    public Armor(int itemLevel, int defence, AttackStyle attackStyle)
+    public Armor(int itemLevel, int defence, AttackStyle attackStyle, String name)
     {
-        super(itemLevel, attackStyle);
-        this.defence = defence;
-    }
-
-    public int getDefence()
-    {
-        return defence;
+        super(itemLevel, attackStyle, name);
     }
 }

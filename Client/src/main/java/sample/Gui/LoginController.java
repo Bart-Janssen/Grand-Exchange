@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -51,5 +52,11 @@ public class LoginController extends Gui implements ILoginGui
     public void loginFailed()
     {
         labelLoginFailed.setVisible(true);
+    }
+
+    public void labelRegister_Click(MouseEvent mouseEvent)
+    {
+        System.out.println("Register clicked");
+        //TODO: register form aanmaken
     }
 }

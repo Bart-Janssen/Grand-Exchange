@@ -11,17 +11,27 @@ public class WebSocketConnection implements IWebSocketConnection
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setUser(user);
         webSocketMessage.setOperation(MessageType.LOGIN);
-        String jsonMessage = new Gson().toJson(webSocketMessage);
-        UserSession.getInstance().getSession().getAsyncRemote().sendText(jsonMessage);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 
     @Override
-    public void sellItem(Item item)
+    public void sellItem(int price, User user, Item item)
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setItem(item);
+        webSocketMessage.setUser(user);
+        webSocketMessage.setMessage(Integer.toString(price));
         webSocketMessage.setOperation(MessageType.SELLITEM);
-        String jsonMessage = new Gson().toJson(webSocketMessage);
-        UserSession.getInstance().getSession().getAsyncRemote().sendText(jsonMessage);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
+
+    @Override
+    public void calculateItemPrice(User user, Item item)
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setItem(item);
+        webSocketMessage.setUser(user);
+        webSocketMessage.setOperation(MessageType.CALCULATEITEMPRICE);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 }

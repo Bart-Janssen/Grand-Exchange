@@ -6,11 +6,8 @@ import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.MessageType;
 import Server.SharedClientModels.User;
-import com.google.gson.Gson;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
@@ -30,46 +27,16 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     }
 
     @Override
-    public WebSocketMessage sellItem(User user, Item item)
+    public boolean sellItem(int price, User user, Item item)
     {
-        WebSocketMessage webSocketMessage = new WebSocketMessage();
-        webSocketMessage.setOperation(MessageType.SELLITEM);
-        webSocketMessage.setMessage("Item sold.");
-        webSocketMessage.setUser(user);
-        int price = calculatePrice(user, item);
-        //TODO: sell item to Market
-        if (price == -1) webSocketMessage.setMessage("Cannot sell item, repair it first.");
-        webSocketMessage.setItem(item);
-        return webSocketMessage;
+        return databaseServer.sellItem(new MarketOffer(price, item, user));
     }
 
-    /*public int calculateDateWeaponState(Item item)
+    @Override
+    public int calculateItemPrice(User user, Item item)
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-        long difference;
-        try
-        {
-            int power = 0;
-            if (item instanceof Armor)
-            {
-                power = ((Armor)item).getDefence();
-            }
-            if (item instanceof Weapon)
-            {
-                power = ((Weapon)item).getDamage();
-            }
-            difference = TimeUnit.DAYS.convert(dateFormat.parse(new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime())).getTime() - dateFormat.parse(item.getObtainDate()).getTime(), TimeUnit.MILLISECONDS);
-            System.out.println(difference);
-            if (difference <= 10) return 15 * item.getItemLevel();
-            if (difference >= 150) return 0;
-            return ((item.getItemLevel() * item.getItemHealth()) * 1000) + ((power * item.getItemLevel()) + ((item.getAttackStyle().getValue() * (15 * item.getItemLevel()) - (int)Math.floor((double)difference / 10) * item.getItemLevel())));
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        return 0;
-    }*/
+        return calculatePrice(user, item);
+    }
 
     private void calculateDatePrice(Item item)
     {
@@ -79,9 +46,18 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         try
         {
             difference = TimeUnit.DAYS.convert(dateFormat.parse(new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime())).getTime() - dateFormat.parse(item.getObtainDate()).getTime(), TimeUnit.MILLISECONDS);
-            if (difference <= 10) item.setPrice(item.getPrice() + defaultPrice);
-            if (difference >= 150) item.setPrice(item.getPrice() + item.getAttackStyle().getValue() * item.getItemLevel());
+            if (difference <= 10)
+            {
+                item.setPrice(item.getPrice() + defaultPrice);
+                return;
+            }
+            if (difference >= 150)
+            {
+                item.setPrice(item.getPrice() + item.getAttackStyle().getValue() * item.getItemLevel());
+                return;
+            }
             item.setPrice(item.getPrice() + defaultPrice - (int)((int)Math.floor((double)difference / 10) * (defaultPrice * 0.05))); //5 percent
+            return;
         }
         catch (ParseException e)
         {
@@ -122,6 +98,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
             }
         }
         if (totalPrices != item.getPrice()) item.setPrice(totalPrices / pricesCount);
+        System.out.println(pricesCount);
     }
 
     private void calculateWeaponHealth(Item item)

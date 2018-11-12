@@ -1,9 +1,10 @@
 package sample.Logic;
 
 import sample.Models.Item;
+import sample.Models.User;
 
 public interface IGrandExchangeSendLogic
 {
     void login(String username, String password);
-    void sellItem(Item item);
+    void sellItem(int price, User user, Item item);
 }
