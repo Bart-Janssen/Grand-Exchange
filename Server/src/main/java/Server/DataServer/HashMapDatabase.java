@@ -6,13 +6,13 @@ import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
 import java.util.ArrayList;
 
-public class HashmapDatabase implements IGrandExchangeDatabaseServer
+public class HashMapDatabase implements IGrandExchangeDatabaseServer
 {
     ArrayList<MarketOffer> sellOffers = new ArrayList<>();
     ArrayList<MarketOffer> buyOffers = new ArrayList<>();
     ArrayList<User> users = new ArrayList<>();
 
-    public HashmapDatabase()
+    public HashMapDatabase()
     {
         sellOffers.add(new MarketOffer(496360, new Item(80, AttackStyle.MELEE, "Sword"), new User("", "", 100)));
         sellOffers.add(new MarketOffer(507599, new Item(165, AttackStyle.MAGIC, "Staff"), new User("", "", 59)));
@@ -57,17 +57,9 @@ public class HashmapDatabase implements IGrandExchangeDatabaseServer
     }
 
     @Override
-    public ArrayList<MarketOffer> getSellingItems(String itemName)
+    public ArrayList<MarketOffer> getSellingItems()
     {
-        ArrayList<MarketOffer> tempList = new ArrayList<>();
-        for (MarketOffer offer : sellOffers)
-        {
-            if (offer.getItem().getAttackStyle() == AttackStyle.MAGIC)
-            {
-                tempList.add(offer);
-            }
-        }
-        return tempList;
+        return sellOffers;
     }
 
     @Override

@@ -16,15 +16,16 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="300.0" prefWidth="300.0">
+      <Pane prefHeight="300.0" prefWidth="300.0" style="-fx-background-image: url('https://files.slack.com/files-pri/T7XM51678-FE4HE360P/image.jpg');">
          <children>
             <Button fx:id="buttonLogin" layoutX="179.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonLogin_Click" text="Login" />
             <TextField fx:id="textFieldUsername" layoutX="76.0" layoutY="49.0" onKeyPressed="#textFieldUsername_KeyPress" />
             <TextField fx:id="textFieldPassword" layoutX="76.0" layoutY="97.0" onKeyPressed="#textFieldPassword_KeyPress" prefWidth="149.0" />
             <Label layoutX="76.0" layoutY="32.0" text="Username" />
             <Label layoutX="76.0" layoutY="80.0" text="Password" />
-            <Label fx:id="labelLoginFailed" layoutX="119.0" layoutY="177.0" text="Login failed" visible="false" />
-            <Label layoutX="81.0" layoutY="172.0" onMousePressed="#labelRegister_Click" text="Register" />
-         </children></Pane>
+            <Label fx:id="labelLoginFailed" layoutX="119.0" layoutY="177.0" text="Login failed" visible="false"/>
+            <Label layoutX="81.0" layoutY="127.0" onMousePressed="#labelRegister_Click" text="Register"  style="-fx-underline: true;"/>
+         </children>
+      </Pane>
    </children>
 </GridPane>

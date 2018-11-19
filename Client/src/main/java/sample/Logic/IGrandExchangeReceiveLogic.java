@@ -1,8 +1,8 @@
 package sample.Logic;
 
-import sample.Gui.Gui;
+import sample.Gui.Controller;
 
 public interface IGrandExchangeReceiveLogic
 {
-    void setGui(Gui gui);
+    void setController(Controller controller);
 }

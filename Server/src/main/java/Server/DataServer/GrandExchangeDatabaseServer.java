@@ -44,13 +44,13 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     }
 
     @Override
-    public ArrayList<MarketOffer> getSellingItems(String itemName)
+    public ArrayList<MarketOffer> getSellingItems()
     {
         return null;
     }
 
     @Override
-    public boolean sellItem()
+    public boolean sellItem(MarketOffer offer)
     {
         return false;
     }

@@ -1,8 +1,7 @@
 package sample.Logic;
 
 import com.google.gson.Gson;
-import javafx.application.Platform;
-import sample.Gui.Gui;
+import sample.Gui.Controller;
 import sample.Gui.IGameGui;
 import sample.Gui.ILoginGui;
 import sample.Models.*;
@@ -11,7 +10,7 @@ import javax.websocket.*;
 @ClientEndpoint
 public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
 {
-    private Gui gui;
+    private Controller controller;
     private static GrandExchangeReceiveLogic instance = null;
 
     public static GrandExchangeReceiveLogic getInstance()
@@ -23,9 +22,9 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
     private GrandExchangeReceiveLogic(){}
 
     @Override
-    public void setGui(Gui gui)
+    public void setController(Controller controller)
     {
-        this.gui = gui;
+        this.controller = controller;
     }
 
     @OnOpen
@@ -71,34 +70,22 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                 login(webSocketMessage);
                 break;
             case SELLITEM:
-                Platform.runLater(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        ((IGameGui)gui).MBOX(webSocketMessage.getMessage());
-                    }
-                });
+                ((IGameGui)controller).MBOX(webSocketMessage.getMessage());
                 break;
             case CALCULATEITEMPRICE:
                 System.out.println("NOT IMPLEMENTED!!!!!!");
+                break;
         }
     }
 
     private void login(WebSocketMessage webSocketMessage)
     {
+        System.out.println(webSocketMessage.getMessage());
         if (webSocketMessage.getUser().isLoggedIn())
         {
-            Platform.runLater(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    ((ILoginGui)gui).callGameGui();
-                }
-            });
+            ((ILoginGui)controller).callGameGui();
             return;
         }
-        ((ILoginGui)gui).loginFailed();
+        ((ILoginGui)controller).loginFailed();
     }
 }

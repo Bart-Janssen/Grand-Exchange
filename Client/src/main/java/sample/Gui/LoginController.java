@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class LoginController extends Gui implements ILoginGui
+public class LoginController extends Controller implements ILoginGui
 {
     public GridPane loginForm;
     public TextField textFieldUsername;
@@ -18,7 +18,7 @@ public class LoginController extends Gui implements ILoginGui
 
     public LoginController()
     {
-        super.getReceiveLogic().setGui(this);
+        super.getReceiveLogic().setController(this);
     }
 
     public void buttonLogin_Click(ActionEvent actionEvent)

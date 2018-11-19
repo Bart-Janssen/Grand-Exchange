@@ -1,13 +1,12 @@
 package Server.ServerLogic;
 
 import Server.DataServer.IGrandExchangeDatabaseServer;
-import Server.Models.WebSocketMessage;
 import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MarketOffer;
-import Server.SharedClientModels.MessageType;
 import Server.SharedClientModels.User;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
@@ -35,7 +34,35 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     @Override
     public int calculateItemPrice(User user, Item item)
     {
-        return calculatePrice(user, item);
+        if (item.getItemHealth() == 0) return -1;
+
+        calculateWeaponPrice(user, item);
+        System.out.println("Wep price: " + item.getPrice());
+
+        calculateDatePrice(item);
+        System.out.println("date price: " + item.getPrice());
+
+        calculateWeaponHealth(item);
+        System.out.println("Wep health: " + item.getPrice());
+
+        calculateAverageMarketSellingItemPrice(item);
+        System.out.println("MarketSelling price: " + item.getPrice());
+
+        calculateAverageMarketBuyingItemPrice(user, item);
+        System.out.println("MarketBuying price: " + item.getPrice());
+
+        return item.getPrice();
+    }
+
+    private void calculateAverageMarketBuyingItemPrice(User user, Item item)
+    {
+
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getSellOffers()
+    {
+        return databaseServer.getSellingItems();
     }
 
     private void calculateDatePrice(Item item)
@@ -66,39 +93,19 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         item.setPrice(item.getPrice() + defaultPrice);
     }
 
-    public int calculatePrice(User user, Item item)
-    {
-        if (item.getItemHealth() == 0) return -1;
-
-        calculateWeaponPrice(user, item);
-        System.out.println("Wep price: " + item.getPrice());
-
-        calculateDatePrice(item);
-        System.out.println("date price: " + item.getPrice());
-
-        calculateWeaponHealth(item);
-        System.out.println("Wep health: " + item.getPrice());
-
-        calculateMarketPrice(item);
-        System.out.println("Market price: " + item.getPrice());
-
-        return item.getPrice();
-    }
-
-    private void calculateMarketPrice(Item item)
+    private void calculateAverageMarketSellingItemPrice(Item item)
     {
         int totalPrices = item.getPrice();
         int pricesCount = 1;
-        for (MarketOffer offer : databaseServer.getSellingItems(item.getName()))
+        for (MarketOffer offer : databaseServer.getSellingItems())
         {
-            if (offer.getItem().getItemLevel() > (item.getItemLevel() - item.getItemLevel() * 0.1) && offer.getItem().getItemLevel() < (item.getItemLevel() + item.getItemLevel() * 0.1))
+            if (offer.getItem().getItemLevel() > (item.getItemLevel() - item.getItemLevel() * 0.1) && offer.getItem().getItemLevel() < (item.getItemLevel() + item.getItemLevel() * 0.1))//10 percent
             {
                 totalPrices += offer.getPrice();
                 pricesCount++;
             }
         }
         if (totalPrices != item.getPrice()) item.setPrice(totalPrices / pricesCount);
-        System.out.println(pricesCount);
     }
 
     private void calculateWeaponHealth(Item item)
@@ -118,7 +125,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
             return;
         }
         System.out.println("can't wear");
-        defaultPrice += (int)(item.getItemLevel() * item.getAttackStyle().getValue() * item.getAttackStyle().getValue() * 0.75);
+        defaultPrice += (int)(item.getItemLevel() * item.getAttackStyle().getValue() * item.getAttackStyle().getValue() * 0.75);//75 percent
         item.setPrice(item.getPrice() + defaultPrice);
     }
 

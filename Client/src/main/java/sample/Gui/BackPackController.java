@@ -2,12 +2,12 @@ package sample.Gui;
 
 import javafx.scene.layout.GridPane;
 
-public class BackPackController extends Gui implements IBackPackGui
+public class BackPackController extends Controller implements IBackPackGui
 {
     public GridPane backPackForm;
 
     public BackPackController()
     {
-        super.getReceiveLogic().setGui(this);
+        super.getReceiveLogic().setController(this);
     }
 }
