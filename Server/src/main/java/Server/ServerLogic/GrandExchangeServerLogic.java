@@ -4,6 +4,8 @@ import Server.DataServer.IGrandExchangeDatabaseServer;
 import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
+import com.google.gson.Gson;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     @Override
     public ArrayList<MarketOffer> getSellOffers()
     {
-        return databaseServer.getSellingItems();
+        return databaseServer.getSellingOffers();
     }
 
     private void calculateDatePrice(Item item)
@@ -97,7 +99,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     {
         int totalPrices = item.getPrice();
         int pricesCount = 1;
-        for (MarketOffer offer : databaseServer.getSellingItems())
+        for (MarketOffer offer : databaseServer.getSellingOffers())
         {
             if (offer.getItem().getItemLevel() > (item.getItemLevel() - item.getItemLevel() * 0.1) && offer.getItem().getItemLevel() < (item.getItemLevel() + item.getItemLevel() * 0.1))//10 percent
             {

@@ -23,7 +23,7 @@ public class DatabaseServerFactory
         switch (type)
         {
             case MYSQL:
-                return new DataServerLogic(new MySqlDatabaseConnection());
+                return new DataServerLogic(new MySqlDatabaseConnection("jdbc:mysql://localhost:3306/trademarket", "root", ""));
             case HashMapDatabase:
                 return new DataServerLogic(new HashMapDatabase());
             default:

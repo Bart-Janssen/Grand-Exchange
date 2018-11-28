@@ -8,6 +8,6 @@ public interface IGrandExchangeDatabaseServer
 {
     boolean login(User user);
     void register(User user);
-    ArrayList<MarketOffer> getSellingItems();
+    ArrayList<MarketOffer> getSellingOffers();
     boolean sellItem(MarketOffer offer);
 }

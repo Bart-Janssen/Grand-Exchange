@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -48,7 +49,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
     {
         if (offers.size() >= 3)
         {
-            System.out.println("Max offers.");
+            System.out.println("Max offers.");//TODO: melding te veel
             return;
         }
         MarketOffer newOffer = new Gson().fromJson(message, MarketOffer.class);
@@ -91,7 +92,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
             gridPane.add(offer, 1, 4);
             gridPane.add(price, 1, 5);
 
-            gridMarket.add(gridPane,i,0);
+            gridMarket.add(gridPane, i,0);
         }
     }
 

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @ServerEndpoint(value="/grandExchangeServer/")
 public class Connection
 {
-    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.HASHMAP);//TODO: database server to rest
+    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.REST);//TODO: database server to rest
 
     private HashMap<Session, WebSocketMessage> sessionAndUser = new HashMap<>();
 

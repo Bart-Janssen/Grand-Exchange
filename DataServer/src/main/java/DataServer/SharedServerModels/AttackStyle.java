@@ -1,4 +1,4 @@
-package Server.SharedClientModels;
+package DataServer.SharedServerModels;
 
 public enum AttackStyle
 {

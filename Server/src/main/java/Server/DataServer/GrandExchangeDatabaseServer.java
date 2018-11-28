@@ -3,11 +3,16 @@ package Server.DataServer;
 import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
 {
@@ -43,8 +48,18 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     }
 
     @Override
-    public ArrayList<MarketOffer> getSellingItems()
+    public ArrayList<MarketOffer> getSellingOffers()
     {
+        HttpGet httpGet = new HttpGet(serverLocation + "/getSellingOffers");
+        httpGet.addHeader("content-type", "application/json");
+        try
+        {
+            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
         return null;
     }
 

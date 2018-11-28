@@ -57,7 +57,7 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     }
 
     @Override
-    public ArrayList<MarketOffer> getSellingItems()
+    public ArrayList<MarketOffer> getSellingOffers()
     {
         return sellOffers;
     }
