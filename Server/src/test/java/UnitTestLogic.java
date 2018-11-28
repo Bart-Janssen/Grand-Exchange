@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class UnitTestLogic
 {
-    IGrandExchangeServerLogic logic;
+    private IGrandExchangeServerLogic logic;
 
     @Before
     public void setup()
@@ -194,7 +194,7 @@ public class UnitTestLogic
         Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(0);
         weapon.setObtainDate(date);
-        assertTrue(logic.sellItem(1, new User("a", "p", 100), weapon));
+        assertTrue(logic.sellItem(new MarketOffer(1, weapon, MarketOfferType.SELL, new User("a", "p", 100))));
         ArrayList<MarketOffer> list = logic.getSellOffers();
         assertEquals(1, list.get(list.size()-1).getPrice());
     }

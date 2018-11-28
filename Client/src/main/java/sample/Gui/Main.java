@@ -2,8 +2,13 @@ package sample.Gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Factory.ClientFactory;
 import sample.Logic.Connector;
@@ -32,23 +37,24 @@ public class Main extends Application
 
     private static void startAndConnectApplication(Stage stage, String server)
     {
+
         stage.setTitle("Grand Exchange");
         Main.stage = stage;
+        stage.setResizable(false);
         try
         {
-            stage.setScene(new Scene((Parent) FXMLLoader.load(Main.class.getClassLoader().getResource("Login.fxml")), 300, 300));
+            stage.setScene(new Scene(FXMLLoader.load(Main.class.getClassLoader().getResource("Login.fxml")), 300, 300));
             if (!connected)
             {
                 WebSocketContainer container = ContainerProvider.getWebSocketContainer();
                 UserSession.getInstance().setSession(container.connectToServer(logic, URI.create(server)));
-                System.out.println("hai " + connected);
             }
             stage.show();
             return;
         }
         catch (Exception e)
         {
-            connectToServer(server);
+            startReconnecting(server);
         }
         if (!connectionFailedFormRunning) callFailedConnectingForm(stage);
     }
@@ -57,7 +63,7 @@ public class Main extends Application
     {
         try
         {
-            stage.setScene(new Scene((Parent)FXMLLoader.load(Main.class.getClassLoader().getResource("ConnectionFailure.fxml")), 300, 300));
+            stage.setScene(new Scene(FXMLLoader.load(Main.class.getClassLoader().getResource("ConnectionFailure.fxml")), 300, 300));
         }
         catch (IOException e)
         {
@@ -69,7 +75,7 @@ public class Main extends Application
     }
 
 
-    private static void connectToServer(String server)
+    private static void startReconnecting(String server)
     {
         try
         {
@@ -81,7 +87,7 @@ public class Main extends Application
             ex.printStackTrace();
         }
     }
-    
+
     static void restart()
     {
         connected = true;

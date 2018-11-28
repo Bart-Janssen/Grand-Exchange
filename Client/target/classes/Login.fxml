@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.control.PasswordField?>
 <GridPane fx:id="loginForm" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.LoginController">
    <columnConstraints>
       <ColumnConstraints />
@@ -16,11 +17,11 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="300.0" prefWidth="300.0" style="-fx-background-image: url('https://files.slack.com/files-pri/T7XM51678-FE4HE360P/image.jpg');">
+      <Pane prefHeight="300.0" prefWidth="300.0">
          <children>
             <Button fx:id="buttonLogin" layoutX="179.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonLogin_Click" text="Login" />
             <TextField fx:id="textFieldUsername" layoutX="76.0" layoutY="49.0" onKeyPressed="#textFieldUsername_KeyPress" />
-            <TextField fx:id="textFieldPassword" layoutX="76.0" layoutY="97.0" onKeyPressed="#textFieldPassword_KeyPress" prefWidth="149.0" />
+            <PasswordField fx:id="textFieldPassword" layoutX="76.0" layoutY="97.0" onKeyPressed="#textFieldPassword_KeyPress" prefWidth="149.0" />
             <Label layoutX="76.0" layoutY="32.0" text="Username" />
             <Label layoutX="76.0" layoutY="80.0" text="Password" />
             <Label fx:id="labelLoginFailed" layoutX="119.0" layoutY="177.0" text="Login failed" visible="false"/>

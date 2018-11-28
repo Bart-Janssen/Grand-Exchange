@@ -6,5 +6,6 @@ import sample.Models.User;
 public interface IGrandExchangeSendLogic
 {
     void login(String username, String password);
-    void sellItem(int price, User user, Item item);
+    void sellItem(int price, Item item);
+    void calculateItemPrice(Item item);
 }

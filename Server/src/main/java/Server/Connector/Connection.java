@@ -4,9 +4,7 @@ import Server.Factory.ServerFactory;
 import Server.Models.DatabaseServerType;
 import Server.Models.WebSocketMessage;
 import Server.ServerLogic.IGrandExchangeServerLogic;
-import Server.SharedClientModels.Item;
-import Server.SharedClientModels.MessageType;
-import Server.SharedClientModels.User;
+import Server.SharedClientModels.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -22,7 +20,7 @@ import java.util.stream.Collectors;
 @ServerEndpoint(value="/grandExchangeServer/")
 public class Connection
 {
-    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.REST);//TODO: database server to rest
+    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.HASHMAP);//TODO: database server to rest
 
     private HashMap<Session, WebSocketMessage> sessionAndUser = new HashMap<>();
 
@@ -105,7 +103,7 @@ public class Connection
             messageToUser.setMessage("[Server] : Failed to sell item.");
             try
             {
-                if (logic.sellItem(Integer.parseInt(messageToUser.getMessage()), sessionAndUser.get(currentUserSession).getUser(), messageToUser.getItem()))
+                if (logic.sellItem(new MarketOffer(Integer.parseInt(messageToUser.getMessage()), messageToUser.getItem(), MarketOfferType.SELL, sessionAndUser.get(currentUserSession).getUser())))
                 {
                     messageToUser.setMessage("[Server] : Successfully sold item.");
                 }
@@ -129,9 +127,10 @@ public class Connection
             messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
             int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItem());
             webSocketMessage.getItem().setPrice(price);
-            messageToUser.setMessage("Do you want to sell the item for " + price + " coins?");
+            messageToUser.setMessage(new Gson().toJson(new MarketOffer(price, webSocketMessage.getItem(), MarketOfferType.SELL, null)));
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
             messageToUser.setItem(webSocketMessage.getItem());
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
 

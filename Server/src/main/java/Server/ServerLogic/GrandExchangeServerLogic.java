@@ -26,9 +26,9 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     }
 
     @Override
-    public boolean sellItem(int price, User user, Item item)
+    public boolean sellItem(MarketOffer offer)
     {
-        return databaseServer.sellItem(new MarketOffer(price, item, user));
+        return databaseServer.sellItem(offer);
     }
 
     @Override

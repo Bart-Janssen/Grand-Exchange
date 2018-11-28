@@ -15,22 +15,20 @@ public class WebSocketConnection implements IWebSocketConnection
     }
 
     @Override
-    public void sellItem(int price, User user, Item item)
+    public void sellItem(int price, Item item)
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setItem(item);
-        webSocketMessage.setUser(user);
         webSocketMessage.setMessage(Integer.toString(price));
         webSocketMessage.setOperation(MessageType.SELLITEM);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 
     @Override
-    public void calculateItemPrice(User user, Item item)
+    public void calculateItemPrice(Item item)
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setItem(item);
-        webSocketMessage.setUser(user);
         webSocketMessage.setOperation(MessageType.CALCULATEITEMPRICE);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }

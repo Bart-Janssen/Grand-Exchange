@@ -17,7 +17,7 @@ public class ConnectionFailureController extends Controller implements IConnecti
     public ConnectionFailureController()
     {
         Connector connector = Connector.getInstance();
-        connector.addObserver((Observer) this);
+        connector.addObserver(this);
         timer.schedule(new TimerTask()
         {
             @Override
@@ -29,7 +29,6 @@ public class ConnectionFailureController extends Controller implements IConnecti
                 if (time <= 0)
                 {
                     connector.run();
-                    //restartMain();
                     time = 6;
                 }
             }
@@ -38,26 +37,12 @@ public class ConnectionFailureController extends Controller implements IConnecti
 
     private void setLabelTime(final int time)
     {
-        Platform.runLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                labelTime.setText("Next try in: " + time);
-            }
-        });
+        Platform.runLater(() -> labelTime.setText("Next try in: " + time));
     }
 
     private void restartMain()
     {
-        Platform.runLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                Main.restart();
-            }
-        });
+        Platform.runLater(Main::restart);
     }
 
     @Override

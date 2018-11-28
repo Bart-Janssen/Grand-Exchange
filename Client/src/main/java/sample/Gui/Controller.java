@@ -1,12 +1,9 @@
 package sample.Gui;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import sample.Factory.ClientFactory;
 import sample.Logic.IGrandExchangeReceiveLogic;
 import sample.Logic.IGrandExchangeSendLogic;
@@ -16,6 +13,7 @@ public abstract class Controller
 {
     private IGrandExchangeSendLogic sendLogic = ClientFactory.getInstance().makeNewGrandExchangeSendLogic(WebSocketType.WEBSOCKETSERVER);
     private IGrandExchangeReceiveLogic receiveLogic = ClientFactory.getInstance().makeNewGrandExchangeReceiveLogic(WebSocketType.WEBSOCKETSERVER);
+    private static Stage stage;
 
     IGrandExchangeSendLogic getSendLogic()
     {
@@ -27,35 +25,20 @@ public abstract class Controller
         return receiveLogic;
     }
 
-    void openForm(final Stage oldForm, final String fxml, final String title)
+    void openForm(final Stage oldForm, final String fxml, final String title, int width, int height)
     {
-        Platform.runLater(new Runnable()
+        stage = oldForm;
+        Platform.runLater(() ->
         {
-            @Override
-            public void run()
+            try
             {
-                try
-                {
-                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml + ".fxml"));
-                    Parent root = loader.load();
-                    Stage newForm = new Stage();
-                    newForm.setTitle(title);
-                    newForm.setScene(new Scene(root));
-                    newForm.setOnCloseRequest(new EventHandler<WindowEvent>()
-                    {
-                        @Override
-                        public void handle(WindowEvent event)
-                        {
-                            if (!fxml.equals("Game")) openForm(oldForm,"Game", "Game");
-                        }
-                    });
-                    newForm.show();
-                    oldForm.close();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
+                Controller.stage.setScene(new Scene(FXMLLoader.load(Main.class.getClassLoader().getResource(fxml + ".fxml")), width, height));
+                stage.setTitle(title);
+                stage.show();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
             }
         });
     }

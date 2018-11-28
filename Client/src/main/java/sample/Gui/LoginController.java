@@ -45,7 +45,7 @@ public class LoginController extends Controller implements ILoginGui
     @Override
     public void callGameGui()
     {
-        super.openForm(((Stage)loginForm.getScene().getWindow()),"Game","Game");
+        super.openForm(((Stage)loginForm.getScene().getWindow()),"Game","Game", 300, 300);
     }
 
     @Override

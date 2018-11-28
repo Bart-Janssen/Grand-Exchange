@@ -24,7 +24,7 @@ public class RestController
         return logic.login(user) ? Response.status(200).entity("success").build() : Response.status(400).entity("error").build();
     }
 
-    @GET
+    /*@GET
     @Path("/get/{data}")
     @Produces("application/json")
     public Response get(@PathParam("data") String data)
@@ -33,5 +33,5 @@ public class RestController
         System.out.println("hai");
         System.out.println("[" + data + "]");
         return Response.status(200).entity("200").build();
-    }
+    }*/
 }

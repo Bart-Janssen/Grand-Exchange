@@ -17,23 +17,16 @@ public class GameController extends Controller implements IGameGui
     @Override
     public void MBOX(final String ding)//TODO:
     {
-        Platform.runLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                System.out.println(ding);
-            }
-        });
+        Platform.runLater(() -> System.out.println(ding));
     }
 
     public void buttonOpenBackpack_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)gameForm.getScene().getWindow()),"Backpack", "BackPack");
+        super.openForm(((Stage)gameForm.getScene().getWindow()),"Backpack", "BackPack", 300 , 300);
     }
 
     public void buttonOpenMarket_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)gameForm.getScene().getWindow()),"Market", "Market");
+        super.openForm(((Stage)gameForm.getScene().getWindow()),"Market", "Market", 800, 300);
     }
 }

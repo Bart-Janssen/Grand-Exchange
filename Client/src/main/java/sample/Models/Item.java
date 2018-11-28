@@ -11,6 +11,7 @@ public class Item
     private int itemLevel;
     private int itemHealth = 100;
     private AttackStyle attackStyle;
+    private String iconPath;
 
     public Item(int itemLevel, AttackStyle attackStyle, String name)
     {
@@ -18,6 +19,7 @@ public class Item
         this.attackStyle = attackStyle;
         this.itemLevel = itemLevel;
         this.name = name;
+        this.iconPath = name + ".png";
     }
 
     public int getPrice()
@@ -64,5 +66,10 @@ public class Item
     public String getName()
     {
         return name;
+    }
+
+    public String getIconPath()
+    {
+        return iconPath;
     }
 }

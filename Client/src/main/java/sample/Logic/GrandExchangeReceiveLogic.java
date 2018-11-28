@@ -1,9 +1,8 @@
 package sample.Logic;
 
 import com.google.gson.Gson;
-import sample.Gui.Controller;
-import sample.Gui.IGameGui;
-import sample.Gui.ILoginGui;
+import javafx.application.Platform;
+import sample.Gui.*;
 import sample.Models.*;
 import javax.websocket.*;
 
@@ -73,7 +72,8 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                 ((IGameGui)controller).MBOX(webSocketMessage.getMessage());
                 break;
             case CALCULATEITEMPRICE:
-                System.out.println("NOT IMPLEMENTED!!!!!!");
+                ((IBackPackGui)controller).switchToMarketController();
+                Platform.runLater(() -> ((IMarketGui)controller).showCalculatedPrice(webSocketMessage.getMessage()));
                 break;
         }
     }
