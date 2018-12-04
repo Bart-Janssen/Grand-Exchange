@@ -24,7 +24,7 @@ public class Main extends Application
 {
     private static IGrandExchangeReceiveLogic logic = ClientFactory.getInstance().makeNewGrandExchangeReceiveLogic(WebSocketType.WEBSOCKETSERVER);
     private static Stage stage;
-    private static String server = "ws://localhost:6666/grandExchangeServer/";
+    private static String server = "ws://localhost:6667/grandExchangeServer/";
     private static Connector connector;
     private static boolean connectionFailedFormRunning = false;
     private static boolean connected = false;
@@ -37,7 +37,6 @@ public class Main extends Application
 
     private static void startAndConnectApplication(Stage stage, String server)
     {
-
         stage.setTitle("Grand Exchange");
         Main.stage = stage;
         stage.setResizable(false);

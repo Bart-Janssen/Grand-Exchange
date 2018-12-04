@@ -32,4 +32,12 @@ public class WebSocketConnection implements IWebSocketConnection
         webSocketMessage.setOperation(MessageType.CALCULATEITEMPRICE);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
+
+    @Override
+    public void getBackPackItems()
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.GET_BACKPACK_ITEMS);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
 }

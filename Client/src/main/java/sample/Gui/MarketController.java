@@ -3,22 +3,12 @@ package sample.Gui;
 import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Models.Item;
 import sample.Models.MarketOffer;
@@ -33,6 +23,11 @@ public class MarketController extends Controller implements IMarketGui, Initiali
 
     private static ArrayList<MarketOffer> offers = new ArrayList<>();
 
+    static int getOfferCount()
+    {
+        return offers.size();
+    }
+
     public MarketController()
     {
         super.getReceiveLogic().setController(this);
@@ -41,17 +36,12 @@ public class MarketController extends Controller implements IMarketGui, Initiali
     @Override
     public void sellItem(Item item)
     {
-        super.getSendLogic().sellItem(1, item);//TODO: price out from ui
+        super.getSendLogic().sellItem(1, item);//TODO: get price out from ui
     }
 
     @Override
     public void showCalculatedPrice(String message)
     {
-        if (offers.size() >= 3)
-        {
-            System.out.println("Max offers.");//TODO: melding te veel
-            return;
-        }
         MarketOffer newOffer = new Gson().fromJson(message, MarketOffer.class);
         offers.add(newOffer);
         fillMarket();

@@ -1,7 +1,10 @@
 package DataServer.DataServerLogic;
 
 import DataServer.Database.IDatabaseConnection;
+import DataServer.SharedServerModels.Item;
 import DataServer.SharedServerModels.User;
+
+import java.util.ArrayList;
 
 public class DataServerLogic implements IDataServerLogic
 {
@@ -12,7 +15,7 @@ public class DataServerLogic implements IDataServerLogic
         this.database = database;
     }
 
-    public boolean login(User user)
+    public User login(User user)
     {
         return database.login(user);
     }
@@ -20,5 +23,11 @@ public class DataServerLogic implements IDataServerLogic
     public void register(User user)
     {
 
+    }
+
+    @Override
+    public ArrayList<Item> getBackPackItems(int id)
+    {
+        return database.getBackPackItems(id);
     }
 }

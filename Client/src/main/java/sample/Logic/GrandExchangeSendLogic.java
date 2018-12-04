@@ -29,4 +29,10 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     {
         webSocketConnection.calculateItemPrice(item);
     }
+
+    @Override
+    public void getBackPackItems()
+    {
+        webSocketConnection.getBackPackItems();
+    }
 }

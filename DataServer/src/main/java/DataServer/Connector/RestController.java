@@ -5,6 +5,7 @@ import DataServer.Factory.DatabaseServerFactory;
 import DataServer.Models.DatabaseType;
 import DataServer.SharedServerModels.*;
 import com.google.gson.Gson;
+import sun.security.jgss.GSSCaller;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -22,7 +23,8 @@ public class RestController
     public Response login(User user)
     {
         if (user == null) return Response.status(400).entity("400").build();
-        return logic.login(user) ? Response.status(200).entity("success").build() : Response.status(400).entity("error").build();
+        User authenticatedUser = logic.login(user);
+        return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity("error").build();
     }
 
     @GET
@@ -47,5 +49,15 @@ public class RestController
         sellOffers.add(new MarketOffer(90904, new Item(68, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL, new User()));
         sellOffers.add(new MarketOffer(301321, new Item(33, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL, new User()));
         return sellOffers;
+    }
+
+    @GET
+    @Path("/getBackPackItems/{idAsString}")
+    @Consumes("application/json")
+    public Response getBackPackItems(@PathParam("idAsString") String idAsString)
+    {
+        int id = Integer.parseInt(idAsString);
+        ArrayList<Item> items = logic.getBackPackItems(id);
+        return Response.status(200).entity(new Gson().toJson(items)).build();
     }
 }

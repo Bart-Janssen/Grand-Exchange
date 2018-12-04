@@ -12,6 +12,7 @@ import javax.persistence.Convert;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -89,7 +90,19 @@ public class Connection
             case CALCULATEITEMPRICE:
                 calculateItemPrice(webSocketMessage, currentUserSession);
                 break;
+            case GET_BACKPACK_ITEMS:
+                getBackPackItems(currentUserSession);
+                break;
         }
+    }
+
+    private void getBackPackItems(Session currentUserSession)
+    {
+        ArrayList<Item> items = logic.getBackPackItems(sessionAndUser.get(currentUserSession).getUser().getId());
+        WebSocketMessage messageToUser = new WebSocketMessage();
+        messageToUser.setOperation(MessageType.GET_BACKPACK_ITEMS);
+        messageToUser.setItems(items);
+        currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
     }
 
     private void sellItem(WebSocketMessage webSocketMessage, Session currentUserSession)
@@ -131,17 +144,21 @@ public class Connection
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
             messageToUser.setItem(webSocketMessage.getItem());
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+            return;
         }
+        System.out.println("User is not logged in!");
     }
 
     private void login(WebSocketMessage webSocketMessage, Session currentUserSession)
     {
         WebSocketMessage messageToUser = new WebSocketMessage();
         messageToUser.setOperation(MessageType.LOGIN);
-        messageToUser.setUser(webSocketMessage.getUser());
         messageToUser.setMessage("[Server] : Failed to login!");
-        if (logic.login(messageToUser.getUser()))
+        User user = logic.login(webSocketMessage.getUser());
+        if (user != null)
         {
+            webSocketMessage.setUser(user);
+            messageToUser.setUser(user);
             messageToUser.setMessage("[Server] : Successfully logged in!");
             sessionAndUser.put(currentUserSession, webSocketMessage);//TODO naar register
             sessionAndUser.get(currentUserSession).getUser().setLoggedIn(true);

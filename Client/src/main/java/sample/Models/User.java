@@ -6,13 +6,15 @@ public class User
     private String password;
     private boolean loggedIn = false;
     private int level;
+    private int id;
 
 
-    public User(String username, String password, int level)
+    public User(String username, String password, int level, int id)
     {
         this.username = username;
         this.password = password;
         this.level = level;
+        this.id = id;
     }
 
     public User(String username, String password)
@@ -44,5 +46,10 @@ public class User
     public int getLevel()
     {
         return level;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 }

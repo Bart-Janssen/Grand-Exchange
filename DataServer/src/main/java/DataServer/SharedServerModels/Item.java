@@ -1,5 +1,6 @@
 package DataServer.SharedServerModels;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -9,7 +10,7 @@ public class Item
     private int price;
     private String obtainDate;
     private int itemLevel;
-    private int itemHealth = 100;
+    private int itemHealth;
     private AttackStyle attackStyle;
     private String iconPath;
 
@@ -19,6 +20,17 @@ public class Item
         this.attackStyle = attackStyle;
         this.itemLevel = itemLevel;
         this.name = name;
+        this.iconPath = name + ".png";
+        this.itemHealth = 100;
+    }
+
+    public Item(int itemLevel, AttackStyle attackStyle, String name, int health, Date obtainDate)
+    {
+        this.attackStyle = attackStyle;
+        this.itemLevel = itemLevel;
+        this.name = name;
+        this.itemHealth = health;
+        this.obtainDate = new SimpleDateFormat("dd MM yyyy").format(obtainDate);
         this.iconPath = name + ".png";
     }
 

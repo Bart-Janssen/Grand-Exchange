@@ -4,12 +4,15 @@ import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MessageType;
 import Server.SharedClientModels.User;
 
+import java.util.ArrayList;
+
 public class WebSocketMessage
 {
     private MessageType operation;
     private String message;
     private User user;
     private Item item;
+    private ArrayList<Item> items = new ArrayList<>();
 
     public MessageType getOperation()
     {
@@ -49,5 +52,15 @@ public class WebSocketMessage
     public void setItem(Item item)
     {
         this.item = item;
+    }
+
+    public ArrayList<Item> getItems()
+    {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items)
+    {
+        this.items = items;
     }
 }

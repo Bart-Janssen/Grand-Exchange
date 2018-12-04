@@ -4,8 +4,6 @@ import Server.DataServer.IGrandExchangeDatabaseServer;
 import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
-import com.google.gson.Gson;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,6 +13,9 @@ import java.util.concurrent.TimeUnit;
 public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
 {
     private IGrandExchangeDatabaseServer databaseServer;
+    private static final int WEAPON_BROKEN_STATE = -1;
+    private static final int HALF = 2;
+    private static final int DATE_MULTIPLIER = 15;
 
     public GrandExchangeServerLogic(IGrandExchangeDatabaseServer databaseServer)
     {
@@ -22,7 +23,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     }
 
     @Override
-    public boolean login(User user)
+    public User login(User user)
     {
         return databaseServer.login(user);
     }
@@ -36,7 +37,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     @Override
     public int calculateItemPrice(User user, Item item)
     {
-        if (item.getItemHealth() == 0) return -1;
+        if (item.getItemHealth() == 0) return WEAPON_BROKEN_STATE;
 
         calculateWeaponPrice(user, item);
         System.out.println("Wep price: " + item.getPrice());
@@ -67,11 +68,17 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         return databaseServer.getSellingOffers();
     }
 
+    @Override
+    public ArrayList<Item> getBackPackItems(int id)
+    {
+        return databaseServer.getBackPackItems(id);
+    }
+
     private void calculateDatePrice(Item item)
     {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         long difference;
-        int defaultPrice = 15 * item.getAttackStyle().getValue() * item.getItemLevel();
+        int defaultPrice = DATE_MULTIPLIER * item.getAttackStyle().getValue() * item.getItemLevel();
         try
         {
             difference = TimeUnit.DAYS.convert(dateFormat.parse(new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime())).getTime() - dateFormat.parse(item.getObtainDate()).getTime(), TimeUnit.MILLISECONDS);
@@ -133,6 +140,6 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
 
     private boolean canPlayerWieldItem(User user, Item item)
     {
-        return user.getLevel() >= ((item.getItemLevel()) / 2);
+        return user.getLevel() >= ((item.getItemLevel()) / HALF);
     }
 }

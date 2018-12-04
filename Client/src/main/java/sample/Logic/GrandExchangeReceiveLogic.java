@@ -75,6 +75,10 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                 ((IBackPackGui)controller).switchToMarketController();
                 Platform.runLater(() -> ((IMarketGui)controller).showCalculatedPrice(webSocketMessage.getMessage()));
                 break;
+            case GET_BACKPACK_ITEMS:
+                ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
+                System.out.println(new Gson().toJson(webSocketMessage.getItems()));
+                break;
         }
     }
 

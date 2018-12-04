@@ -7,8 +7,9 @@ import java.util.ArrayList;
 
 public interface IGrandExchangeServerLogic
 {
-    boolean login(User user);
+    User login(User user);
     boolean sellItem(MarketOffer offer);
     int calculateItemPrice(User user, Item item);
     ArrayList<MarketOffer> getSellOffers();
+    ArrayList<Item> getBackPackItems(int id);
 }

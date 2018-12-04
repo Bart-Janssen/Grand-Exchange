@@ -1,9 +1,13 @@
 package DataServer.DataServerLogic;
 
+import DataServer.SharedServerModels.Item;
 import DataServer.SharedServerModels.User;
+
+import java.util.ArrayList;
 
 public interface IDataServerLogic
 {
-    boolean login(User user);
+    User login(User user);
     void register(User user);
+    ArrayList<Item> getBackPackItems(int id);
 }

@@ -17,7 +17,7 @@ public class Main
     {
         Server webSocketServer = new Server();
         ServerConnector connector = new ServerConnector(webSocketServer);
-        connector.setPort(6666);
+        connector.setPort(6667);
         webSocketServer.addConnector(connector);
         ServletContextHandler webSocketContext = new ServletContextHandler(ServletContextHandler.SESSIONS);
         webSocketContext.setContextPath("/");

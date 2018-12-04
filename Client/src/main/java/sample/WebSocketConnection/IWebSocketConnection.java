@@ -10,4 +10,5 @@ public interface IWebSocketConnection
     void login(User message);
     void sellItem(int price, Item item);
     void calculateItemPrice(Item item);
+    void getBackPackItems();
 }
