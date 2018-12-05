@@ -43,15 +43,15 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     }
 
     @Override
-    public void switchToMarketController()
-    {
-        super.openForm(((Stage)backPackForm.getScene().getWindow()),"Market", "Market", 800, 300);
-    }
-
-    @Override
     public void addItemsToBackPack(ArrayList<Item> items)
     {
         backPack = items;
+        System.out.println(new Gson().toJson(items));
+        addGrid();
+    }
+
+    private void addGrid()
+    {
         Platform.runLater(() ->
         {
             for (int x = 0; x < backPack.size(); x++)
@@ -67,6 +67,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
                 {
                     if (MarketController.getOfferCount() < maxMarketOffers)
                     {
+                        super.openForm(((Stage)backPackForm.getScene().getWindow()),"Market", "Market", 800, 300);
                         getSendLogic().calculateItemPrice(backPack.get(id));
                         backPack.remove(id);
                         return;
@@ -79,9 +80,9 @@ public class BackPackController extends Controller implements IBackPackGui, Init
                     if (e.getButton() == MouseButton.SECONDARY) rightClickMenu.show(rectangle, e.getScreenX(), e.getScreenY());
                     e.consume();
                 });
-                rectangle.setFill(Color.rgb(21,77,128));
+                rectangle.setFill(Color.rgb(21, 77, 128));
                 rectangle.setFill(new ImagePattern(new Image(backPack.get(x).getIconPath())));//TODO: name
-                gridPaneBackPack.add(rectangle, x % 4, (int)Math.floor((double)x / 4), 1, 1);
+                gridPaneBackPack.add(rectangle, x % 4, (int) Math.floor((double) x / 4), 1, 1);
             }
         });
     }

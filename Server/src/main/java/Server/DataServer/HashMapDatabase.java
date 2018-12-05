@@ -74,4 +74,10 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     {
         return null;
     }
+
+    @Override
+    public void addItemToBackPack(Item item, int userId)
+    {
+
+    }
 }

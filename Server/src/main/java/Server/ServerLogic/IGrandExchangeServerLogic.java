@@ -11,5 +11,6 @@ public interface IGrandExchangeServerLogic
     boolean sellItem(MarketOffer offer);
     int calculateItemPrice(User user, Item item);
     ArrayList<MarketOffer> getSellOffers();
-    ArrayList<Item> getBackPackItems(int id);
+    ArrayList<Item> getBackPackItems(int userId);
+    ArrayList<Item> generateNewWeapon(int userId);
 }

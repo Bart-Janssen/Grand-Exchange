@@ -30,4 +30,10 @@ public class DataServerLogic implements IDataServerLogic
     {
         return database.getBackPackItems(id);
     }
+
+    @Override
+    public boolean addItemToBackPack(Item item, int userId)
+    {
+        return database.addItemToBackPack(item, userId);
+    }
 }

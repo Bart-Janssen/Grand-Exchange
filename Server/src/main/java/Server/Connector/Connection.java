@@ -12,10 +12,9 @@ import javax.persistence.Convert;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ServerEndpoint(value="/grandExchangeServer/")
@@ -29,7 +28,7 @@ public class Connection
     public void onConnect(Session session)
     {
         System.out.println("[WebSocket Connected] SessionID: " + session.getId());
-        session.setMaxIdleTimeout(Long.MAX_VALUE);
+        session.setMaxIdleTimeout(300000);
         sessionAndUser.put(session, null);
     }
 
@@ -93,7 +92,21 @@ public class Connection
             case GET_BACKPACK_ITEMS:
                 getBackPackItems(currentUserSession);
                 break;
+            case GENERATE_NEW_WEAPON:
+                generateNewWeapon(currentUserSession);
+                break;
+            case HEARTBEAT:
+                System.out.println("[Heartbeat] : " + currentUserSession.getId() + "");
+                break;
         }
+    }
+
+    private void generateNewWeapon(Session currentUserSession)
+    {
+        WebSocketMessage messageToUser = new WebSocketMessage();
+        messageToUser.setOperation(MessageType.GENERATE_NEW_WEAPON);
+        messageToUser.setItems(logic.generateNewWeapon(sessionAndUser.get(currentUserSession).getUser().getId()));
+        currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
     }
 
     private void getBackPackItems(Session currentUserSession)
@@ -112,11 +125,11 @@ public class Connection
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.SELLITEM);
             messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
-            messageToUser.setItem(webSocketMessage.getItem());
+            messageToUser.addItem(webSocketMessage.getItems().get(0));
             messageToUser.setMessage("[Server] : Failed to sell item.");
             try
             {
-                if (logic.sellItem(new MarketOffer(Integer.parseInt(messageToUser.getMessage()), messageToUser.getItem(), MarketOfferType.SELL, sessionAndUser.get(currentUserSession).getUser())))
+                if (logic.sellItem(new MarketOffer(Integer.parseInt(messageToUser.getMessage()), messageToUser.getItems().get(0), MarketOfferType.SELL, sessionAndUser.get(currentUserSession).getUser())))
                 {
                     messageToUser.setMessage("[Server] : Successfully sold item.");
                 }
@@ -138,11 +151,11 @@ public class Connection
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.CALCULATEITEMPRICE);
             messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
-            int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItem());
-            webSocketMessage.getItem().setPrice(price);
-            messageToUser.setMessage(new Gson().toJson(new MarketOffer(price, webSocketMessage.getItem(), MarketOfferType.SELL, null)));
+            int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItems().get(0));
+            webSocketMessage.getItems().get(0).setPrice(price);
+            messageToUser.setMessage(new Gson().toJson(new MarketOffer(price, webSocketMessage.getItems().get(0), MarketOfferType.SELL, null)));
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
-            messageToUser.setItem(webSocketMessage.getItem());
+            messageToUser.addItem(webSocketMessage.getItems().get(0));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
             return;
         }

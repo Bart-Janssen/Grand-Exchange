@@ -72,12 +72,14 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                 ((IGameGui)controller).MBOX(webSocketMessage.getMessage());
                 break;
             case CALCULATEITEMPRICE:
-                ((IBackPackGui)controller).switchToMarketController();
-                Platform.runLater(() -> ((IMarketGui)controller).showCalculatedPrice(webSocketMessage.getMessage()));
+                ((IMarketGui)controller).showCalculatedPrice(webSocketMessage.getMessage());
                 break;
             case GET_BACKPACK_ITEMS:
                 ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
                 System.out.println(new Gson().toJson(webSocketMessage.getItems()));
+                break;
+            case GENERATE_NEW_WEAPON:
+                ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
                 break;
         }
     }

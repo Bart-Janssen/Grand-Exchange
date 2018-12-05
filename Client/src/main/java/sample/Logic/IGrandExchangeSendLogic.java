@@ -9,4 +9,5 @@ public interface IGrandExchangeSendLogic
     void sellItem(int price, Item item);
     void calculateItemPrice(Item item);
     void getBackPackItems();
+    void generateNewWeapon();
 }

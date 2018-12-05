@@ -3,6 +3,7 @@ package Server.DataServer;
 import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
+import Server.SharedClientModels.Weapon;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.methods.HttpGet;
@@ -82,5 +83,24 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void addItemToBackPack(Item item, int userId)
+    {
+        ArrayList<Object> postObjects = new ArrayList<>();
+        postObjects.add(item);
+        postObjects.add(userId);
+        HttpPost httpPost = new HttpPost(serverLocation + "/addItemToBackPack");
+        httpPost.addHeader("content-type", "application/json");
+        try
+        {
+            httpPost.setEntity(new StringEntity(new Gson().toJson(postObjects)));
+            HttpClients.createDefault().execute(httpPost);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }

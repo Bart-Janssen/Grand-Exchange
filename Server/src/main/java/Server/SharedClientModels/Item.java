@@ -22,6 +22,16 @@ public class Item
         this.iconPath = name + ".png";
     }
 
+    public Item(int itemLevel, AttackStyle attackStyle, String name, int health, String obtainDate)
+    {
+        this.attackStyle = attackStyle;
+        this.itemLevel = itemLevel;
+        this.name = name;
+        this.itemHealth = health;
+        this.obtainDate = obtainDate;
+        this.iconPath = name + ".png";
+    }
+
     public int getPrice()
     {
         return price;

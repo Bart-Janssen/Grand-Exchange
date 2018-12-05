@@ -5,7 +5,7 @@ import sample.Logic.GrandExchangeSendLogic;
 import sample.Logic.IGrandExchangeReceiveLogic;
 import sample.Logic.IGrandExchangeSendLogic;
 import sample.Models.WebSocketType;
-import sample.WebSocketConnection.WebSocketConnection;
+import sample.WebSocketConnection.Connection;
 
 public class ClientFactory
 {
@@ -35,7 +35,7 @@ public class ClientFactory
         switch (type)
         {
             case WEBSOCKETSERVER:
-                return new GrandExchangeSendLogic(new WebSocketConnection());
+                return new GrandExchangeSendLogic(new Connection());
             default:
                 return null;
         }

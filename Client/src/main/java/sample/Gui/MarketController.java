@@ -1,6 +1,7 @@
 package sample.Gui;
 
 import com.google.gson.Gson;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -54,36 +55,39 @@ public class MarketController extends Controller implements IMarketGui, Initiali
 
     private void fillMarket()
     {
-        for (int i = 0; i < offers.size(); i++)
+        Platform.runLater(() ->
         {
-            Label gridCol0 = new Label();
-            gridCol0.setPrefWidth(76);
+            for (int i = 0; i < offers.size(); i++)
+            {
+                Label gridCol0 = new Label();
+                gridCol0.setPrefWidth(76);
 
-            GridPane gridPane = new GridPane();
-            gridPane.setStyle("-fx-background-color:  rgb(51,40,38)");
-            gridPane.setVgap(5);
-            gridPane.setHgap(5);
+                GridPane gridPane = new GridPane();
+                gridPane.setStyle("-fx-background-color:  rgb(51,40,38)");
+                gridPane.setVgap(5);
+                gridPane.setHgap(5);
 
-            Label level = new Label("Level: " + offers.get(i).getItem().getItemLevel());
-            level.setTextFill(Color.rgb(180, 180, 180));
-            Label style = new Label("Style: " + offers.get(i).getItem().getAttackStyle().toString().substring(0,1).toUpperCase() + offers.get(i).getItem().getAttackStyle().toString().substring(1).toLowerCase());
-            style.setTextFill(Color.rgb(180, 180, 180));
-            Label price = new Label("Price: " + offers.get(i).getPrice());
-            price.setTextFill(Color.rgb(180, 180, 180));
-            Label offer = new Label(offers.get(i).getType().toString().substring(0,1).toUpperCase() + offers.get(i).getType().toString().substring(1).toLowerCase() + " offer");
-            offer.setTextFill(Color.rgb(180, 180, 180));
+                Label level = new Label("Level: " + offers.get(i).getItem().getItemLevel());
+                level.setTextFill(Color.rgb(180, 180, 180));
+                Label style = new Label("Style: " + offers.get(i).getItem().getAttackStyle().toString().substring(0,1).toUpperCase() + offers.get(i).getItem().getAttackStyle().toString().substring(1).toLowerCase());
+                style.setTextFill(Color.rgb(180, 180, 180));
+                Label price = new Label("Price: " + offers.get(i).getPrice());
+                price.setTextFill(Color.rgb(180, 180, 180));
+                Label offer = new Label(offers.get(i).getType().toString().substring(0,1).toUpperCase() + offers.get(i).getType().toString().substring(1).toLowerCase() + " offer");
+                offer.setTextFill(Color.rgb(180, 180, 180));
 
-            gridPane.add(gridCol0, 0, 0);
-            Rectangle image = new Rectangle(100, 100);
-            image.setFill(new ImagePattern(new Image(offers.get(i).getItem().getIconPath())));//TODO: name
-            gridPane.add(image, 1, 1);
-            gridPane.add(level, 1, 2);
-            gridPane.add(style, 1, 3);
-            gridPane.add(offer, 1, 4);
-            gridPane.add(price, 1, 5);
+                gridPane.add(gridCol0, 0, 0);
+                Rectangle image = new Rectangle(100, 100);
+                image.setFill(new ImagePattern(new Image(offers.get(i).getItem().getIconPath())));//TODO: name
+                gridPane.add(image, 1, 1);
+                gridPane.add(level, 1, 2);
+                gridPane.add(style, 1, 3);
+                gridPane.add(offer, 1, 4);
+                gridPane.add(price, 1, 5);
 
-            gridMarket.add(gridPane, i,0);
-        }
+                gridMarket.add(gridPane, i,0);
+            }
+        });
     }
 
     @Override

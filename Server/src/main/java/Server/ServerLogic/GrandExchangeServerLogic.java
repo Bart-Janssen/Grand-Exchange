@@ -1,13 +1,13 @@
 package Server.ServerLogic;
 
 import Server.DataServer.IGrandExchangeDatabaseServer;
-import Server.SharedClientModels.Item;
-import Server.SharedClientModels.MarketOffer;
-import Server.SharedClientModels.User;
+import Server.SharedClientModels.*;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
@@ -69,9 +69,56 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     }
 
     @Override
-    public ArrayList<Item> getBackPackItems(int id)
+    public ArrayList<Item> getBackPackItems(int userId)
     {
-        return databaseServer.getBackPackItems(id);
+        return databaseServer.getBackPackItems(userId);
+    }
+
+    @Override
+    public ArrayList<Item> generateNewWeapon(int userId)
+    {
+        System.out.println();
+        System.out.println();
+
+        int index = new Random().nextInt(AttackStyle.values().length);
+        AttackStyle attackStyle = AttackStyle.values()[index];
+        System.out.println("Attack style enum: " + attackStyle);
+
+        int level = new Random().nextInt(200) + 1;
+        System.out.println("level: " + level);
+
+        String[] names = {"Bow", "Sword", "Staff"};
+        String name = names[index];
+        System.out.println("Name: " + name);
+
+        int health = new Random().nextInt(100);
+        System.out.println("Health: " + health);
+
+        int day = new Random().nextInt(150);
+        int days = -day;
+        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+        Calendar calendar = Calendar.getInstance();
+        date = getDate(days, date, dateFormat, calendar);
+        System.out.println("Date: " + date);
+        databaseServer.addItemToBackPack(new Weapon(level, attackStyle, name, health, date), userId);
+        return getBackPackItems(userId);
+    }
+
+    private String getDate(int days, String date, SimpleDateFormat dateFormat, Calendar calendar)
+    {
+        try
+        {
+            calendar.setTime(dateFormat.parse(date));
+            calendar.add(Calendar.DATE, days);
+            date = dateFormat.format(calendar.getTime());
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     private void calculateDatePrice(Item item)

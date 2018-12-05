@@ -5,6 +5,7 @@ import DataServer.Factory.DatabaseServerFactory;
 import DataServer.Models.DatabaseType;
 import DataServer.SharedServerModels.*;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import sun.security.jgss.GSSCaller;
 
 import javax.ws.rs.*;
@@ -59,5 +60,28 @@ public class RestController
         int id = Integer.parseInt(idAsString);
         ArrayList<Item> items = logic.getBackPackItems(id);
         return Response.status(200).entity(new Gson().toJson(items)).build();
+    }
+
+    @POST
+    @Path("/addItemToBackPack")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response addItemToBackPack(String postObjectsAsString)
+    {
+        ArrayList<Object> postObjects = new Gson().fromJson(postObjectsAsString, new TypeToken<ArrayList<Object>>(){}.getType());
+        System.out.println("po0: " + postObjects.get(0).toString());
+        System.out.println(new Gson().toJson(postObjects.get(0)));
+        String h = new Gson().toJson(postObjects.get(0));
+
+        Item item = new Gson().fromJson(h, Item.class);
+
+        System.out.println("hai");
+        String id = new Gson().toJson(postObjects.get(1));
+
+
+        int userId = new Gson().fromJson(id, int.class);
+        System.out.println("int");
+        if (item == null) return Response.status(400).entity("400").build();
+        return logic.addItemToBackPack(item, userId) ? Response.status(200).entity(new Gson().toJson("200")).build() : Response.status(400).entity("error").build();
     }
 }

@@ -11,7 +11,6 @@ public class WebSocketMessage
     private MessageType operation;
     private String message;
     private User user;
-    private Item item;
     private ArrayList<Item> items = new ArrayList<>();
 
     public MessageType getOperation()
@@ -44,16 +43,6 @@ public class WebSocketMessage
         this.user = user;
     }
 
-    public Item getItem()
-    {
-        return item;
-    }
-
-    public void setItem(Item item)
-    {
-        this.item = item;
-    }
-
     public ArrayList<Item> getItems()
     {
         return items;
@@ -62,5 +51,10 @@ public class WebSocketMessage
     public void setItems(ArrayList<Item> items)
     {
         this.items = items;
+    }
+
+    public void addItem(Item item)
+    {
+        this.items.add(item);
     }
 }

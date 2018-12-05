@@ -3,7 +3,7 @@ package sample.WebSocketConnection;
 import com.google.gson.Gson;
 import sample.Models.*;
 
-public class WebSocketConnection implements IWebSocketConnection
+public class Connection implements IConnection
 {
     @Override
     public void login(User user)
@@ -18,7 +18,7 @@ public class WebSocketConnection implements IWebSocketConnection
     public void sellItem(int price, Item item)
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
-        webSocketMessage.setItem(item);
+        webSocketMessage.addItem(item);
         webSocketMessage.setMessage(Integer.toString(price));
         webSocketMessage.setOperation(MessageType.SELLITEM);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
@@ -28,7 +28,7 @@ public class WebSocketConnection implements IWebSocketConnection
     public void calculateItemPrice(Item item)
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
-        webSocketMessage.setItem(item);
+        webSocketMessage.addItem(item);
         webSocketMessage.setOperation(MessageType.CALCULATEITEMPRICE);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
@@ -38,6 +38,23 @@ public class WebSocketConnection implements IWebSocketConnection
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setOperation(MessageType.GET_BACKPACK_ITEMS);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
+
+    @Override
+    public void generateNewWeapon()
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.GENERATE_NEW_WEAPON);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
+
+    @Override
+    public void sentHeartBeat()
+    {
+        System.out.println("Heart beat sent.");
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.HEARTBEAT);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 }

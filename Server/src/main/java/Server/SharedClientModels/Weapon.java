@@ -6,4 +6,9 @@ public class Weapon extends Item
     {
         super(itemLevel, attackStyle, name);
     }
+
+    public Weapon(int level, AttackStyle attackStyle, String name, int health, String date)
+    {
+        super(level, attackStyle, name, health, date);
+    }
 }

@@ -29,4 +29,10 @@ public class GameController extends Controller implements IGameGui
     {
         super.openForm(((Stage)gameForm.getScene().getWindow()),"Market", "Market", 800, 300);
     }
+
+    public void buttonGenerateRandomWeapon_Click(ActionEvent actionEvent)
+    {
+        super.openForm(((Stage)gameForm.getScene().getWindow()),"Backpack", "BackPack", 300 , 300);
+        super.getSendLogic().generateNewWeapon();
+    }
 }

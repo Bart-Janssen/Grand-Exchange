@@ -10,4 +10,5 @@ public interface IDatabaseConnection
     User login(User user);
     void register(User user);
     ArrayList<Item> getBackPackItems(int id);
+    boolean addItemToBackPack(Item item, int userId);
 }

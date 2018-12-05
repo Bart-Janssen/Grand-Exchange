@@ -62,9 +62,8 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         Connection con = null;
         ArrayList<Item> items = new ArrayList<>();
         String query =
-                "SELECT item.id, item.name, item.obtainDate, item.health, item.level, attackstyle.type FROM backpack " +
-                "INNER JOIN user ON backpack.userId = user.id " +
-                "INNER JOIN item ON backpack.itemId = item.id " +
+                "SELECT item.id, item.name, item.obtainDate, item.health, item.level, attackstyle.type FROM item " +
+                "INNER JOIN user ON item.userId = user.id " +
                 "INNER JOIN attackstyle ON item.attackStyleId = attackstyle.id " +
                 "WHERE user.id = ?";
         try
@@ -87,6 +86,38 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
             closeConnection(con);
         }
         return items;
+    }
+
+    @Override
+    public boolean addItemToBackPack(Item item, int userId)
+    {
+        Connection con = null;
+        String query =
+                "INSERT INTO item (name, obtainDate, health, level, attackStyleId, userId) " +
+                "VALUES (?, ?, ?, ?, (SELECT attackStyle.id FROM attackStyle WHERE attackStyle.type = ?), ?) ";
+        try
+        {
+            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, item.getName());
+            stmt.setString(2, item.getObtainDate());
+            stmt.setInt(3, item.getItemHealth());
+            stmt.setInt(4, item.getItemLevel());
+            stmt.setString(5, item.getAttackStyle().toString());
+            stmt.setInt(6, userId);
+            stmt.executeUpdate();
+            closeConnection(con);
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            closeConnection(con);
+        }
     }
 
     private void closeConnection(Connection connection)
