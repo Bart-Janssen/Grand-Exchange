@@ -1,0 +1,72 @@
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+
+stages:
+  - build-client
+  - verify-client
+  - test-client
+  - build-server
+  - verify-server
+  - test-server
+  - build-dataserver
+  - verify-dataserver
+  - test-dataserver
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+build-client:
+  stage: build-client
+  script:
+    - cd Client
+    - mvn compile
+    
+verify-client:
+  stage: verify-client
+  script:
+    - cd Client 
+    - mvn clean verify
+
+test-client:
+  stage: test-client
+  script:
+    - cd Client
+    - mvn test
+    
+build-server:
+  stage: build-server
+  script:
+    - cd Client
+    - mvn compile
+    
+verify-server:
+  stage: verify-server
+  script:
+    - cd Client 
+    - mvn clean verify
+
+test-server:
+  stage: test-server
+  script:
+    - cd Client
+    - mvn test
+    
+build-dataserver:
+  stage: build-dataserver
+  script:
+    - cd Client
+    - mvn compile
+    
+verify-dataserver:
+  stage: verify-dataserver
+  script:
+    - cd Client 
+    - mvn clean verify
+
+test-dataserver:
+  stage: test-dataserver
+  script:
+    - cd Client
+    - mvn test
