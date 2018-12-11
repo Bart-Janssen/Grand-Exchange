@@ -17,55 +17,55 @@ cache:
     - .m2/repository/
     - target/
 
-build:
+build-client:
   stage: build-client
   script:
     - cd Client
     - mvn compile
     
-verify:
+verify-client:
   stage: verify-client
   script:
     - cd Client 
     - mvn clean verify
 
-test:
+test-client:
   stage: test-client
   script:
     - cd Client
     - mvn test
     
-build:
+build-server:
   stage: build-server
   script:
     - cd Client
     - mvn compile
     
-verify:
+verify-server:
   stage: verify-server
   script:
     - cd Client 
     - mvn clean verify
 
-test:
+test-server:
   stage: test-server
   script:
     - cd Client
     - mvn test
     
-build:
+build-dataserver:
   stage: build-dataserver
   script:
     - cd Client
     - mvn compile
     
-verify:
+verify-dataserver:
   stage: verify-dataserver
   script:
     - cd Client 
     - mvn clean verify
 
-test:
+test-dataserver:
   stage: test-dataserver
   script:
     - cd Client
