@@ -48,7 +48,7 @@ test:
     - cd Server
     - mvn $MAVEN_CLI_OPTS test
     
-    build:
+build:
   stage: build
   script:
     - cd DataServer
