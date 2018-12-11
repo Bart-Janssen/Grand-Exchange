@@ -28,6 +28,3 @@ test:
   script:
     - cd Client
     - mvn test
-    
-
-    
