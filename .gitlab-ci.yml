@@ -65,3 +65,4 @@ test:
   script:
     - cd DataServer
     - mvn $MAVEN_CLI_OPTS test
+    
