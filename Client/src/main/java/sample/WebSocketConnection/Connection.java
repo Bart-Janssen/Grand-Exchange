@@ -57,4 +57,13 @@ public class Connection implements IConnection
         webSocketMessage.setOperation(MessageType.HEARTBEAT);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
+
+    @Override
+    public void deleteItemFromBackPack(Item item)
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.DELETE_ITEM_FROM_BACKPACK);
+        webSocketMessage.addItem(item);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
 }

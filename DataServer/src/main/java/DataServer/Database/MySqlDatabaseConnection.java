@@ -33,10 +33,10 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
             if (rs.next())
             {
                 User authenticatedUser = new User(rs.getString("name"), "", rs.getInt("level"), rs.getInt("id"));
-                con.close();
+                closeConnection(con);
                 return authenticatedUser;
             }
-            con.close();
+            closeConnection(con);
             return null;
 
         }
@@ -74,7 +74,7 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
             {
-                items.add(new Item(rs.getInt("level"), AttackStyle.valueOf(rs.getString("type").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getDate("obtainDate")));
+                items.add(new Item(rs.getInt("id"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("type").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getDate("obtainDate")));
             }
         }
         catch(Exception e)
@@ -112,12 +112,38 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         catch(Exception e)
         {
             e.printStackTrace();
+            closeConnection(con);
             return false;
         }
         finally
         {
             closeConnection(con);
         }
+    }
+
+    @Override
+    public boolean deleteItemFromBackPack(int itemId, int userId)
+    {
+        Connection con = null;
+        String query = "DELETE FROM item WHERE item.id LIKE ? AND item.UserId LIKE ?";
+        try
+        {
+            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, itemId);
+            stmt.setInt(2, userId);
+            stmt.executeUpdate();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        finally
+        {
+            closeConnection(con);
+        }
+        return true;
     }
 
     private void closeConnection(Connection connection)

@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 public class Item
 {
+    private int id;
     private String name;
     private int price;
     private String obtainDate;
@@ -13,8 +14,9 @@ public class Item
     private AttackStyle attackStyle;
     private String iconPath;
 
-    public Item(int itemLevel, AttackStyle attackStyle, String name)
+    public Item(int id, int itemLevel, AttackStyle attackStyle, String name)
     {
+        this.id = id;
         this.obtainDate = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
         this.attackStyle = attackStyle;
         this.itemLevel = itemLevel;
@@ -22,8 +24,9 @@ public class Item
         this.iconPath = name + ".png";
     }
 
-    public Item(int itemLevel, AttackStyle attackStyle, String name, int health, String obtainDate)
+    public Item(int id, int itemLevel, AttackStyle attackStyle, String name, int health, String obtainDate)
     {
+        this.id = id;
         this.attackStyle = attackStyle;
         this.itemLevel = itemLevel;
         this.name = name;
@@ -81,5 +84,15 @@ public class Item
     public String getIconPath()
     {
         return iconPath;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

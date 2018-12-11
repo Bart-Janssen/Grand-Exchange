@@ -13,4 +13,5 @@ public interface IGrandExchangeServerLogic
     ArrayList<MarketOffer> getSellOffers();
     ArrayList<Item> getBackPackItems(int userId);
     ArrayList<Item> generateNewWeapon(int userId);
+    boolean deleteItemFromBackPack(Item item, int userId);
 }

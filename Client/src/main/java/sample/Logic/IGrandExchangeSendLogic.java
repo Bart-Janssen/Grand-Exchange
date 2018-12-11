@@ -1,7 +1,6 @@
 package sample.Logic;
 
 import sample.Models.Item;
-import sample.Models.User;
 
 public interface IGrandExchangeSendLogic
 {
@@ -10,4 +9,5 @@ public interface IGrandExchangeSendLogic
     void calculateItemPrice(Item item);
     void getBackPackItems();
     void generateNewWeapon();
+    void deleteItemFromBackPack(Item item);
 }

@@ -13,4 +13,5 @@ public interface IConnection
     void getBackPackItems();
     void generateNewWeapon();
     void sentHeartBeat();
+    void deleteItemFromBackPack(Item item);
 }

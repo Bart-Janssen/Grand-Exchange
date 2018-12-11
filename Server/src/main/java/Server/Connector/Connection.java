@@ -7,6 +7,7 @@ import Server.ServerLogic.IGrandExchangeServerLogic;
 import Server.SharedClientModels.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.Convert;
 import javax.websocket.*;
@@ -95,27 +96,48 @@ public class Connection
             case GENERATE_NEW_WEAPON:
                 generateNewWeapon(currentUserSession);
                 break;
+            case DELETE_ITEM_FROM_BACKPACK:
+                deleteItemFromBackPack(webSocketMessage, currentUserSession);
+                break;
             case HEARTBEAT:
                 System.out.println("[Heartbeat] : " + currentUserSession.getId() + "");
                 break;
         }
     }
 
+    private void deleteItemFromBackPack(WebSocketMessage webSocketMessage, Session currentUserSession)
+    {
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            boolean deleted = logic.deleteItemFromBackPack(webSocketMessage.getItems().get(0), sessionAndUser.get(currentUserSession).getUser().getId());
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setOperation(MessageType.DELETE_ITEM_FROM_BACKPACK);
+            messageToUser.setMessage(Boolean.toString(deleted));
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        }
+    }
+
     private void generateNewWeapon(Session currentUserSession)
     {
-        WebSocketMessage messageToUser = new WebSocketMessage();
-        messageToUser.setOperation(MessageType.GENERATE_NEW_WEAPON);
-        messageToUser.setItems(logic.generateNewWeapon(sessionAndUser.get(currentUserSession).getUser().getId()));
-        currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setOperation(MessageType.GENERATE_NEW_WEAPON);
+            messageToUser.setItems(logic.generateNewWeapon(sessionAndUser.get(currentUserSession).getUser().getId()));
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        }
     }
 
     private void getBackPackItems(Session currentUserSession)
     {
-        ArrayList<Item> items = logic.getBackPackItems(sessionAndUser.get(currentUserSession).getUser().getId());
-        WebSocketMessage messageToUser = new WebSocketMessage();
-        messageToUser.setOperation(MessageType.GET_BACKPACK_ITEMS);
-        messageToUser.setItems(items);
-        currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            ArrayList<Item> items = logic.getBackPackItems(sessionAndUser.get(currentUserSession).getUser().getId());
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setOperation(MessageType.GET_BACKPACK_ITEMS);
+            messageToUser.setItems(items);
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        }
     }
 
     private void sellItem(WebSocketMessage webSocketMessage, Session currentUserSession)

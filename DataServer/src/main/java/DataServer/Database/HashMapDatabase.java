@@ -47,4 +47,10 @@ public class HashMapDatabase implements IDatabaseConnection
     {
         return false;
     }
+
+    @Override
+    public boolean deleteItemFromBackPack(int itemId, int userId)
+    {
+        return false;
+    }
 }

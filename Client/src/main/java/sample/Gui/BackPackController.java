@@ -4,12 +4,14 @@ import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -62,17 +64,28 @@ public class BackPackController extends Controller implements IBackPackGui, Init
                     if (event.getButton() == MouseButton.SECONDARY) event.consume();
                 });
                 rightClickMenu.getItems().add(new MenuItem("Sell"));
+                rightClickMenu.getItems().add(new MenuItem("Destroy"));
                 int id = x;
                 rightClickMenu.setOnAction(event ->
                 {
-                    if (MarketController.getOfferCount() < maxMarketOffers)
+                    if (((MenuItem)event.getTarget()).getText().equals("Sell"))
                     {
-                        super.openForm(((Stage)backPackForm.getScene().getWindow()),"Market", "Market", 800, 300);
-                        getSendLogic().calculateItemPrice(backPack.get(id));
-                        backPack.remove(id);
-                        return;
+                        if (MarketController.getOfferCount() < maxMarketOffers)
+                        {
+                            super.openForm(((Stage) backPackForm.getScene().getWindow()), "Market", "Market", 800, 300);
+                            super.getSendLogic().calculateItemPrice(backPack.get(id));
+                            backPack.remove(id);
+                            return;
+                        }
+                        System.out.println("Cannot put more offers in the market.");//TODO: melding
                     }
-                    System.out.println("Cannot put more offers in the market.");//TODO: melding
+                    else
+                    {
+                        super.getSendLogic().deleteItemFromBackPack(backPack.get(id));
+                        backPack.remove(id);
+                        gridPaneBackPack.getChildren().clear();
+                        addGrid();
+                    }
                 });
                 Rectangle rectangle = new Rectangle(gridPaneBackPack.getPrefWidth() / gridPaneBackPack.getColumnConstraints().size(), gridPaneBackPack.getPrefHeight() / gridPaneBackPack.getRowConstraints().size());
                 rectangle.addEventHandler(MouseEvent.MOUSE_RELEASED, e ->

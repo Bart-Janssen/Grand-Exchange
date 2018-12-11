@@ -2,8 +2,8 @@ package sample.Models;
 
 public class Weapon extends Item
 {
-    public Weapon(int itemLevel, int damage, AttackStyle attackStyle, String name)
+    public Weapon(int id, int itemLevel, int damage, AttackStyle attackStyle, String name)
     {
-        super(itemLevel, attackStyle, name);
+        super(id, itemLevel, attackStyle, name);
     }
 }

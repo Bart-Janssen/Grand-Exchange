@@ -6,6 +6,8 @@ import Server.SharedClientModels.User;
 import Server.SharedClientModels.Weapon;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -70,9 +72,9 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     }
 
     @Override
-    public ArrayList<Item> getBackPackItems(int id)
+    public ArrayList<Item> getBackPackItems(int userId)
     {
-        HttpGet httpGet = new HttpGet(serverLocation + "/getBackPackItems/" + id);
+        HttpGet httpGet = new HttpGet(serverLocation + "/getBackPackItems/" + userId);
         httpGet.addHeader("content-type", "application/json");
         try
         {
@@ -102,5 +104,27 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
         {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean deleteItemFromBackPack(Item item, int userId)
+    {
+        HttpDelete httpDelete = new HttpDelete(serverLocation + "/deleteItemFromBackPack/" + Integer.toString(item.getId()) + "/" + Integer.toString(userId));
+        httpDelete.addHeader("content-type", "application/json");
+        try
+        {
+            boolean success = Boolean.parseBoolean(EntityUtils.toString(HttpClients.createDefault().execute(httpDelete).getEntity()));
+            if (success)
+            {
+                System.out.println("Delete Successfully.");
+                return true;
+            }
+            System.out.println("Delete failed!");
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }

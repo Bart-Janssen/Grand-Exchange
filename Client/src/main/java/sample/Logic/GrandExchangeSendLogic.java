@@ -2,7 +2,6 @@ package sample.Logic;
 
 import sample.Models.*;
 import sample.WebSocketConnection.IConnection;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,7 +9,6 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
 {
     private IConnection connection;
     private int heartBeatCountDown = 240;
-
 
     public GrandExchangeSendLogic(IConnection webSocketConnection)
     {
@@ -20,14 +18,11 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
 
     private void startHeartbeatTimer()
     {
-
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask()
+        new Timer().schedule(new TimerTask()
         {
             @Override
             public void run()
             {
-                System.out.println(heartBeatCountDown);
                 heartBeatCountDown--;
                 if (heartBeatCountDown <= 0)
                 {
@@ -66,5 +61,11 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     public void generateNewWeapon()
     {
         connection.generateNewWeapon();
+    }
+
+    @Override
+    public void deleteItemFromBackPack(Item item)
+    {
+        connection.deleteItemFromBackPack(item);
     }
 }

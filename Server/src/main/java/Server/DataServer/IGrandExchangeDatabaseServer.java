@@ -11,6 +11,7 @@ public interface IGrandExchangeDatabaseServer
     void register(User user);
     ArrayList<MarketOffer> getSellingOffers();
     boolean sellItem(MarketOffer offer);
-    ArrayList<Item> getBackPackItems(int id);
+    ArrayList<Item> getBackPackItems(int userId);
     void addItemToBackPack(Item item, int userId);
+    boolean deleteItemFromBackPack(Item item, int userId);
 }

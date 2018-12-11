@@ -29,7 +29,7 @@ public class UnitTestLogic
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         Calendar calendar = Calendar.getInstance();
         date = getDate(days, date, dateFormat, calendar);
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(0);
         weapon.setObtainDate(date);
         assertEquals(900300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
@@ -43,7 +43,7 @@ public class UnitTestLogic
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         Calendar calendar = Calendar.getInstance();
         date = getDate(days, date, dateFormat, calendar);
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(0);
         weapon.setObtainDate(date);
         assertEquals(810299, logic.calculateItemPrice(new User("a", "p", 99, 1), weapon));
@@ -53,37 +53,37 @@ public class UnitTestLogic
     public void testCalculatePriceDescendingOnWeaponLevelWithoutMarket()//Working
     {
         logic.getSellOffers().clear();
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         assertEquals(900300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(180, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 180, AttackStyle.RANGED, "Staff");
         assertEquals(810280, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(160, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 160, AttackStyle.RANGED, "Staff");
         assertEquals(720260, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(140, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 140, AttackStyle.RANGED, "Staff");
         assertEquals(630240, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(120, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 120, AttackStyle.RANGED, "Staff");
         assertEquals(540220, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(100, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 100, AttackStyle.RANGED, "Staff");
         assertEquals(450200, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(80, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 80, AttackStyle.RANGED, "Staff");
         assertEquals(360180, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(60, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 60, AttackStyle.RANGED, "Staff");
         assertEquals(270160, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(40, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 40, AttackStyle.RANGED, "Staff");
         assertEquals(180140, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(20, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 20, AttackStyle.RANGED, "Staff");
         assertEquals(90120, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(1, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 1, AttackStyle.RANGED, "Staff");
         assertEquals(4601, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
     }
 
@@ -91,22 +91,22 @@ public class UnitTestLogic
     public void testCalculatePriceDescendingOnUserLevelWithoutMarket()//Working
     {
         logic.getSellOffers().clear();
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         assertEquals(900300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         assertEquals(720280, logic.calculateItemPrice(new User("a", "p", 80, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         assertEquals(720260, logic.calculateItemPrice(new User("a", "p", 60, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         assertEquals(720240, logic.calculateItemPrice(new User("a", "p", 40, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         assertEquals(720220, logic.calculateItemPrice(new User("a", "p", 20, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         assertEquals(720201, logic.calculateItemPrice(new User("a", "p", 1, 1), weapon));
     }
 
@@ -114,27 +114,27 @@ public class UnitTestLogic
     public void testCalculatePriceDescendingOnWeaponHealthWithoutMarket()//Working
     {
         logic.getSellOffers().clear();
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(0);
         assertEquals(900300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(20);
         assertEquals(720240, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(40);
         assertEquals(540180, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(60);
         assertEquals(360120, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(80);
         assertEquals(180060, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(100);
         assertEquals(-1, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
     }
@@ -148,23 +148,23 @@ public class UnitTestLogic
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         Calendar calendar = Calendar.getInstance();
 
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.setObtainDate(getDate(-0, date, dateFormat, calendar));
         assertEquals(900300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.setObtainDate(getDate(-10, date, dateFormat, calendar));
         assertEquals(900300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.setObtainDate(getDate(-11, date, dateFormat, calendar));
         assertEquals(891300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.setObtainDate(getDate(-149, date, dateFormat, calendar));
         assertEquals(774300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
 
-        weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.setObtainDate(getDate(-150, date, dateFormat, calendar));
         assertEquals(732300, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
     }
@@ -177,7 +177,7 @@ public class UnitTestLogic
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         Calendar calendar = Calendar.getInstance();
         date = getDate(days, date, dateFormat, calendar);
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(100);
         weapon.setObtainDate(date);
         assertEquals(-1, logic.calculateItemPrice(new User("a", "p", 100, 1), weapon));
@@ -191,7 +191,7 @@ public class UnitTestLogic
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
         Calendar calendar = Calendar.getInstance();
         date = getDate(days, date, dateFormat, calendar);
-        Item weapon = new Weapon(200, AttackStyle.RANGED, "Staff");
+        Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(0);
         weapon.setObtainDate(date);
         assertTrue(logic.sellItem(new MarketOffer(1, weapon, MarketOfferType.SELL, new User("a", "p", 100, 1))));

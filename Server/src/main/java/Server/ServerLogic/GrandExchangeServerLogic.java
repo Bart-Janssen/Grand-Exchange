@@ -102,8 +102,14 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         Calendar calendar = Calendar.getInstance();
         date = getDate(days, date, dateFormat, calendar);
         System.out.println("Date: " + date);
-        databaseServer.addItemToBackPack(new Weapon(level, attackStyle, name, health, date), userId);
+        databaseServer.addItemToBackPack(new Weapon(-1, level, attackStyle, name, health, date), userId);
         return getBackPackItems(userId);
+    }
+
+    @Override
+    public boolean deleteItemFromBackPack(Item item, int userId)
+    {
+        return databaseServer.deleteItemFromBackPack(item, userId);
     }
 
     private String getDate(int days, String date, SimpleDateFormat dateFormat, Calendar calendar)

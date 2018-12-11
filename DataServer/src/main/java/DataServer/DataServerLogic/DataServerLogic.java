@@ -36,4 +36,10 @@ public class DataServerLogic implements IDataServerLogic
     {
         return database.addItemToBackPack(item, userId);
     }
+
+    @Override
+    public boolean deleteItemFromBackPack(int itemId, int userId)
+    {
+        return database.deleteItemFromBackPack(itemId, userId);
+    }
 }
