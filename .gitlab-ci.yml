@@ -30,39 +30,5 @@ test:
     - cd Client
     - mvn $MAVEN_CLI_OPTS test
     
-build:
-  stage: build
-  script:
-    - cd Server
-    - mvn $MAVEN_CLI_OPTS compile
-    
-verify:
-  stage: verify
-  script:
-    - cd Server 
-    - mvn $MAVEN_CLI_OPTS clean verify
 
-test:
-  stage: test
-  script:
-    - cd Server
-    - mvn $MAVEN_CLI_OPTS test
-    
-build:
-  stage: build
-  script:
-    - cd DataServer
-    - mvn $MAVEN_CLI_OPTS compile
-    
-verify:
-  stage: verify
-  script:
-    - cd DataServer 
-    - mvn $MAVEN_CLI_OPTS clean verify
-
-test:
-  stage: test
-  script:
-    - cd DataServer
-    - mvn $MAVEN_CLI_OPTS test
     
