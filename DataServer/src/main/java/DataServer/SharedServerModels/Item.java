@@ -26,14 +26,14 @@ public class Item
         this.itemHealth = 100;
     }
 
-    public Item(int id, int itemLevel, AttackStyle attackStyle, String name, int health, Date obtainDate)
+    public Item(int id, int itemLevel, AttackStyle attackStyle, String name, int health, String obtainDate)
     {
         this.id = id;
         this.attackStyle = attackStyle;
         this.itemLevel = itemLevel;
         this.name = name;
         this.itemHealth = health;
-        this.obtainDate = new SimpleDateFormat("dd MM yyyy").format(obtainDate);
+        this.obtainDate = obtainDate;
         this.iconPath = name + ".png";
     }
 

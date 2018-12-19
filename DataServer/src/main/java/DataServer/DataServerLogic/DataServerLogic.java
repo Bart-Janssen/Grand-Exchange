@@ -2,7 +2,9 @@ package DataServer.DataServerLogic;
 
 import DataServer.Database.IDatabaseConnection;
 import DataServer.SharedServerModels.Item;
+import DataServer.SharedServerModels.MarketOffer;
 import DataServer.SharedServerModels.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -26,9 +28,11 @@ public class DataServerLogic implements IDataServerLogic
     }
 
     @Override
-    public ArrayList<Item> getBackPackItems(int id)
+    public ArrayList<Item> getBackPackItems(int userId)
     {
-        return database.getBackPackItems(id);
+        ArrayList<Item> items = database.getBackPackItems(userId);
+        //TODO:
+        return items;
     }
 
     @Override
@@ -41,5 +45,11 @@ public class DataServerLogic implements IDataServerLogic
     public boolean deleteItemFromBackPack(int itemId, int userId)
     {
         return database.deleteItemFromBackPack(itemId, userId);
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getMarketOffers(int userId)
+    {
+        return database.getMarketOffers(userId);
     }
 }

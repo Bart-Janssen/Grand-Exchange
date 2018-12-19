@@ -77,9 +77,6 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     @Override
     public ArrayList<Item> generateNewWeapon(int userId)
     {
-        System.out.println();
-        System.out.println();
-
         int index = new Random().nextInt(AttackStyle.values().length);
         AttackStyle attackStyle = AttackStyle.values()[index];
         System.out.println("Attack style enum: " + attackStyle);
@@ -110,6 +107,12 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     public boolean deleteItemFromBackPack(Item item, int userId)
     {
         return databaseServer.deleteItemFromBackPack(item, userId);
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getMarketOffers(int userId)
+    {
+        return databaseServer.getMarketOffers(userId);
     }
 
     private String getDate(int days, String date, SimpleDateFormat dateFormat, Calendar calendar)

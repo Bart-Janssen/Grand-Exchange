@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.Factory.ClientFactory;
+import sample.Logic.ICalculateLogic;
 import sample.Logic.IGrandExchangeReceiveLogic;
 import sample.Logic.IGrandExchangeSendLogic;
 import sample.Models.WebSocketType;
@@ -13,6 +14,7 @@ public abstract class Controller
 {
     private IGrandExchangeSendLogic sendLogic = ClientFactory.getInstance().makeNewGrandExchangeSendLogic(WebSocketType.WEBSOCKETSERVER);
     private IGrandExchangeReceiveLogic receiveLogic = ClientFactory.getInstance().makeNewGrandExchangeReceiveLogic(WebSocketType.WEBSOCKETSERVER);
+    private ICalculateLogic calculateLogic = ClientFactory.getInstance().makeNewCalculateLogic();
     private static Stage stage;
 
     IGrandExchangeSendLogic getSendLogic()
@@ -23,6 +25,11 @@ public abstract class Controller
     IGrandExchangeReceiveLogic getReceiveLogic()
     {
         return receiveLogic;
+    }
+
+    ICalculateLogic getCalculateLogic()
+    {
+        return calculateLogic;
     }
 
     void openForm(final Stage oldForm, final String fxml, final String title, int width, int height)
@@ -42,4 +49,6 @@ public abstract class Controller
             }
         });
     }
+
+
 }

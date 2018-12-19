@@ -1,6 +1,5 @@
 package sample.Gui;
 
-import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -21,7 +20,6 @@ public class MarketController extends Controller implements IMarketGui, Initiali
 {
     public GridPane marketForm;
     public GridPane gridMarket;
-
     private static ArrayList<MarketOffer> offers = new ArrayList<>();
 
     static int getOfferCount()
@@ -35,17 +33,22 @@ public class MarketController extends Controller implements IMarketGui, Initiali
     }
 
     @Override
-    public void sellItem(Item item)
+    public void initialize(URL location, ResourceBundle resources)
     {
-        super.getSendLogic().sellItem(1, item);//TODO: get price out from ui
+        super.getSendLogic().getMarketOffers();
     }
 
     @Override
-    public void showCalculatedPrice(String message)
+    public void addItemsToMarket(ArrayList<MarketOffer> offers)
     {
-        MarketOffer newOffer = new Gson().fromJson(message, MarketOffer.class);
-        offers.add(newOffer);
+        MarketController.offers = offers;
         fillMarket();
+    }
+
+    @Override
+    public void sellItem(Item item)
+    {
+        //super.getSendLogic().sellItem(1, item);//TODO: get price out from ui
     }
 
     public void buttonBack_Click(ActionEvent actionEvent)
@@ -75,24 +78,21 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 price.setTextFill(Color.rgb(180, 180, 180));
                 Label offer = new Label(offers.get(i).getType().toString().substring(0,1).toUpperCase() + offers.get(i).getType().toString().substring(1).toLowerCase() + " offer");
                 offer.setTextFill(Color.rgb(180, 180, 180));
+                Label health = new Label("Health: " + offers.get(i).getItem().getItemHealth() + "%");
+                health.setTextFill(Color.rgb(180, 180, 180));
 
                 gridPane.add(gridCol0, 0, 0);
                 Rectangle image = new Rectangle(100, 100);
-                image.setFill(new ImagePattern(new Image(offers.get(i).getItem().getIconPath())));//TODO: name
+                image.setFill(new ImagePattern(new Image(offers.get(i).getItem().getIconPath())));
                 gridPane.add(image, 1, 1);
                 gridPane.add(level, 1, 2);
                 gridPane.add(style, 1, 3);
                 gridPane.add(offer, 1, 4);
                 gridPane.add(price, 1, 5);
+                gridPane.add(health, 1, 6);
 
                 gridMarket.add(gridPane, i,0);
             }
         });
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        fillMarket();
     }
 }

@@ -1,6 +1,7 @@
 package Server.Models;
 
 import Server.SharedClientModels.Item;
+import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.MessageType;
 import Server.SharedClientModels.User;
 
@@ -12,6 +13,7 @@ public class WebSocketMessage
     private String message;
     private User user;
     private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<MarketOffer> offers = new ArrayList<>();
 
     public MessageType getOperation()
     {
@@ -56,5 +58,20 @@ public class WebSocketMessage
     public void addItem(Item item)
     {
         this.items.add(item);
+    }
+
+    public void setMarketOffer(ArrayList<MarketOffer> offers)
+    {
+        this.offers = offers;
+    }
+
+    public ArrayList<MarketOffer> getOffers()
+    {
+        return offers;
+    }
+
+    public void addMarketOffer(MarketOffer offer)
+    {
+        this.offers.add(offer);
     }
 }

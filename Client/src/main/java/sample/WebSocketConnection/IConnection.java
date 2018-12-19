@@ -1,6 +1,7 @@
 package sample.WebSocketConnection;
 
 import sample.Models.Item;
+import sample.Models.MarketOffer;
 import sample.Models.User;
 
 import javax.websocket.Session;
@@ -8,10 +9,12 @@ import javax.websocket.Session;
 public interface IConnection
 {
     void login(User message);
-    void sellItem(int price, Item item);
+    void sellItem(MarketOffer offer);
     void calculateItemPrice(Item item);
     void getBackPackItems();
     void generateNewWeapon();
     void sentHeartBeat();
     void deleteItemFromBackPack(Item item);
+    void logout();
+    void getMarketOffers();
 }

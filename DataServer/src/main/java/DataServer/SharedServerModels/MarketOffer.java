@@ -2,16 +2,17 @@ package DataServer.SharedServerModels;
 
 public class MarketOffer
 {
+    private int id;
     private int price;
     private Item item;
-    private User user;
+   // private User user;
     private MarketOfferType type;
 
-    public MarketOffer(int price, Item item, MarketOfferType type, User user)
+    public MarketOffer(int id, int price, Item item, MarketOfferType type)
     {
+        this.id = id;
         this.price = price;
         this.item = item;
-        this.user = user;
         this.type = type;
     }
 
@@ -25,8 +26,13 @@ public class MarketOffer
         return item;
     }
 
-    public User getUser()
+    public MarketOfferType getType()
     {
-        return user;
+        return type;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 }

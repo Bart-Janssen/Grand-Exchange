@@ -127,4 +127,20 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
         }
         return false;
     }
+
+    @Override
+    public ArrayList<MarketOffer> getMarketOffers(int userId)
+    {
+        HttpGet httpGet = new HttpGet(serverLocation + "/getMarketOffers/" + userId);
+        httpGet.addHeader("content-type", "application/json");
+        try
+        {
+            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

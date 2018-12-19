@@ -1,11 +1,8 @@
 package sample.Factory;
 
-import sample.Logic.GrandExchangeReceiveLogic;
-import sample.Logic.GrandExchangeSendLogic;
-import sample.Logic.IGrandExchangeReceiveLogic;
-import sample.Logic.IGrandExchangeSendLogic;
+import sample.Logic.*;
 import sample.Models.WebSocketType;
-import sample.WebSocketConnection.Connection;
+import sample.WebSocketConnection.WebSocketConnection;
 
 public class ClientFactory
 {
@@ -35,9 +32,14 @@ public class ClientFactory
         switch (type)
         {
             case WEBSOCKETSERVER:
-                return new GrandExchangeSendLogic(new Connection());
+                return new GrandExchangeSendLogic(new WebSocketConnection());
             default:
                 return null;
         }
+    }
+
+    public ICalculateLogic makeNewCalculateLogic()
+    {
+        return new CalculateLogic();
     }
 }

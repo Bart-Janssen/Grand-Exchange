@@ -3,7 +3,7 @@ package sample.WebSocketConnection;
 import com.google.gson.Gson;
 import sample.Models.*;
 
-public class Connection implements IConnection
+public class WebSocketConnection implements IConnection
 {
     @Override
     public void login(User user)
@@ -15,12 +15,11 @@ public class Connection implements IConnection
     }
 
     @Override
-    public void sellItem(int price, Item item)
+    public void sellItem(MarketOffer offer)
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
-        webSocketMessage.addItem(item);
-        webSocketMessage.setMessage(Integer.toString(price));
-        webSocketMessage.setOperation(MessageType.SELLITEM);
+        webSocketMessage.addMarketOffer(offer);
+        webSocketMessage.setOperation(MessageType.SELL_ITEM);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 
@@ -29,7 +28,7 @@ public class Connection implements IConnection
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.addItem(item);
-        webSocketMessage.setOperation(MessageType.CALCULATEITEMPRICE);
+        webSocketMessage.setOperation(MessageType.CALCULATE_ITEM_PRICE);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 
@@ -64,6 +63,22 @@ public class Connection implements IConnection
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setOperation(MessageType.DELETE_ITEM_FROM_BACKPACK);
         webSocketMessage.addItem(item);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
+
+    @Override
+    public void logout()
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.LOGOUT);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
+
+    @Override
+    public void getMarketOffers()
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.GET_MARKET_OFFERS);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 }

@@ -1,6 +1,7 @@
 package DataServer.Database;
 
 import DataServer.SharedServerModels.Item;
+import DataServer.SharedServerModels.MarketOffer;
 import DataServer.SharedServerModels.User;
 
 import java.util.ArrayList;
@@ -52,5 +53,11 @@ public class HashMapDatabase implements IDatabaseConnection
     public boolean deleteItemFromBackPack(int itemId, int userId)
     {
         return false;
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getMarketOffers(int userId)
+    {
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package sample.Logic;
 
 import com.google.gson.Gson;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Platform;
 import sample.Gui.*;
 import sample.Models.*;
@@ -68,18 +69,23 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
             case LOGIN:
                 login(webSocketMessage);
                 break;
-            case SELLITEM:
-                ((IGameGui)controller).MBOX(webSocketMessage.getMessage());
+            case SELL_ITEM:
+                ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers());
                 break;
-            case CALCULATEITEMPRICE:
-                ((IMarketGui)controller).showCalculatedPrice(webSocketMessage.getMessage());
+            case CALCULATE_ITEM_PRICE:
+                ((IPriceConfirmGui)controller).showCalculatedPrice(new Gson().fromJson(webSocketMessage.getMessage(), MarketOffer.class));
                 break;
             case GET_BACKPACK_ITEMS:
                 ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
-                System.out.println(new Gson().toJson(webSocketMessage.getItems()));
+                break;
+            case GET_MARKET_OFFERS:
+                ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers());
                 break;
             case GENERATE_NEW_WEAPON:
                 ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
+                break;
+            case DELETE_ITEM_FROM_BACKPACK:
+                ((IBackPackGui)controller).deletedItem(Boolean.parseBoolean(webSocketMessage.getMessage()));
                 break;
         }
     }

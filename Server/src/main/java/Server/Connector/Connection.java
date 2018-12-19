@@ -7,14 +7,10 @@ import Server.ServerLogic.IGrandExchangeServerLogic;
 import Server.SharedClientModels.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
-import javax.persistence.Convert;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -84,14 +80,20 @@ public class Connection
             case LOGIN:
                 login(webSocketMessage, currentUserSession);
                 break;
-            case SELLITEM:
+            case LOGOUT:
+                logout(currentUserSession);
+                break;
+            case SELL_ITEM:
                 sellItem(webSocketMessage, currentUserSession);
                 break;
-            case CALCULATEITEMPRICE:
+            case CALCULATE_ITEM_PRICE:
                 calculateItemPrice(webSocketMessage, currentUserSession);
                 break;
             case GET_BACKPACK_ITEMS:
                 getBackPackItems(currentUserSession);
+                break;
+            case GET_MARKET_OFFERS:
+                getMarketOffers(currentUserSession);
                 break;
             case GENERATE_NEW_WEAPON:
                 generateNewWeapon(currentUserSession);
@@ -100,8 +102,18 @@ public class Connection
                 deleteItemFromBackPack(webSocketMessage, currentUserSession);
                 break;
             case HEARTBEAT:
-                System.out.println("[Heartbeat] : " + currentUserSession.getId() + "");
+                System.out.println("[Heartbeat] : " + currentUserSession.getId() + " is still alive.");
                 break;
+        }
+    }
+
+    private void logout(Session currentUserSession)
+    {
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            sessionAndUser.get(currentUserSession).getUser().setLoggedIn(false);
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setMessage("Successful logged out");
         }
     }
 
@@ -140,28 +152,27 @@ public class Connection
         }
     }
 
+    private void getMarketOffers(Session currentUserSession)
+    {
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            ArrayList<MarketOffer> offers = logic.getMarketOffers(sessionAndUser.get(currentUserSession).getUser().getId());
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setOperation(MessageType.GET_MARKET_OFFERS);
+            messageToUser.setMarketOffer(offers);
+            System.out.println(new Gson().toJson(offers));
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        }
+    }
+
     private void sellItem(WebSocketMessage webSocketMessage, Session currentUserSession)
     {
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
             WebSocketMessage messageToUser = new WebSocketMessage();
-            messageToUser.setOperation(MessageType.SELLITEM);
-            messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
-            messageToUser.addItem(webSocketMessage.getItems().get(0));
+            messageToUser.setOperation(MessageType.SELL_ITEM);
             messageToUser.setMessage("[Server] : Failed to sell item.");
-            try
-            {
-                if (logic.sellItem(new MarketOffer(Integer.parseInt(messageToUser.getMessage()), messageToUser.getItems().get(0), MarketOfferType.SELL, sessionAndUser.get(currentUserSession).getUser())))
-                {
-                    messageToUser.setMessage("[Server] : Successfully sold item.");
-                }
-            }
-            catch (Exception ex)
-            {
-                messageToUser.setMessage("[Server] : Error in message.");
-                currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
-                return;
-            }
+            if (logic.sellItem(webSocketMessage.getOffers().get(0))) messageToUser.setMessage("[Server] : Successfully sold item.");
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
@@ -171,11 +182,11 @@ public class Connection
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
             WebSocketMessage messageToUser = new WebSocketMessage();
-            messageToUser.setOperation(MessageType.CALCULATEITEMPRICE);
+            messageToUser.setOperation(MessageType.CALCULATE_ITEM_PRICE);
             messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
             int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItems().get(0));
             webSocketMessage.getItems().get(0).setPrice(price);
-            messageToUser.setMessage(new Gson().toJson(new MarketOffer(price, webSocketMessage.getItems().get(0), MarketOfferType.SELL, null)));
+            messageToUser.setMessage(new Gson().toJson(new MarketOffer(-1, price, webSocketMessage.getItems().get(0), MarketOfferType.SELL)));
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
             messageToUser.addItem(webSocketMessage.getItems().get(0));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));

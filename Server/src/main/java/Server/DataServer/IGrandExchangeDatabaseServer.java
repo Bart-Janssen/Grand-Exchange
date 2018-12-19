@@ -14,4 +14,5 @@ public interface IGrandExchangeDatabaseServer
     ArrayList<Item> getBackPackItems(int userId);
     void addItemToBackPack(Item item, int userId);
     boolean deleteItemFromBackPack(Item item, int userId);
+    ArrayList<MarketOffer> getMarketOffers(int userId);
 }

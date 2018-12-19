@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface IBackPackGui
 {
     void addItemsToBackPack(ArrayList<Item> items);
+    void deletedItem(boolean deleteSuccess);
 }
