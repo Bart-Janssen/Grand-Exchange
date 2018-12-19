@@ -1,6 +1,5 @@
 package sample.Gui;
 
-import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -25,7 +24,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     public GridPane backPackForm;
     public GridPane gridPaneBackPack;
     private static ArrayList<Item> backPack = new ArrayList<>();
-    private final int maxMarketOffers = 3;
+    private final static int maxMarketOffers = 3;
 
     public BackPackController()
     {

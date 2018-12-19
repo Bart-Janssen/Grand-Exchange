@@ -28,18 +28,12 @@ public class LoginController extends Controller implements ILoginGui
 
     public void textFieldUsername_KeyPress(KeyEvent keyEvent)
     {
-        if (keyEvent.getCode() == KeyCode.ENTER)
-        {
-            super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
-        }
+        if (keyEvent.getCode() == KeyCode.ENTER) super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
     }
 
     public void textFieldPassword_KeyPress(KeyEvent keyEvent)
     {
-        if (keyEvent.getCode() == KeyCode.ENTER)
-        {
-            super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
-        }
+        if (keyEvent.getCode() == KeyCode.ENTER) super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
     }
 
     @Override

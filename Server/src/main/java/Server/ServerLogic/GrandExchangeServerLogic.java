@@ -115,6 +115,12 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         return databaseServer.getMarketOffers(userId);
     }
 
+    @Override
+    public boolean cancelOffer(MarketOffer offer)
+    {
+        return databaseServer.cancelOffer(offer);
+    }
+
     private String getDate(int days, String date, SimpleDateFormat dateFormat, Calendar calendar)
     {
         try

@@ -21,7 +21,7 @@ import sample.Models.MarketOffer;
 
 public class PriceConfirmController extends Controller implements IPriceConfirmGui
 {
-    private MarketOffer offer;
+    private static MarketOffer offer;
 
     public GridPane priceConfirmForm;
     public GridPane gridPanePrice;
@@ -51,7 +51,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
     @Override
     public void showCalculatedPrice(MarketOffer offer)
     {
-        this.offer = offer;
+        PriceConfirmController.offer = offer;
         fillPriceConfirm();
     }
 
@@ -73,7 +73,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
             //Labels
             name = new Label("Name: " + offer.getItem().getName());
             name.setTextFill(Color.rgb(180, 180, 180));
-            offerType = new Label(this.offer.getType().toString().substring(0, 1).toUpperCase() + this.offer.getType().toString().substring(1).toLowerCase() + " offer");
+            offerType = new Label(offer.getType().toString().substring(0, 1).toUpperCase() + offer.getType().toString().substring(1).toLowerCase() + " offer");
             offerType.setTextFill(Color.rgb(180, 180, 180));
             level = new Label("Level: " + offer.getItem().getItemLevel());
             level.setTextFill(Color.rgb(180, 180, 180));
@@ -85,7 +85,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
             //Image
             gridPaneMarketOffer.add(gridCol0, 0, 0);
             image = new Rectangle(100, 100);
-            image.setFill(new ImagePattern(new Image(this.offer.getItem().getIconPath())));
+            image.setFill(new ImagePattern(new Image(offer.getItem().getIconPath())));
             gridPaneMarketOffer.add(image, 1, 1);
 
             //Text pane
@@ -115,7 +115,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
             buttonSell.addEventFilter(MouseEvent.MOUSE_CLICKED, e->
             {
                 super.getSendLogic().sellItem(offer);
-                this.offer = null;
+                offer = null;
                 super.openForm(((Stage)priceConfirmForm.getScene().getWindow()), "Market", "Market", 800, 300);
             });
 
@@ -135,7 +135,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
                 if (!newPropertyValue)
                 {
                     newPrice.setText(super.getCalculateLogic().checkPriceInput(newPrice.getText(), offer.getPrice()));
-                    this.offer.setPrice(Integer.parseInt(newPrice.getText().replace(".", "")));
+                    offer.setPrice(Integer.parseInt(newPrice.getText().replace(".", "")));
                 }
             });
 

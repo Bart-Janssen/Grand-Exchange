@@ -75,12 +75,33 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
         try
         {
             httpPut.setEntity(new StringEntity(new Gson().toJson(offer)));
-            if (EntityUtils.toString(HttpClients.createDefault().execute(httpPut).getEntity()).equals("success"))
+            if (EntityUtils.toString(HttpClients.createDefault().execute(httpPut).getEntity()).equals("Success"))
             {
                 System.out.println("Sold Successfully.");
                 return true;
             }
             System.out.println("Sold failed!");
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean cancelOffer(MarketOffer offer)
+    {
+        HttpDelete httpDelete = new HttpDelete(serverLocation + "/cancelOffer/" + offer.getId());
+        httpDelete.addHeader("content-type", "application/json");
+        try
+        {
+            if (EntityUtils.toString(HttpClients.createDefault().execute(httpDelete).getEntity()).equals("Success"))
+            {
+                System.out.println("Cancel Successfully.");
+                return true;
+            }
+            System.out.println("Cancel failed!");
         }
         catch (Exception ex)
         {

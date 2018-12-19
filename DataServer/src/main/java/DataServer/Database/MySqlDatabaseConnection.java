@@ -162,10 +162,9 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
             while (rs.next())
             {
                 offers.add(new MarketOffer(rs.getInt("id"), rs.getInt("price"),
-                                new Item(rs.getInt("itemId"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("attackStyleType").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getDate("obtainDate").toString()),
+                                new Item(rs.getInt("itemId"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("attackStyleType").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getString("obtainDate")),
                         MarketOfferType.valueOf(rs.getString("type").toUpperCase())));
             }
-            System.out.println("getMarketOffers: " + new Gson().toJson(offers));
         }
         catch(Exception e)
         {
@@ -201,6 +200,29 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         {
             e.printStackTrace();
             closeConnection(con);
+            return false;
+        }
+        finally
+        {
+            closeConnection(con);
+        }
+    }
+
+    @Override
+    public boolean cancelOffer(int offerId)
+    {
+        String query = "DELETE FROM marketoffer WHERE marketoffer.id LIKE ?";
+        try
+        {
+            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, offerId);
+            stmt.executeUpdate();
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
             return false;
         }
         finally

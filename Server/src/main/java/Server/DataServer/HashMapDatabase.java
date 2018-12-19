@@ -93,4 +93,10 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     {
         return null;
     }
+
+    @Override
+    public boolean cancelOffer(MarketOffer offer)
+    {
+        return false;
+    }
 }

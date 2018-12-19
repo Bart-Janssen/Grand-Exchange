@@ -8,7 +8,7 @@ public class CalculateLogic implements ICalculateLogic
     {
         if (!newPrice.isEmpty())
         {
-            if (newPrice.matches("\\d{0,10000}([\\.]\\d{0,4})?[MmKk]?"))
+            if (newPrice.matches("\\d{0,10000}([.]\\d{0,4})?[MmKk]?"))
             {
                 if (newPrice.contains("m")) newPrice = newPrice.replace("m", "000000");
                 if (newPrice.contains("M")) newPrice = newPrice.replace("M", "000000");

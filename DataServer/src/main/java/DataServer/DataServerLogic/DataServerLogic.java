@@ -4,7 +4,6 @@ import DataServer.Database.IDatabaseConnection;
 import DataServer.SharedServerModels.Item;
 import DataServer.SharedServerModels.MarketOffer;
 import DataServer.SharedServerModels.User;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -57,5 +56,11 @@ public class DataServerLogic implements IDataServerLogic
     public boolean sellItem(MarketOffer offer)
     {
         return database.sellItem(offer);
+    }
+
+    @Override
+    public boolean cancelOffer(int offerId)
+    {
+        return database.cancelOffer(offerId);
     }
 }

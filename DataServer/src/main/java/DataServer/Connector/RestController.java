@@ -60,6 +60,14 @@ public class RestController
         return logic.sellItem(offer) ? Response.status(200).entity("Success").build() : Response.status(400).entity("Failed").build();
     }
 
+    @DELETE
+    @Path("/cancelOffer/{marketOfferIdAsString}/")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response cancelOffer(@PathParam("marketOfferIdAsString") String marketOfferIdAsString)
+    {
+        return logic.cancelOffer(Integer.parseInt(marketOfferIdAsString)) ? Response.status(200).entity("Success").build() : Response.status(200).entity("Failed").build();
+    }
 
     @GET
     @Path("/getBackPackItems/{idAsString}")

@@ -15,4 +15,5 @@ public interface IGrandExchangeDatabaseServer
     void addItemToBackPack(Item item, int userId);
     boolean deleteItemFromBackPack(Item item, int userId);
     ArrayList<MarketOffer> getMarketOffers(int userId);
+    boolean cancelOffer(MarketOffer offer);
 }

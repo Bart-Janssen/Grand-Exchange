@@ -14,4 +14,5 @@ public interface IDatabaseConnection
     boolean deleteItemFromBackPack(int itemId, int userId);
     ArrayList<MarketOffer> getMarketOffers(int userId);
     boolean sellItem(MarketOffer offer);
+    boolean cancelOffer(int offerId);
 }

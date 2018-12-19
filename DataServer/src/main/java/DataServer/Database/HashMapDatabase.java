@@ -66,4 +66,10 @@ public class HashMapDatabase implements IDatabaseConnection
     {
         return false;
     }
+
+    @Override
+    public boolean cancelOffer(int offerId)
+    {
+        return false;
+    }
 }

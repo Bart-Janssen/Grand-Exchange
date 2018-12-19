@@ -81,4 +81,10 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     {
         connection.getMarketOffers();
     }
+
+    @Override
+    public void cancelOffer(MarketOffer offer)
+    {
+        connection.cancelOffer(offer);
+    }
 }

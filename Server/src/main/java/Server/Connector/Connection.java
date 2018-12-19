@@ -87,6 +87,9 @@ public class Connection
             case SELL_ITEM:
                 sellItem(webSocketMessage, currentUserSession);
                 break;
+            case CANCEL_OFFER:
+                cancelOffer(webSocketMessage, currentUserSession);
+                break;
             case CALCULATE_ITEM_PRICE:
                 calculateItemPrice(webSocketMessage, currentUserSession);
                 break;
@@ -176,6 +179,19 @@ public class Connection
             MarketOffer newOffer = webSocketMessage.getOffers().get(0);
             newOffer.setUserId(sessionAndUser.get(currentUserSession).getUser().getId());
             if (logic.sellItem(newOffer)) messageToUser.setMessage("[Server] : Successfully sold item.");
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        }
+    }
+
+    private void cancelOffer(WebSocketMessage webSocketMessage, Session currentUserSession)
+    {
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setOperation(MessageType.CANCEL_OFFER);
+            messageToUser.setMessage("[Server] : Failed to cancel offer.");
+            System.out.println(new Gson().toJson(webSocketMessage.getOffers().get(0)));
+            if (logic.cancelOffer(webSocketMessage.getOffers().get(0))) messageToUser.setMessage("[Server] : Successfully canceled offer.");
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }

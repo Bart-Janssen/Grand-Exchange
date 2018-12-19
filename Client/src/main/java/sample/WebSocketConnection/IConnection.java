@@ -17,4 +17,5 @@ public interface IConnection
     void deleteItemFromBackPack(Item item);
     void logout();
     void getMarketOffers();
+    void cancelOffer(MarketOffer offer);
 }
