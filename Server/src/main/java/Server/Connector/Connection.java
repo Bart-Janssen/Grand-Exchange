@@ -7,6 +7,7 @@ import Server.ServerLogic.IGrandExchangeServerLogic;
 import Server.SharedClientModels.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import sun.plugin2.message.MarkTaintedMessage;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
@@ -172,7 +173,9 @@ public class Connection
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.SELL_ITEM);
             messageToUser.setMessage("[Server] : Failed to sell item.");
-            if (logic.sellItem(webSocketMessage.getOffers().get(0))) messageToUser.setMessage("[Server] : Successfully sold item.");
+            MarketOffer newOffer = webSocketMessage.getOffers().get(0);
+            newOffer.setUserId(sessionAndUser.get(currentUserSession).getUser().getId());
+            if (logic.sellItem(newOffer)) messageToUser.setMessage("[Server] : Successfully sold item.");
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
@@ -187,6 +190,7 @@ public class Connection
             int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItems().get(0));
             webSocketMessage.getItems().get(0).setPrice(price);
             messageToUser.setMessage(new Gson().toJson(new MarketOffer(-1, price, webSocketMessage.getItems().get(0), MarketOfferType.SELL)));
+            System.out.println(sessionAndUser.get(currentUserSession).getUser().getId());
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
             messageToUser.addItem(webSocketMessage.getItems().get(0));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));

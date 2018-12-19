@@ -3,9 +3,9 @@ package Server.SharedClientModels;
 public class MarketOffer
 {
     private int id;
+    private int userId;
     private int price;
     private Item item;
-    // private User user;
     private MarketOfferType type;
 
     public MarketOffer(int id, int price, Item item, MarketOfferType type)
@@ -34,5 +34,15 @@ public class MarketOffer
     public int getId()
     {
         return id;
+    }
+
+    public int getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(int userId)
+    {
+        this.userId = userId;
     }
 }

@@ -52,4 +52,10 @@ public class DataServerLogic implements IDataServerLogic
     {
         return database.getMarketOffers(userId);
     }
+
+    @Override
+    public boolean sellItem(MarketOffer offer)
+    {
+        return database.sellItem(offer);
+    }
 }

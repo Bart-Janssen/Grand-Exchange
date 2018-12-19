@@ -50,6 +50,17 @@ public class RestController
         return sellOffers;
     }
 
+    @PUT
+    @Path("/sellItem/")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response sellItem(String postObjectAsString)
+    {
+        MarketOffer offer = new Gson().fromJson(postObjectAsString, MarketOffer.class);
+        return logic.sellItem(offer) ? Response.status(200).entity("Success").build() : Response.status(400).entity("Failed").build();
+    }
+
+
     @GET
     @Path("/getBackPackItems/{idAsString}")
     @Consumes("application/json")

@@ -194,7 +194,7 @@ public class UnitTestLogic
         Item weapon = new Weapon(1, 200, AttackStyle.RANGED, "Staff");
         weapon.subtractItemHealth(0);
         weapon.setObtainDate(date);
-        assertTrue(logic.sellItem(new MarketOffer(1, 1, weapon, MarketOfferType.SELL)));
+        assertTrue(logic.sellItem(new MarketOffer(1,1, weapon, MarketOfferType.SELL)));
         ArrayList<MarketOffer> list = logic.getSellOffers();
         assertEquals(1, list.get(list.size()-1).getPrice());
 

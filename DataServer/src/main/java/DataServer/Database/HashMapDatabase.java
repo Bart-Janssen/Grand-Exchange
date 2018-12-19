@@ -60,4 +60,10 @@ public class HashMapDatabase implements IDatabaseConnection
     {
         return null;
     }
+
+    @Override
+    public boolean sellItem(MarketOffer offer)
+    {
+        return false;
+    }
 }

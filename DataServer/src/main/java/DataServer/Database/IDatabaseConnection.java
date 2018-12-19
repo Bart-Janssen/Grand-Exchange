@@ -3,7 +3,6 @@ package DataServer.Database;
 import DataServer.SharedServerModels.Item;
 import DataServer.SharedServerModels.MarketOffer;
 import DataServer.SharedServerModels.User;
-
 import java.util.ArrayList;
 
 public interface IDatabaseConnection
@@ -14,4 +13,5 @@ public interface IDatabaseConnection
     boolean addItemToBackPack(Item item, int userId);
     boolean deleteItemFromBackPack(int itemId, int userId);
     ArrayList<MarketOffer> getMarketOffers(int userId);
+    boolean sellItem(MarketOffer offer);
 }

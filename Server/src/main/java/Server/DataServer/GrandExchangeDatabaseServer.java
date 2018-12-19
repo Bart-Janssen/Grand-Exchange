@@ -10,6 +10,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -68,6 +69,23 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     @Override
     public boolean sellItem(MarketOffer offer)
     {
+        System.out.println(new Gson().toJson(offer));
+        HttpPut httpPut = new HttpPut(serverLocation + "/sellItem");
+        httpPut.addHeader("content-type", "application/json");
+        try
+        {
+            httpPut.setEntity(new StringEntity(new Gson().toJson(offer)));
+            if (EntityUtils.toString(HttpClients.createDefault().execute(httpPut).getEntity()).equals("success"))
+            {
+                System.out.println("Sold Successfully.");
+                return true;
+            }
+            System.out.println("Sold failed!");
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
         return false;
     }
 

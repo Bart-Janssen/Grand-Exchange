@@ -149,10 +149,10 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         ArrayList<MarketOffer> offers = new ArrayList<>();
         String query =
                 "SELECT marketoffer.id AS id, marketoffer.price AS price, offertype.type AS type, item.id AS itemId, item.level AS level, attackStyle.Type AS attackStyleType, item.name AS name, item.health AS health, item.obtainDate AS obtainDate FROM marketoffer " +
-                        "INNER JOIN offertype ON marketoffer.offerTypeId = offertype.id " +
-                        "INNER JOIN item ON marketoffer.itemId = item.id " +
-                        "INNER JOIN attackStyle ON item.attackStyleId = attackStyle.id " +
-                        "WHERE marketoffer.userId LIKE ?";
+                "INNER JOIN offertype ON marketoffer.offerTypeId = offertype.id " +
+                "INNER JOIN item ON marketoffer.itemId = item.id " +
+                "INNER JOIN attackStyle ON item.attackStyleId = attackStyle.id " +
+                "WHERE marketoffer.userId LIKE ?";
         try
         {
             con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
@@ -165,7 +165,7 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
                                 new Item(rs.getInt("itemId"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("attackStyleType").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getDate("obtainDate").toString()),
                         MarketOfferType.valueOf(rs.getString("type").toUpperCase())));
             }
-            System.out.println(new Gson().toJson(offers));
+            System.out.println("getMarketOffers: " + new Gson().toJson(offers));
         }
         catch(Exception e)
         {
@@ -176,6 +176,37 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
             closeConnection(con);
         }
         return offers;
+    }
+
+    @Override
+    public boolean sellItem(MarketOffer offer)
+    {
+        System.out.println(new Gson().toJson(offer));
+        String query =
+                "INSERT INTO marketoffer (price, userId, itemId, offerTypeId) " +
+                "VALUES (?, ?, ?, (SELECT offertype.id FROM offertype WHERE offertype.type LIKE ?))";
+        try
+        {
+            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, offer.getPrice());
+            stmt.setInt(2, offer.getUserId());
+            stmt.setInt(3, offer.getItem().getId());
+            stmt.setString(4, offer.getType().toString());
+            stmt.executeUpdate();
+            closeConnection(con);
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            closeConnection(con);
+            return false;
+        }
+        finally
+        {
+            closeConnection(con);
+        }
     }
 
     private void closeConnection(Connection connection)

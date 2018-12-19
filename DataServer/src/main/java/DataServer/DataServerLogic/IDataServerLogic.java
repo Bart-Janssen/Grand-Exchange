@@ -14,4 +14,5 @@ public interface IDataServerLogic
     boolean addItemToBackPack(Item item, int userId);
     boolean deleteItemFromBackPack(int itemId, int userId);
     ArrayList<MarketOffer> getMarketOffers(int userId);
+    boolean sellItem(MarketOffer offer);
 }

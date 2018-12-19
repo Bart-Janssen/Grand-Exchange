@@ -2,49 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4c411ce-e0a7-4f1f-ac37-c6a1e39f44e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/IPriceConfirmGui.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/PriceConfirmController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/CalculateLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/ICalculateLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Factory/ClientFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Factory/ClientFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/BackPackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/BackPackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/IBackPackGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/IBackPackGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/IGameGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/IGameGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/IMarketGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/IMarketGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/MarketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Gui/MarketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/GrandExchangeSendLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/GrandExchangeSendLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/IGrandExchangeSendLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Logic/IGrandExchangeSendLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/MarketOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/MarketOffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/MessageType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/WebSocketMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/Models/WebSocketMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/WebSocketConnection/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/WebSocketConnection/WebSocketConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/sample/WebSocketConnection/IConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/sample/WebSocketConnection/IConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/resources/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Factory/ClientFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/BackPackController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/BackPackController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IBackPackGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IBackPackGui.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IGameGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IGameGui.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IMarketGui.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/IMarketGui.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/MarketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Gui/MarketController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeReceiveLogic$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeReceiveLogic$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeReceiveLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeReceiveLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeSendLogic$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeSendLogic$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeSendLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/GrandExchangeSendLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/IGrandExchangeSendLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Logic/IGrandExchangeSendLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/MarketOffer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/MarketOffer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/MessageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/MessageType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/Models/WebSocketMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/Models/WebSocketMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/Connection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/IConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/IConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/WebSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/sample/WebSocketConnection/WebSocketConnection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Connector/RestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Connector/RestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/DataServerLogic/DataServerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/DataServerLogic/DataServerLogic.java" afterDir="false" />
@@ -52,7 +11,6 @@
       <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/HashMapDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/HashMapDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/IDatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/IDatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/MySqlDatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Database/MySqlDatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/SharedServerModels/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/SharedServerModels/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/SharedServerModels/MarketOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/SharedServerModels/MarketOffer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController.class" afterDir="false" />
@@ -61,30 +19,19 @@
       <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Database/HashMapDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Database/HashMapDatabase.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Database/IDatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Database/IDatabaseConnection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Database/MySqlDatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Database/MySqlDatabaseConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/SharedServerModels/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/SharedServerModels/Item.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/SharedServerModels/MarketOffer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/SharedServerModels/MarketOffer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/DataServer/HashMapDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/DataServer/HashMapDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Models/WebSocketMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Models/WebSocketMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/IGrandExchangeServerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerLogic/IGrandExchangeServerLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MarketOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MarketOffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MessageType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/UnitTestLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UnitTestLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Connector/Connection$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Connector/Connection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Server/Connector/Connection$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/Connector/Connection$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Server/Connector/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/Connector/Connection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/DataServer/GrandExchangeDatabaseServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/DataServer/HashmapDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/DataServer/HashmapDatabase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/DataServer/IGrandExchangeDatabaseServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/DataServer/IGrandExchangeDatabaseServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/Models/WebSocketMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/Models/WebSocketMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/ServerLogic/GrandExchangeServerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/ServerLogic/GrandExchangeServerLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/ServerLogic/IGrandExchangeServerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/ServerLogic/IGrandExchangeServerLogic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Server/SharedClientModels/MarketOffer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/SharedClientModels/MarketOffer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Server/SharedClientModels/MessageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Server/SharedClientModels/MessageType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UnitTestLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/UnitTestLogic.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -104,39 +51,39 @@
         <counts>
           <entry key="project.closed" value="50" />
           <entry key="project.open.time.0" value="18" />
-          <entry key="project.open.time.1" value="18" />
+          <entry key="project.open.time.1" value="19" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="8" />
           <entry key="project.open.time.8" value="4" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="51" />
+          <entry key="project.opened" value="52" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="140" />
+          <entry key="java" value="141" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="140" />
+          <entry key="JAVA" value="141" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="31" />
-          <entry key="java" value="11277" />
+          <entry key="java" value="11466" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="11277" />
+          <entry key="JAVA" value="11466" />
           <entry key="PLAIN_TEXT" value="31" />
           <entry key="XML" value="1" />
         </counts>
@@ -148,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="172" column="39" lean-forward="true" selection-start-line="172" selection-start-column="39" selection-end-line="172" selection-end-column="39" />
+            <state relative-caret-position="377">
+              <caret line="175" column="45" selection-start-line="175" selection-start-column="45" selection-end-line="175" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -158,7 +105,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MessageType.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -166,13 +113,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/Models/WebSocketMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+            <state relative-caret-position="544">
+              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
               <folding>
                 <element signature="e#1324#1325#0" expanded="true" />
                 <element signature="e#1353#1354#0" expanded="true" />
-                <element signature="e#1414#1415#0" expanded="true" />
-                <element signature="e#1452#1453#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,12 +135,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+            <state relative-caret-position="462">
+              <caret line="82" column="12" lean-forward="true" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2276#2277#0" expanded="true" />
-                <element signature="e#2304#2305#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,19 +147,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MarketOffer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/HashMapDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="115" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="115" />
+            <state relative-caret-position="37">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#724#725#0" expanded="true" />
+                <element signature="e#753#754#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
+                <element signature="e#792#793#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -225,7 +162,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="221">
               <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -237,26 +174,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1233">
-              <caret line="95" column="56" lean-forward="true" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
+            <state relative-caret-position="581">
+              <caret line="95" column="56" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1984#1985#0" expanded="true" />
                 <element signature="e#2046#2047#0" expanded="true" />
                 <element signature="e#3450#3451#0" expanded="true" />
                 <element signature="e#3511#3512#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/UnitTestLogic.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" column="100" selection-start-line="20" selection-start-column="100" selection-end-line="20" selection-end-column="100" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -297,12 +222,12 @@
         <option value="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/Weapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/ServerLogic/IGrandExchangeServerLogic.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MarketOffer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Server/DataServer/HashMapDatabase.java" />
-        <option value="$PROJECT_DIR$/src/test/java/UnitTestLogic.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/Models/WebSocketMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MessageType.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UnitTestLogic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Server/DataServer/HashMapDatabase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MarketOffer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" />
       </list>
@@ -326,8 +251,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -445,7 +370,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545239134006" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Client" />
+    <property name="last_opened_file_path" value="F:/EtherChatServer/etherchatserver" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -599,6 +524,7 @@
       <workItem from="1545206022962" duration="3352000" />
       <workItem from="1545231474743" duration="97000" />
       <workItem from="1545231583965" duration="4055000" />
+      <workItem from="1545242192316" duration="2333000" />
     </task>
     <servers />
   </component>
@@ -635,7 +561,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142937000" />
+    <option name="totallyTimeSpent" value="145270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -646,10 +572,10 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.1444563" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.14605543" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5053305" side_tool="true" visible="true" weight="0.28091106" />
-      <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.4946695" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.50692964" side_tool="true" visible="true" weight="0.28091106" />
+      <window_info anchor="bottom" id="Messages" order="1" sideWeight="0.49307036" weight="0.329718" />
       <window_info anchor="bottom" id="Java Enterprise" order="2" />
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="4" />
@@ -658,7 +584,7 @@
       <window_info anchor="bottom" id="Debug" order="7" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.4946695" weight="0.28091106" />
+      <window_info active="true" anchor="bottom" id="Run" order="10" sideWeight="0.49307036" visible="true" weight="0.28091106" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.329718" />
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="right" id="JSF" order="0" />
@@ -767,52 +693,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MarketOffer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MessageType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/HashMapDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="115" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="115" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UnitTestLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="100" selection-start-line="20" selection-start-column="100" selection-end-line="20" selection-end-column="100" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Server/Models/WebSocketMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+        <state relative-caret-position="544">
+          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
           <folding>
             <element signature="e#1324#1325#0" expanded="true" />
             <element signature="e#1353#1354#0" expanded="true" />
-            <element signature="e#1414#1415#0" expanded="true" />
-            <element signature="e#1452#1453#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -824,24 +718,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MessageType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/IGrandExchangeDatabaseServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="172" column="39" lean-forward="true" selection-start-line="172" selection-start-column="39" selection-end-line="172" selection-end-column="39" />
+        <state relative-caret-position="221">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1233">
-          <caret line="95" column="56" lean-forward="true" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
+        <state relative-caret-position="581">
+          <caret line="95" column="56" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1984#1985#0" expanded="true" />
@@ -852,14 +742,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/UnitTestLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        <state relative-caret-position="3281">
+          <caret line="196" column="52" selection-start-line="196" selection-start-column="52" selection-end-line="196" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2276#2277#0" expanded="true" />
-            <element signature="e#2304#2305#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/HashMapDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/SharedClientModels/MarketOffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding>
+            <element signature="e#724#725#0" expanded="true" />
+            <element signature="e#753#754#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#792#793#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/Connector/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="175" column="45" selection-start-line="175" selection-start-column="45" selection-end-line="175" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="82" column="12" lean-forward="true" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
