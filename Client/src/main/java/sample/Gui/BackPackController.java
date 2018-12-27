@@ -25,10 +25,12 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     public GridPane gridPaneBackPack;
     private static ArrayList<Item> backPack = new ArrayList<>();
     private final static int maxMarketOffers = 3;
+    private static int marketOfferCount;
 
     public BackPackController()
     {
         super.getReceiveLogic().setController(this);
+        super.getSendLogic().getMarketOffersCount();
     }
 
     public void buttonBack_Click(ActionEvent actionEvent)
@@ -50,9 +52,21 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     }
 
     @Override
-    public void deletedItem(boolean deleteSuccess)
+    public void deletedItem(String message)
     {
-        System.out.println(deleteSuccess ? "Successfully deleted item." : "Failed to delete item.");//TODO: append chat
+        super.appendChat(message);
+    }
+
+    @Override
+    public void canceledOrder(String message)
+    {
+        super.appendChat(message);
+    }
+
+    @Override
+    public void setMarketOfferCount(int count)
+    {
+        marketOfferCount = count;
     }
 
     private void addGrid()
@@ -101,20 +115,20 @@ public class BackPackController extends Controller implements IBackPackGui, Init
             tooltip.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
             Tooltip.install(rectangle, tooltip);
         });
-        rectangle.setFill(new ImagePattern(new Image(backPack.get(id).getIconPath())));//TODO: name
+        rectangle.setFill(new ImagePattern(new Image(backPack.get(id).getIconPath())));
         return rectangle;
     }
 
     private void sell(int id)
     {
-        if (MarketController.getOfferCount() < maxMarketOffers)
+        if (marketOfferCount < maxMarketOffers)
         {
             super.openForm(((Stage)backPackForm.getScene().getWindow()), "PriceConfirm", "PriceConfirm", 300, 300);
             super.getSendLogic().calculateItemPrice(backPack.get(id));
             backPack.remove(id);
             return;
         }
-        System.out.println("Cannot put more offers in the market.");//TODO: melding
+        super.appendChat("Cannot put more offers in the market.");
     }
 
     private void destroy(int id)

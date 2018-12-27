@@ -50,8 +50,9 @@ public class MarketController extends Controller implements IMarketGui, Initiali
     }
 
     @Override
-    public void addItemsToMarket(ArrayList<MarketOffer> offers)
+    public void addItemsToMarket(ArrayList<MarketOffer> offers, String message)
     {
+        super.appendChat(message);
         MarketController.offers = offers;
         fillMarket();
     }

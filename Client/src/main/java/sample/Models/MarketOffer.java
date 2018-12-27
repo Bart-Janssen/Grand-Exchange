@@ -5,7 +5,6 @@ public class MarketOffer
     private int id;
     private int price;
     private Item item;
-    // private User user;
     private MarketOfferType type;
 
     public MarketOffer(int id, int price, Item item, MarketOfferType type)

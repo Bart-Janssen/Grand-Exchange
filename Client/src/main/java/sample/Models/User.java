@@ -9,13 +9,13 @@ public class User
     private int id;
 
 
-    public User(String username, String password, int level, int id)
+    /*public User(String username, String password, int level, int id)
     {
         this.username = username;
         this.password = password;
         this.level = level;
         this.id = id;
-    }
+    }*/
 
     public User(String username, String password)
     {

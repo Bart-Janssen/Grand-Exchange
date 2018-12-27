@@ -90,4 +90,12 @@ public class WebSocketConnection implements IConnection
         webSocketMessage.setOperation(MessageType.CANCEL_OFFER);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
+
+    @Override
+    public void getMarketOffersCount()
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.GET_MARKET_OFFERS_COUNT);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
 }

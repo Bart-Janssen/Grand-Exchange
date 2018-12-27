@@ -1,6 +1,5 @@
 package sample.Logic;
 
-import com.google.gson.Gson;
 import sample.Models.*;
 import sample.WebSocketConnection.IConnection;
 import java.util.Timer;
@@ -86,5 +85,11 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     public void cancelOffer(MarketOffer offer)
     {
         connection.cancelOffer(offer);
+    }
+
+    @Override
+    public void getMarketOffersCount()
+    {
+        connection.getMarketOffersCount();
     }
 }

@@ -18,4 +18,5 @@ public interface IConnection
     void logout();
     void getMarketOffers();
     void cancelOffer(MarketOffer offer);
+    void getMarketOffersCount();
 }

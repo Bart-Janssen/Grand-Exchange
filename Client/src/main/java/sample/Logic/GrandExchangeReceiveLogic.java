@@ -70,29 +70,34 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                 login(webSocketMessage);
                 break;
             case SELL_ITEM:
-                ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers());
+                ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers(), webSocketMessage.getMessage());
                 break;
             case CALCULATE_ITEM_PRICE:
-                ((IPriceConfirmGui)controller).showCalculatedPrice(new Gson().fromJson(webSocketMessage.getMessage(), MarketOffer.class));
+                ((IPriceConfirmGui)controller).showCalculatedPrice(webSocketMessage.getOffers().get(0));
                 break;
             case GET_BACKPACK_ITEMS:
                 ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
                 break;
             case GET_MARKET_OFFERS:
-                ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers());
+                ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers(), webSocketMessage.getMessage());
                 break;
             case GENERATE_NEW_WEAPON:
                 ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
                 break;
             case DELETE_ITEM_FROM_BACKPACK:
-                ((IBackPackGui)controller).deletedItem(Boolean.parseBoolean(webSocketMessage.getMessage()));
+                ((IBackPackGui)controller).deletedItem(webSocketMessage.getMessage());
+                break;
+            case CANCEL_OFFER:
+                ((IBackPackGui)controller).canceledOrder(webSocketMessage.getMessage());
+                break;
+            case GET_MARKET_OFFERS_COUNT:
+                ((IBackPackGui)controller).setMarketOfferCount(Integer.parseInt(webSocketMessage.getMessage()));
                 break;
         }
     }
 
     private void login(WebSocketMessage webSocketMessage)
     {
-        System.out.println(webSocketMessage.getMessage());
         if (webSocketMessage.getUser().isLoggedIn())
         {
             ((ILoginGui)controller).callGameGui();

@@ -64,7 +64,7 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
                 "SELECT item.id, item.name, item.obtainDate, item.health, item.level, attackstyle.type FROM item " +
                 "INNER JOIN user ON item.userId = user.id " +
                 "INNER JOIN attackstyle ON item.attackStyleId = attackstyle.id " +
-                "WHERE user.id LIKE ? AND item.onMarket LIKE 0";
+                "WHERE user.id LIKE ? AND item.onMarket LIKE 0 ";
         try
         {
             con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);

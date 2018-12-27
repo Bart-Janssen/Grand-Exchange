@@ -108,16 +108,25 @@ public class Connection
             case HEARTBEAT:
                 System.out.println("[Heartbeat] : " + currentUserSession.getId() + " is still alive.");
                 break;
+            case GET_MARKET_OFFERS_COUNT:
+                hhh(currentUserSession);
+                break;
         }
     }
 
     private void logout(Session currentUserSession)
     {
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn()) sessionAndUser.get(currentUserSession).getUser().setLoggedIn(false);
+    }
+
+    private void hhh(Session currentUserSession)
+    {
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
-            sessionAndUser.get(currentUserSession).getUser().setLoggedIn(false);
             WebSocketMessage messageToUser = new WebSocketMessage();
-            messageToUser.setMessage("Successful logged out");
+            messageToUser.setMessage(Integer.toString(logic.getMarketOffers(sessionAndUser.get(currentUserSession).getUser().getId()).size()));
+            messageToUser.setOperation(MessageType.GET_MARKET_OFFERS_COUNT);
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
 
@@ -128,7 +137,7 @@ public class Connection
             boolean deleted = logic.deleteItemFromBackPack(webSocketMessage.getItems().get(0), sessionAndUser.get(currentUserSession).getUser().getId());
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.DELETE_ITEM_FROM_BACKPACK);
-            messageToUser.setMessage(Boolean.toString(deleted));
+            messageToUser.setMessage(deleted ? "[Server] : Successfully deleted item." : "[Server] : Failed to delete item.");
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
@@ -175,10 +184,10 @@ public class Connection
         {
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.SELL_ITEM);
-            messageToUser.setMessage("[Server] : Failed to sell item.");
+            messageToUser.setMessage("[Server] : Failed to offer item.");
             MarketOffer newOffer = webSocketMessage.getOffers().get(0);
             newOffer.setUserId(sessionAndUser.get(currentUserSession).getUser().getId());
-            if (logic.sellItem(newOffer)) messageToUser.setMessage("[Server] : Successfully sold item.");
+            if (logic.sellItem(newOffer)) messageToUser.setMessage("[Server] : Successfully offered item.");
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
@@ -205,9 +214,10 @@ public class Connection
             messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
             int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItems().get(0));
             webSocketMessage.getItems().get(0).setPrice(price);
-            messageToUser.setMessage(new Gson().toJson(new MarketOffer(-1, price, webSocketMessage.getItems().get(0), MarketOfferType.SELL)));
+            messageToUser.addMarketOffer(new MarketOffer(-1, price, webSocketMessage.getItems().get(0), MarketOfferType.SELL));
+            //messageToUser.setMessage("");//new Gson().toJson();
             System.out.println(sessionAndUser.get(currentUserSession).getUser().getId());
-            if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
+            if (price == -1) messageToUser.setMessage("[Server] : Cannot sell item, item needs to be repaired first.");
             messageToUser.addItem(webSocketMessage.getItems().get(0));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
             return;
