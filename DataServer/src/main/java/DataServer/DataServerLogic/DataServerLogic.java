@@ -63,4 +63,10 @@ public class DataServerLogic implements IDataServerLogic
     {
         return database.cancelOffer(offerId);
     }
+
+    @Override
+    public ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId)
+    {
+        return database.getSearchOffers(searchQuery, userId);
+    }
 }

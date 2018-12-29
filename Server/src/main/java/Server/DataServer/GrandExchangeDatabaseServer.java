@@ -3,10 +3,8 @@ package Server.DataServer;
 import Server.SharedClientModels.Item;
 import Server.SharedClientModels.MarketOffer;
 import Server.SharedClientModels.User;
-import Server.SharedClientModels.Weapon;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -108,6 +106,22 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
             ex.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId)
+    {
+        HttpGet httpGet = new HttpGet(serverLocation + "/getSearchOffers/" + searchQuery + "/" + userId);
+        httpGet.addHeader("content-type", "application/json");
+        try
+        {
+            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     @Override

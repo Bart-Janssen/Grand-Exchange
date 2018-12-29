@@ -7,7 +7,6 @@ import Server.ServerLogic.IGrandExchangeServerLogic;
 import Server.SharedClientModels.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import sun.plugin2.message.MarkTaintedMessage;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
@@ -109,8 +108,22 @@ public class Connection
                 System.out.println("[Heartbeat] : " + currentUserSession.getId() + " is still alive.");
                 break;
             case GET_MARKET_OFFERS_COUNT:
-                hhh(currentUserSession);
+                getMarketOfferCount(currentUserSession);
                 break;
+            case GET_SEARCH_OFFERS:
+                getSearchOffers(webSocketMessage, currentUserSession);
+                break;
+        }
+    }
+
+    private void getSearchOffers(WebSocketMessage webSocketMessage, Session currentUserSession)
+    {
+        if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
+        {
+            WebSocketMessage messageToUser = new WebSocketMessage();
+            messageToUser.setMarketOffers(logic.getSearchOffers(webSocketMessage.getMessage(), sessionAndUser.get(currentUserSession).getUser().getId()));
+            messageToUser.setOperation(MessageType.GET_SEARCH_OFFERS);
+            currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
 
@@ -119,7 +132,7 @@ public class Connection
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn()) sessionAndUser.get(currentUserSession).getUser().setLoggedIn(false);
     }
 
-    private void hhh(Session currentUserSession)
+    private void getMarketOfferCount(Session currentUserSession)
     {
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
@@ -172,7 +185,7 @@ public class Connection
             ArrayList<MarketOffer> offers = logic.getMarketOffers(sessionAndUser.get(currentUserSession).getUser().getId());
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.GET_MARKET_OFFERS);
-            messageToUser.setMarketOffer(offers);
+            messageToUser.setMarketOffers(offers);
             System.out.println(new Gson().toJson(offers));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }

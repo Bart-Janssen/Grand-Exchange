@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class MarketController extends Controller implements IMarketGui, Initializable
 {
     private static ArrayList<MarketOffer> offers = new ArrayList<>();
+    private static final int maxOfferSpace = 3;
 
     public GridPane marketForm;
     public GridPane gridMarket;
@@ -32,11 +33,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
     private Label health;
     private Rectangle image;
     private Button cancelButton;
-
-    static int getOfferCount()
-    {
-        return offers.size();
-    }
+    private Button buyButton;
 
     public MarketController()
     {
@@ -73,7 +70,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 gridCol0.setPrefWidth(76);
 
                 gridPane = new GridPane();
-                gridPane.setStyle("-fx-background-color:  rgb(51,40,38)");
+                gridPane.setStyle("-fx-background-color: rgb(51,40,38)");
                 gridPane.setVgap(5);
                 gridPane.setHgap(5);
 
@@ -107,6 +104,25 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 gridPane.add(price, 1, 5);
                 gridPane.add(health, 1, 6);
                 gridPane.add(cancelButton, 2, 7);
+
+                gridMarket.add(gridPane, i,0);
+            }
+
+            for (int i = offers.size(); i < maxOfferSpace; i++)
+            {
+                gridPane = new GridPane();
+                gridPane.setStyle("-fx-background-color: rgb(51,40,38)");
+                gridPane.setVgap(5);
+                gridPane.setHgap(5);
+
+                gridCol0 = new Label();
+                gridCol0.setPrefWidth(100);
+
+                buyButton = new Button("Buy");
+                buyButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e-> super.openForm(((Stage)marketForm.getScene().getWindow()),"Buy", "Buy", 300 , 600));
+
+                gridPane.add(gridCol0, 0, 0);
+                gridPane.add(buyButton, 2, 7);
 
                 gridMarket.add(gridPane, i,0);
             }

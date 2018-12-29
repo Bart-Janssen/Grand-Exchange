@@ -99,4 +99,10 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     {
         return false;
     }
+
+    @Override
+    public ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId)
+    {
+        return buyOffers;
+    }
 }

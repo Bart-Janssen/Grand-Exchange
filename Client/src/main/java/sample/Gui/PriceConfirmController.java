@@ -2,6 +2,7 @@ package sample.Gui;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
@@ -17,11 +18,16 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.Models.Item;
 import sample.Models.MarketOffer;
 
-public class PriceConfirmController extends Controller implements IPriceConfirmGui
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PriceConfirmController extends Controller implements IPriceConfirmGui, Initializable
 {
     private static MarketOffer offer;
+    private static Item temperaryItem;
 
     public GridPane priceConfirmForm;
     public GridPane gridPanePrice;
@@ -41,6 +47,18 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
     public PriceConfirmController()
     {
         super.getReceiveLogic().setController(this);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        super.getSendLogic().calculateItemPrice(temperaryItem);
+        temperaryItem = null;
+    }
+
+    public static void setItem(Item item)
+    {
+        temperaryItem = item;
     }
 
     public void buttonBack_Click(ActionEvent actionEvent)

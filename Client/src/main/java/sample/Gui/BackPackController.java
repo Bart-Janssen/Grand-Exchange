@@ -123,8 +123,8 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     {
         if (marketOfferCount < maxMarketOffers)
         {
+            PriceConfirmController.setItem(backPack.get(id));
             super.openForm(((Stage)backPackForm.getScene().getWindow()), "PriceConfirm", "PriceConfirm", 300, 300);
-            super.getSendLogic().calculateItemPrice(backPack.get(id));
             backPack.remove(id);
             return;
         }

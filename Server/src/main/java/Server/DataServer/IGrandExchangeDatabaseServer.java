@@ -16,4 +16,5 @@ public interface IGrandExchangeDatabaseServer
     boolean deleteItemFromBackPack(Item item, int userId);
     ArrayList<MarketOffer> getMarketOffers(int userId);
     boolean cancelOffer(MarketOffer offer);
+    ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId);
 }

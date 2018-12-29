@@ -15,4 +15,5 @@ public interface IDatabaseConnection
     ArrayList<MarketOffer> getMarketOffers(int userId);
     boolean sellItem(MarketOffer offer);
     boolean cancelOffer(int offerId);
+    ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId);
 }

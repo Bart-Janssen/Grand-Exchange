@@ -72,4 +72,10 @@ public class HashMapDatabase implements IDatabaseConnection
     {
         return false;
     }
+
+    @Override
+    public ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId)
+    {
+        return null;
+    }
 }

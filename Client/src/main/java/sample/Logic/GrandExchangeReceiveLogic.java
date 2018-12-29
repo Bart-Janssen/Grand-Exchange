@@ -93,6 +93,9 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
             case GET_MARKET_OFFERS_COUNT:
                 ((IBackPackGui)controller).setMarketOfferCount(Integer.parseInt(webSocketMessage.getMessage()));
                 break;
+            case GET_SEARCH_OFFERS:
+                ((IBuyGui)controller).fillOffers(webSocketMessage.getOffers());
+                break;
         }
     }
 

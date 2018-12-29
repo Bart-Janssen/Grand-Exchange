@@ -60,7 +60,7 @@ public class WebSocketMessage
         this.items.add(item);
     }
 
-    public void setMarketOffer(ArrayList<MarketOffer> offers)
+    public void setMarketOffers(ArrayList<MarketOffer> offers)
     {
         this.offers = offers;
     }

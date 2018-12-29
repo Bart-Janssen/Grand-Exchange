@@ -98,4 +98,13 @@ public class WebSocketConnection implements IConnection
         webSocketMessage.setOperation(MessageType.GET_MARKET_OFFERS_COUNT);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
+
+    @Override
+    public void getSearchOffers(String searchQuery)
+    {
+        WebSocketMessage webSocketMessage = new WebSocketMessage();
+        webSocketMessage.setOperation(MessageType.GET_SEARCH_OFFERS);
+        webSocketMessage.setMessage(searchQuery);
+        UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+    }
 }

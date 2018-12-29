@@ -76,7 +76,7 @@ public class RestController
     {
         int id = Integer.parseInt(idAsString);
         ArrayList<Item> items = logic.getBackPackItems(id);
-        return Response.status(200).entity(new Gson().toJson(items)).build();
+        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity("error").build();
     }
 
     @GET
@@ -86,7 +86,17 @@ public class RestController
     {
         int id = Integer.parseInt(idAsString);
         ArrayList<MarketOffer> items = logic.getMarketOffers(id);
-        return Response.status(200).entity(new Gson().toJson(items)).build();
+        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity("error").build();
+    }
+
+    @GET
+    @Path("/getSearchOffers/{searchQuery}/{userIdAsString}")
+    @Consumes("application/json")
+    public Response getSearchOffers(@PathParam("searchQuery") String searchQuery, @PathParam("userIdAsString") String userIdAsString)
+    {
+        int userId = Integer.parseInt(userIdAsString);
+        ArrayList<MarketOffer> items = logic.getSearchOffers(searchQuery, userId);
+        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity("error").build();
     }
 
     @POST

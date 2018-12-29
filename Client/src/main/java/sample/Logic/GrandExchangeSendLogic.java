@@ -92,4 +92,10 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     {
         connection.getMarketOffersCount();
     }
+
+    @Override
+    public void getSearchOffers(String searchQuery)
+    {
+        connection.getSearchOffers(searchQuery);
+    }
 }
