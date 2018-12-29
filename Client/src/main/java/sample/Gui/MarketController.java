@@ -56,7 +56,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
 
     public void buttonBack_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)marketForm.getScene().getWindow()),"Game", "Game", 300, 300);
+        super.openForm(((Stage)marketForm.getScene().getWindow()),"Game");
     }
 
     private void fillMarket()
@@ -94,7 +94,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 {
                     super.getSendLogic().cancelOffer(offers.get(id));
                     offers.remove(id);
-                    super.openForm(((Stage)marketForm.getScene().getWindow()),"Backpack", "BackPack", 300 , 300);
+                    super.openForm(((Stage)marketForm.getScene().getWindow()),"Backpack");
                 });
 
                 gridPane.add(image, 1, 1);
@@ -119,7 +119,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 gridCol0.setPrefWidth(100);
 
                 buyButton = new Button("Buy");
-                buyButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e-> super.openForm(((Stage)marketForm.getScene().getWindow()),"Buy", "Buy", 300 , 600));
+                buyButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e-> super.openForm(((Stage)marketForm.getScene().getWindow()),"Buy"));
 
                 gridPane.add(gridCol0, 0, 0);
                 gridPane.add(buyButton, 2, 7);

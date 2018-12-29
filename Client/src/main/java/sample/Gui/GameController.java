@@ -1,12 +1,16 @@
 package sample.Gui;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class GameController extends Controller implements IGameGui
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class GameController extends Controller implements IGameGui, Initializable
 {
-    public GridPane gameForm;
+    public GridPane mainGrid;
 
     public GameController()
     {
@@ -15,23 +19,29 @@ public class GameController extends Controller implements IGameGui
 
     public void buttonOpenBackpack_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)gameForm.getScene().getWindow()),"Backpack", "BackPack", 300 , 300);
+        super.openForm(((Stage)mainGrid.getScene().getWindow()),"Backpack");
     }
 
     public void buttonOpenMarket_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)gameForm.getScene().getWindow()),"Market", "Market", 800, 300);
+        super.openForm(((Stage)mainGrid.getScene().getWindow()),"Market");
     }
 
     public void buttonGenerateRandomWeapon_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)gameForm.getScene().getWindow()),"Backpack", "BackPack", 300 , 300);
+        super.openForm(((Stage)mainGrid.getScene().getWindow()),"Backpack");
         super.getSendLogic().generateNewWeapon();
     }
 
     public void buttonLogout_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)gameForm.getScene().getWindow()), "Login","Login", 300, 300);
+        super.openForm(((Stage)mainGrid.getScene().getWindow()), "Login");
         super.getSendLogic().logout();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        System.out.println("intit");
     }
 }

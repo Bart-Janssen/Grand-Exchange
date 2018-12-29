@@ -35,15 +35,15 @@ public abstract class Controller
         return calculateLogic;
     }
 
-    void openForm(final Stage oldForm, final String fxml, final String title, int width, int height)
+    void openForm(final Stage oldForm, final String fxml)
     {
         stage = oldForm;
         Platform.runLater(() ->
         {
             try
             {
-                Controller.stage.setScene(new Scene(FXMLLoader.load(Main.class.getClassLoader().getResource(fxml + ".fxml")), width, height));
-                stage.setTitle(title);
+                Controller.stage.setScene(new Scene(FXMLLoader.load(Main.class.getClassLoader().getResource(fxml + ".fxml"))));
+                stage.setTitle(fxml);
                 stage.show();
             }
             catch (Exception e)

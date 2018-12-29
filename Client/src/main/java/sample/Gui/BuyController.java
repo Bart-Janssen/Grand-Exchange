@@ -76,7 +76,6 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             offerSpace.add(noItemsLabel, 0, 0);
             allOffers.add(offerSpace,0, 0);
             itemsScrollPane.setContent(allOffers);
-            System.out.println("No items found");//TODO: <- this
         });
     }
 
@@ -239,7 +238,7 @@ public class BuyController extends Controller implements IBuyGui, Initializable
 
     public void buttonBack_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)mainGrid.getScene().getWindow()),"Market", "Market", 800, 300);
+        super.openForm(((Stage)mainGrid.getScene().getWindow()),"Market");
     }
 }
 

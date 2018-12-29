@@ -35,7 +35,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
 
     public void buttonBack_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)backPackForm.getScene().getWindow()),"Game", "Game", 300, 300);
+        super.openForm(((Stage)backPackForm.getScene().getWindow()),"Game");
     }
 
     @Override
@@ -124,7 +124,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
         if (marketOfferCount < maxMarketOffers)
         {
             PriceConfirmController.setItem(backPack.get(id));
-            super.openForm(((Stage)backPackForm.getScene().getWindow()), "PriceConfirm", "PriceConfirm", 300, 300);
+            super.openForm(((Stage)backPackForm.getScene().getWindow()), "PriceConfirm");
             backPack.remove(id);
             return;
         }

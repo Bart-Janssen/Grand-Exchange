@@ -63,7 +63,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
 
     public void buttonBack_Click(ActionEvent actionEvent)
     {
-        super.openForm(((Stage)priceConfirmForm.getScene().getWindow()),"BackPack", "BackPack", 300, 300);
+        super.openForm(((Stage)priceConfirmForm.getScene().getWindow()),"BackPack");
     }
 
     @Override
@@ -134,7 +134,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
             {
                 super.getSendLogic().sellItem(offer);
                 offer = null;
-                super.openForm(((Stage)priceConfirmForm.getScene().getWindow()), "Market", "Market", 800, 300);
+                super.openForm(((Stage)priceConfirmForm.getScene().getWindow()), "Market");
             });
 
             price = new Label("Price:");
