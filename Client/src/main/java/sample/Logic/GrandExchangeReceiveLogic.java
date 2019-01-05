@@ -72,6 +72,12 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
             case SELL_ITEM:
                 ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers(), webSocketMessage.getMessage());
                 break;
+            case BUY_ITEM:
+                ((IBuyGui)controller).switchToBackPack(webSocketMessage.getMessage());
+                break;
+            case SOLD:
+                itemSold(webSocketMessage);
+                break;
             case CALCULATE_ITEM_PRICE:
                 ((IPriceConfirmGui)controller).showCalculatedPrice(webSocketMessage.getOffers().get(0));
                 break;
@@ -96,13 +102,31 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
             case GET_SEARCH_OFFERS:
                 ((IBuyGui)controller).fillOffers(webSocketMessage.getOffers());
                 break;
+            case NEW_OFFER_PLACED_ON_MARKET:
+                addMessageToChat(webSocketMessage);
+                break;
         }
+    }
+
+    private void addMessageToChat(WebSocketMessage webSocketMessage)
+    {
+        controller.appendChat(webSocketMessage.getMessage());
+        if (controller instanceof IGameGui)  ((IGameGui)controller).addMessages();
+    }
+
+    private void itemSold(WebSocketMessage webSocketMessage)
+    {
+        addMessageToChat(webSocketMessage);
+        if (controller instanceof IMarketGui) ((IMarketGui)controller).setItemToSoldStatus(webSocketMessage.getItems().get(0).getId());
+        MarketController.addSoldItem(webSocketMessage.getItems().get(0).getId());
     }
 
     private void login(WebSocketMessage webSocketMessage)
     {
         if (webSocketMessage.getUser().isLoggedIn())
         {
+            controller.appendChat(webSocketMessage.getMessage());
+            controller.setUser(webSocketMessage.getUser());
             ((ILoginGui)controller).callGameGui();
             return;
         }

@@ -8,9 +8,10 @@ public class MarketOffer
     private Item item;
     private MarketOfferType type;
 
-    public MarketOffer(int id, int price, Item item, MarketOfferType type)
+    public MarketOffer(int id, int userId, int price, Item item, MarketOfferType type)
     {
         this.id = id;
+        this.userId = userId;
         this.price = price;
         this.item = item;
         this.type = type;

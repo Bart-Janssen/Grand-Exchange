@@ -17,4 +17,5 @@ public interface IGrandExchangeServerLogic
     ArrayList<MarketOffer> getMarketOffers(int userId);
     boolean cancelOffer(MarketOffer offer);
     ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId);
+    boolean buyItem(MarketOffer marketOffer, int buyerId);
 }

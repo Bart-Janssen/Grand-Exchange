@@ -69,4 +69,22 @@ public class DataServerLogic implements IDataServerLogic
     {
         return database.getSearchOffers(searchQuery, userId);
     }
+
+    @Override
+    public boolean buyItem(MarketOffer offer, int buyerId)
+    {
+        return database.buyItem(offer,buyerId);
+    }
+
+    @Override
+    public ArrayList<User> TEST(int id)//TODO:
+    {
+        return database.TEST(id);
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getSellingOffers()
+    {
+        return database.getSellingOffers();
+    }
 }

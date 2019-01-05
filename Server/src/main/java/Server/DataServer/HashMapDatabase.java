@@ -14,28 +14,28 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     {
         users.add(new User("", ""));
 
-        sellOffers.add(new MarketOffer(1, 496360, new Item(1, 80, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 507599, new Item(1, 165, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 850850, new Item(1, 75, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 39853, new Item(1, 65, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 163575, new Item(1, 40, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 488, new Item(1, 3, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 618011, new Item(1, 53, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 900300, new Item(1, 200, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 90904, new Item(1, 68, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 301321, new Item(1, 33, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 496360, new Item(1, 80, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 507599, new Item(1, 165, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 850850, new Item(1, 75, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 39853, new Item(1, 65, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0,163575, new Item(1, 40, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0,488, new Item(1, 3, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 618011, new Item(1, 53, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 900300, new Item(1, 200, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 90904, new Item(1, 68, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 0, 301321, new Item(1, 33, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
 
-        buyOffers.add(new MarketOffer(1, 300000, new Item(1, 100, AttackStyle.MELEE, "Sword"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 500000, new Item(1, 165, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 1000000, new Item(1, 198, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 50000, new Item(1, 50, AttackStyle.MELEE, "Sword"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 150000, new Item(1, 41, AttackStyle.MELEE, "Sword"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 8000, new Item(1, 7, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 750000, new Item(1, 88, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 750000, new Item(1, 88, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 980000, new Item(1, 200, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 106000, new Item(1, 70, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
-        buyOffers.add(new MarketOffer(1, 128000, new Item(1, 26, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 300000, new Item(1, 100, AttackStyle.MELEE, "Sword"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 500000, new Item(1, 165, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 1000000, new Item(1, 198, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 50000, new Item(1, 50, AttackStyle.MELEE, "Sword"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 150000, new Item(1, 41, AttackStyle.MELEE, "Sword"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 8000, new Item(1, 7, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 750000, new Item(1, 88, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 750000, new Item(1, 88, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 980000, new Item(1, 200, AttackStyle.RANGED, "Bow"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 106000, new Item(1, 70, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
+        buyOffers.add(new MarketOffer(1, 0, 128000, new Item(1, 26, AttackStyle.MAGIC, "Staff"), MarketOfferType.BUY));
     }
 
     @Override
@@ -104,5 +104,11 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     public ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId)
     {
         return buyOffers;
+    }
+
+    @Override
+    public boolean buyItem(MarketOffer marketOffer, int buyerId)
+    {
+        return false;
     }
 }

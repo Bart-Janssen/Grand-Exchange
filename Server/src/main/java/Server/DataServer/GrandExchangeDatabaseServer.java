@@ -67,7 +67,6 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     @Override
     public boolean sellItem(MarketOffer offer)
     {
-        System.out.println(new Gson().toJson(offer));
         HttpPut httpPut = new HttpPut(serverLocation + "/sellItem");
         httpPut.addHeader("content-type", "application/json");
         try
@@ -122,6 +121,31 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean buyItem(MarketOffer marketOffer, int buyerId)
+    {
+        ArrayList<Object> postObjects = new ArrayList<>();
+        postObjects.add(marketOffer);
+        postObjects.add(buyerId);
+        HttpPut httpPut = new HttpPut(serverLocation + "/buyItem");
+        httpPut.addHeader("content-type", "application/json");
+        try
+        {
+            httpPut.setEntity(new StringEntity(new Gson().toJson(postObjects)));
+            if (EntityUtils.toString(HttpClients.createDefault().execute(httpPut).getEntity()).equals("Success"))
+            {
+                System.out.println("Bought Successfully.");
+                return true;
+            }
+            System.out.println("Bought failed!");
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return false;
     }
 
     @Override

@@ -8,6 +8,8 @@ import sample.Factory.ClientFactory;
 import sample.Logic.ICalculateLogic;
 import sample.Logic.IGrandExchangeReceiveLogic;
 import sample.Logic.IGrandExchangeSendLogic;
+import sample.Models.Item;
+import sample.Models.User;
 import sample.Models.WebSocketType;
 
 import java.util.ArrayList;
@@ -18,7 +20,8 @@ public abstract class Controller
     private IGrandExchangeReceiveLogic receiveLogic = ClientFactory.getInstance().makeNewGrandExchangeReceiveLogic(WebSocketType.WEBSOCKETSERVER);
     private ICalculateLogic calculateLogic = ClientFactory.getInstance().makeNewCalculateLogic();
     private static Stage stage;
-    private static ArrayList<String> chat = new ArrayList<>();
+    private static ArrayList<String> messages = new ArrayList<>();
+    private static User user;
 
     IGrandExchangeSendLogic getSendLogic()
     {
@@ -53,12 +56,32 @@ public abstract class Controller
         });
     }
 
-    void appendChat(String message)
+    public void appendChat(String message)
     {
         if (message != null)
         {
-            Controller.chat.add(message);
-            System.out.println(message);
+            Controller.messages.add(getCalculateLogic().makeMessageWithDate(message));
+            System.out.println("CONTROLLER: " + message);
         }
+    }
+
+    ArrayList<String> getMessages()
+    {
+        return messages;
+    }
+
+    void clearMessages()
+    {
+        messages.clear();
+    }
+
+    public void setUser(User user)
+    {
+        Controller.user = user;
+    }
+
+    User getUser()
+    {
+        return user;
     }
 }

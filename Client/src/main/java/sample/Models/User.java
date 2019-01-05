@@ -7,6 +7,7 @@ public class User
     private boolean loggedIn = false;
     private int level;
     private int id;
+    private int coins;
 
 
     /*public User(String username, String password, int level, int id)
@@ -51,5 +52,10 @@ public class User
     public int getId()
     {
         return id;
+    }
+
+    public int getCoins()
+    {
+        return coins;
     }
 }

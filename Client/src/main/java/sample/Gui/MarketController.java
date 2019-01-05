@@ -3,6 +3,7 @@ package sample.Gui;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 public class MarketController extends Controller implements IMarketGui, Initializable
 {
     private static ArrayList<MarketOffer> offers = new ArrayList<>();
+    private static ArrayList<Integer> soldItemIds = new ArrayList<>();
     private static final int maxOfferSpace = 3;
 
     public GridPane marketForm;
@@ -31,13 +33,67 @@ public class MarketController extends Controller implements IMarketGui, Initiali
     private Label price;
     private Label offer;
     private Label health;
+    private Label soldStatusBar;
     private Rectangle image;
     private Button cancelButton;
     private Button buyButton;
 
+    private static final String soldStatusBarGreen = "-fx-background-color: green";
+    private static final String soldStatusBarGray = "-fx-background-color: gray";
+    private static final String cancel = "Cancel";
+    private static final String remove = "Remove";
+
     public MarketController()
     {
         super.getReceiveLogic().setController(this);
+    }
+
+    public static void addSoldItem(int id)
+    {
+        soldItemIds.add(id);
+    }
+
+    @Override
+    public void setItemToSoldStatus(int id)
+    {
+        addSoldItem(id);
+        changeSoldStatus();
+    }
+
+    private void changeSoldStatus()
+    {
+        ArrayList<Integer> indexes = new ArrayList<>();
+        for (int soldItemId : soldItemIds)
+        {
+            for (int i = 0; i < offers.size(); i++)
+            {
+                if (soldItemId == offers.get(i).getItem().getId()) indexes.add(i);
+            }
+        }
+        for (int index : indexes)
+        {
+            for (Node node : ((GridPane)gridMarket.getChildren().get(index)).getChildren())
+            {
+                if (node instanceof Label)
+                {
+                    if (node.getStyle().equals(soldStatusBarGray)) node.setStyle(soldStatusBarGreen);
+                }
+                if (node instanceof Button)
+                {
+                    if (((Button)node).getText().equals(cancel))((Button) node).setText(remove);
+                }
+            }
+        }
+    }
+
+
+    private boolean checkIfItemsSold(int index)
+    {
+        for (int soldItemId : soldItemIds)
+        {
+            if (offers.get(index).getItem().getId() == soldItemId) return true;
+        }
+        return false;
     }
 
     @Override
@@ -63,8 +119,10 @@ public class MarketController extends Controller implements IMarketGui, Initiali
     {
         Platform.runLater(() ->
         {
+            gridMarket.getChildren().clear();
             for (int i = 0; i < offers.size(); i++)
             {
+                boolean itemIsSold = checkIfItemsSold(i);
                 int id = i;
                 gridCol0 = new Label();
                 gridCol0.setPrefWidth(76);
@@ -74,7 +132,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 gridPane.setVgap(5);
                 gridPane.setHgap(5);
 
-                cancelButton = new Button("Cancel");
+                cancelButton = new Button(itemIsSold ? remove : cancel);
                 level = new Label("Level: " + offers.get(i).getItem().getItemLevel());
                 level.setTextFill(Color.rgb(180, 180, 180));
                 style = new Label("Style: " + offers.get(i).getItem().getAttackStyle().toString().substring(0,1).toUpperCase() + offers.get(i).getItem().getAttackStyle().toString().substring(1).toLowerCase());
@@ -97,12 +155,17 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                     super.openForm(((Stage)marketForm.getScene().getWindow()),"Backpack");
                 });
 
+                soldStatusBar = new Label();
+                soldStatusBar.setPrefWidth(100);
+                soldStatusBar.setStyle(itemIsSold ? soldStatusBarGreen : soldStatusBarGray);
+
                 gridPane.add(image, 1, 1);
                 gridPane.add(level, 1, 2);
                 gridPane.add(style, 1, 3);
                 gridPane.add(offer, 1, 4);
                 gridPane.add(price, 1, 5);
                 gridPane.add(health, 1, 6);
+                gridPane.add(soldStatusBar,1,7);
                 gridPane.add(cancelButton, 2, 7);
 
                 gridMarket.add(gridPane, i,0);

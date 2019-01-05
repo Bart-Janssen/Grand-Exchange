@@ -1,6 +1,8 @@
 package sample.Logic;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CalculateLogic implements ICalculateLogic
 {
@@ -28,5 +30,10 @@ public class CalculateLogic implements ICalculateLogic
             }
         }
         return Integer.toString(oldPrice);
+    }
+
+    public String makeMessageWithDate(String message)
+    {
+        return "[" + new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().getTime()) + "]: " + message;
     }
 }

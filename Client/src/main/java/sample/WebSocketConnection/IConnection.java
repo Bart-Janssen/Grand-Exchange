@@ -20,4 +20,5 @@ public interface IConnection
     void cancelOffer(MarketOffer offer);
     void getMarketOffersCount();
     void getSearchOffers(String searchQuery);
+    void buyItem(MarketOffer offer);
 }

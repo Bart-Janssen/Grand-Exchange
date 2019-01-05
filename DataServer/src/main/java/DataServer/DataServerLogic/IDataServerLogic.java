@@ -17,4 +17,8 @@ public interface IDataServerLogic
     boolean sellItem(MarketOffer offer);
     boolean cancelOffer(int offerId);
     ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId);
+    boolean buyItem(MarketOffer offer, int buyerId);
+
+    ArrayList<User> TEST(int id);//TODO:
+    ArrayList<MarketOffer> getSellingOffers();
 }

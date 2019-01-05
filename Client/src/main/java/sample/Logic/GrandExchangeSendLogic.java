@@ -9,6 +9,7 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
 {
     private IConnection connection;
     private int heartBeatCountDown = 240;
+    private static Timer heartBeatTimer = null;
 
     public GrandExchangeSendLogic(IConnection webSocketConnection)
     {
@@ -18,7 +19,8 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
 
     private void startHeartbeatTimer()
     {
-        new Timer().schedule(new TimerTask()
+        if (heartBeatTimer == null) heartBeatTimer = new Timer();
+        heartBeatTimer.schedule(new TimerTask()
         {
             @Override
             public void run()
@@ -97,5 +99,11 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     public void getSearchOffers(String searchQuery)
     {
         connection.getSearchOffers(searchQuery);
+    }
+
+    @Override
+    public void buyItem(MarketOffer offer)
+    {
+        connection.buyItem(offer);
     }
 }

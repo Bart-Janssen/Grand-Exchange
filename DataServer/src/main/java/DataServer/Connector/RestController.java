@@ -26,28 +26,23 @@ public class RestController
         return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity("error").build();
     }
 
+
+
     @GET
-    @Path("/getSellingOffers")
+    @Path("/test/{idAsString}/")
+    @Consumes("application/json")
+    public Response test(@PathParam("idAsString") String idAsString)
+    {
+        int id = Integer.parseInt(idAsString);
+        return Response.status(200).entity(new Gson().toJson(logic.TEST(id))).build();//TODO: moet naar database itself
+    }
+
+    @GET
+    @Path("/getSellingOffers/")
     @Consumes("application/json")
     public Response getSellingOffers()
     {
-        return Response.status(200).entity(new Gson().toJson(getList())).build();//TODO: moet naar database itself
-    }
-
-    private ArrayList<MarketOffer> getList()
-    {
-        ArrayList<MarketOffer> sellOffers = new ArrayList<>();
-        sellOffers.add(new MarketOffer(1, 496360, new Item(1, 80, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 507599, new Item(1, 165, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 850850, new Item(1, 75, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 39853, new Item(1, 65, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 163575, new Item(1, 40, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 488, new Item(1, 3, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 618011, new Item(1, 53, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 900300, new Item(1, 200, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 90904, new Item(1, 68, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
-        sellOffers.add(new MarketOffer(1, 301321, new Item(1, 33, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
-        return sellOffers;
+        return Response.status(200).entity(new Gson().toJson(logic.getSellingOffers())).build();//TODO: moet naar database itself
     }
 
     @PUT
@@ -58,6 +53,23 @@ public class RestController
     {
         MarketOffer offer = new Gson().fromJson(postObjectAsString, MarketOffer.class);
         return logic.sellItem(offer) ? Response.status(200).entity("Success").build() : Response.status(400).entity("Failed").build();
+    }
+
+    @PUT
+    @Path("/buyItem/")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response buyItem(String postObjectsAsString)
+    {
+        ArrayList<Object> postObjects = new Gson().fromJson(postObjectsAsString, new TypeToken<ArrayList<Object>>(){}.getType());
+
+        String offerAsJson = new Gson().toJson(postObjects.get(0));
+        MarketOffer offer = new Gson().fromJson(offerAsJson, MarketOffer.class);
+        String buyerIdAsJson = new Gson().toJson(postObjects.get(1));
+        int buyerId = new Gson().fromJson(buyerIdAsJson, int.class);
+
+        //MarketOffer offer = new Gson().fromJson(postObjectsAsString, MarketOffer.class);
+        return logic.buyItem(offer, buyerId) ? Response.status(200).entity("Success").build() : Response.status(400).entity("Failed").build();
     }
 
     @DELETE

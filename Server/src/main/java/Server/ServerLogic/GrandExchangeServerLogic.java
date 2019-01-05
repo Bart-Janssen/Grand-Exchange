@@ -2,7 +2,6 @@ package Server.ServerLogic;
 
 import Server.DataServer.IGrandExchangeDatabaseServer;
 import Server.SharedClientModels.*;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -125,6 +124,12 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     public ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId)
     {
         return databaseServer.getSearchOffers(searchQuery, userId);
+    }
+
+    @Override
+    public boolean buyItem(MarketOffer marketOffer, int buyerId)
+    {
+        return databaseServer.buyItem(marketOffer,buyerId);
     }
 
     private String getDate(int days, String date, SimpleDateFormat dateFormat, Calendar calendar)

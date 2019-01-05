@@ -5,5 +5,6 @@ import java.util.ArrayList;
 
 public interface IMarketGui
 {
-    void addItemsToMarket(ArrayList<MarketOffer> offers, String messsage);
+    void setItemToSoldStatus(int id);
+    void addItemsToMarket(ArrayList<MarketOffer> offers, String message);
 }

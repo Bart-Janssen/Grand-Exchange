@@ -1,8 +1,6 @@
 package DataServer.Database;
 
-import DataServer.SharedServerModels.Item;
-import DataServer.SharedServerModels.MarketOffer;
-import DataServer.SharedServerModels.User;
+import DataServer.SharedServerModels.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +13,22 @@ public class HashMapDatabase implements IDatabaseConnection
     {
         users.put("bart", "bart");
         users.put("", "");
+    }
+
+    private ArrayList<MarketOffer> getList()
+    {
+        ArrayList<MarketOffer> sellOffers = new ArrayList<>();
+        sellOffers.add(new MarketOffer(1, 1, 496360, new Item(1, 80, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 507599, new Item(1, 165, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 850850, new Item(1, 75, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 39853, new Item(1, 65, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 163575, new Item(1, 40, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 488, new Item(1, 3, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 618011, new Item(1, 53, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 900300, new Item(1, 200, AttackStyle.RANGED, "Bow"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 90904, new Item(1, 68, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        sellOffers.add(new MarketOffer(1, 1, 301321, new Item(1, 33, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
+        return sellOffers;
     }
 
     @Override
@@ -77,5 +91,23 @@ public class HashMapDatabase implements IDatabaseConnection
     public ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId)
     {
         return null;
+    }
+
+    @Override
+    public boolean buyItem(MarketOffer offer, int buyerId)
+    {
+        return false;
+    }
+
+    @Override
+    public ArrayList<User> TEST(int id) //TODO:
+    {
+        return null;
+    }
+
+    @Override
+    public ArrayList<MarketOffer> getSellingOffers()
+    {
+        return getList();
     }
 }

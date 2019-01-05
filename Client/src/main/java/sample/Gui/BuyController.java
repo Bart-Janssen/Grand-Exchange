@@ -1,9 +1,7 @@
 package sample.Gui;
 
-import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,7 +26,7 @@ import java.util.ResourceBundle;
 public class BuyController extends Controller implements IBuyGui, Initializable
 {
     private ArrayList<MarketOffer> offers = new ArrayList<>();
-    private MarketOffer selectedItem;
+    private MarketOffer selectedOffer;
     public GridPane mainGrid;
     public ScrollPane itemsScrollPane;
     private GridPane offerSpace;
@@ -63,17 +61,24 @@ public class BuyController extends Controller implements IBuyGui, Initializable
         fillItemGrid();
     }
 
+    @Override
+    public void switchToBackPack(String message)
+    {
+        super.appendChat(message);
+        super.openForm(((Stage)mainGrid.getScene().getWindow()), "BackPack");
+    }
+
     private void noItemsFound()
     {
         Platform.runLater(() ->
         {
             allOffers = new GridPane();
             offerSpace = new GridPane();
-            Label noItemsLabel = new Label("No items found!");
-            noItemsLabel.setStyle("-fx-alignment: center");
-            noItemsLabel.setMinWidth(itemsScrollPane.getPrefWidth());
-            noItemsLabel.setTextFill(Color.rgb(180, 180, 180));
-            offerSpace.add(noItemsLabel, 0, 0);
+            Label noItemsFoundLabel = new Label("No items found!");
+            noItemsFoundLabel.setStyle("-fx-alignment: center");
+            noItemsFoundLabel.setMinWidth(itemsScrollPane.getPrefWidth());
+            noItemsFoundLabel.setTextFill(Color.rgb(180, 180, 180));
+            offerSpace.add(noItemsFoundLabel, 0, 0);
             allOffers.add(offerSpace,0, 0);
             itemsScrollPane.setContent(allOffers);
         });
@@ -204,7 +209,14 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             Button buttonBuy = new Button("Buy");
             buttonBuy.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
             {
-                System.out.println(new Gson().toJson(selectedItem));
+                if (super.getUser().getCoins() >= selectedOffer.getPrice())
+                {
+                    super.getSendLogic().buyItem(selectedOffer);
+                }
+                else
+                {
+                    super.appendChat("You cannot afford this item.");
+                }
             });
 
             searchHeader.add(coll3Space, 0, 0);
@@ -226,13 +238,13 @@ public class BuyController extends Controller implements IBuyGui, Initializable
     {
         Platform.runLater(() ->
         {
-            selectedItem = offers.get(id);
-            headerImage.setFill(new ImagePattern(new Image(selectedItem.getItem().getIconPath())));
-            headerLevel.setText("LeveL: " + selectedItem.getItem().getItemLevel());
-            headerPrice.setText("Price: " + super.getCalculateLogic().checkPriceInput(Integer.toString(selectedItem.getPrice()), selectedItem.getPrice()));
-            headerName.setText("Name: " + selectedItem.getItem().getName());
-            headerHealth.setText("Health: " + selectedItem.getItem().getItemHealth() + "%");
-            headerStyle.setText("Style: " + selectedItem.getItem().getAttackStyle().toString().substring(0, 1).toUpperCase() + selectedItem.getItem().getAttackStyle().toString().substring(1).toLowerCase());
+            selectedOffer = offers.get(id);
+            headerImage.setFill(new ImagePattern(new Image(selectedOffer.getItem().getIconPath())));
+            headerLevel.setText("LeveL: " + selectedOffer.getItem().getItemLevel());
+            headerPrice.setText("Price: " + super.getCalculateLogic().checkPriceInput(Integer.toString(selectedOffer.getPrice()), selectedOffer.getPrice()));
+            headerName.setText("Name: " + selectedOffer.getItem().getName());
+            headerHealth.setText("Health: " + selectedOffer.getItem().getItemHealth() + "%");
+            headerStyle.setText("Style: " + selectedOffer.getItem().getAttackStyle().toString().substring(0, 1).toUpperCase() + selectedOffer.getItem().getAttackStyle().toString().substring(1).toLowerCase());
         });
     }
 

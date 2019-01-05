@@ -7,15 +7,17 @@ public class User
     private boolean loggedIn = false;
     private int level;
     private int id;
+    private int coins;
 
     public User(){}
 
-    public User(String username, String password, int level, int id)
+    public User(String username, String password, int level, int id, int coins)
     {
         this.username = username;
         this.password = password;
         this.level = level;
         this.id = id;
+        this.coins = coins;
     }
 
     public String getUsername()
@@ -61,5 +63,10 @@ public class User
     public int getLevel()
     {
         return level;
+    }
+
+    public int getCoins()
+    {
+        return coins;
     }
 }
