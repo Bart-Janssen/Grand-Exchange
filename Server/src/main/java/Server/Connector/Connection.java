@@ -7,6 +7,7 @@ import Server.ServerLogic.IGrandExchangeServerLogic;
 import Server.SharedClientModels.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import javafx.collections.FXCollections;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
@@ -21,6 +22,7 @@ public class Connection
     private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.REST);//TODO: database server to rest
 
     private static HashMap<Session, WebSocketMessage> sessionAndUser = new HashMap<>();
+    private static ArrayList<WebSocketMessage> pendingSells = new ArrayList<>();
 
     @OnOpen
     public void onConnect(Session session)
@@ -135,25 +137,28 @@ public class Connection
                 }
             }
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
-            sentSoldToSeller(webSocketMessage);
+            sentSoldToSeller(webSocketMessage, currentUserSession);
         }
     }
 
-    private void sentSoldToSeller(WebSocketMessage webSocketMessage)
+    private void sentSoldToSeller(WebSocketMessage webSocketMessage, Session currentUserSession)
     {
         WebSocketMessage messageToUser = new WebSocketMessage();
         messageToUser.setOperation(MessageType.SOLD);
-        for (Session buyerSession : getKeysByValue(sessionAndUser))
+        messageToUser.addItem(webSocketMessage.getOffers().get(0).getItem());
+        messageToUser.setMessage("One of your items has been sold!");
+        for (Session sellerSession : getKeysByValue(sessionAndUser))
         {
-            if (sessionAndUser.get(buyerSession).getUser().getId() == webSocketMessage.getOffers().get(0).getUserId())
+            if (sessionAndUser.get(sellerSession).getUser().getId() == webSocketMessage.getOffers().get(0).getUserId())
             {
-                messageToUser.addItem(webSocketMessage.getOffers().get(0).getItem());
-                messageToUser.setMessage("One of your items has been sold!");
-                buyerSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+                sellerSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
                 System.out.println("User is actually online");
                 return;
             }
         }
+        messageToUser.addMarketOffer(webSocketMessage.getOffers().get(0));
+        messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
+        pendingSells.add(messageToUser);
         System.out.println("Seller is not online!");
     }
 
@@ -202,7 +207,7 @@ public class Connection
         {
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.GENERATE_NEW_WEAPON);
-            messageToUser.setItems(logic.generateNewWeapon(sessionAndUser.get(currentUserSession).getUser().getId()));
+            messageToUser.setItems(logic.generateItem(sessionAndUser.get(currentUserSession).getUser().getId()));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
@@ -263,6 +268,15 @@ public class Connection
             System.out.println(new Gson().toJson(webSocketMessage.getOffers().get(0)));
             if (logic.cancelOffer(webSocketMessage.getOffers().get(0))) messageToUser.setMessage("Successfully canceled offer.");
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+            for (WebSocketMessage pendingWebSocketMessage : FXCollections.observableArrayList(pendingSells))
+            {
+                System.out.println("pending id: " + pendingWebSocketMessage.getUser().getId() + " en session user id: " + sessionAndUser.get(currentUserSession).getUser().getId());
+                if (pendingWebSocketMessage.getOffers().get(0).getUserId() == sessionAndUser.get(currentUserSession).getUser().getId())
+                {
+                    pendingSells.remove(pendingWebSocketMessage);
+                    System.out.println("pending removed ");
+                }
+            }
         }
     }
 
@@ -301,6 +315,19 @@ public class Connection
             sessionAndUser.get(currentUserSession).getUser().setLoggedIn(true);
         }
         currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
+        checkPendingSells(currentUserSession);
+    }
+
+    private void checkPendingSells(Session currentUserSession)
+    {
+        for (WebSocketMessage webSocketMessage : pendingSells)
+        {
+            if (sessionAndUser.get(currentUserSession).getUser().getId() == webSocketMessage.getOffers().get(0).getUserId())
+            {
+                System.out.println("aids " + new Gson().toJson(webSocketMessage));
+                currentUserSession.getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
+            }
+        }
     }
 
     private void register()

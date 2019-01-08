@@ -236,7 +236,7 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
                         "INNER JOIN offertype ON marketoffer.offerTypeId = offertype.id " +
                         "INNER JOIN item ON marketoffer.itemId = item.id " +
                         "INNER JOIN attackStyle ON item.attackStyleId = attackStyle.id " +
-                        "WHERE offertype.type LIKE 'SELL' AND item.name LIKE ? AND marketoffer.userId NOT LIKE ?";
+                        "WHERE offertype.type LIKE 'SELL' AND item.name LIKE ? AND marketoffer.userId NOT LIKE ? AND item.onMarket LIKE 1";
         try
         {
             con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);

@@ -8,6 +8,5 @@ public interface IBackPackGui
 {
     void addItemsToBackPack(ArrayList<Item> items);
     void deletedItem(String message);
-    void canceledOrder(String message);
     void setMarketOfferCount(int count);
 }

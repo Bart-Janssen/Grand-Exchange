@@ -19,20 +19,24 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
 
     private void startHeartbeatTimer()
     {
-        if (heartBeatTimer == null) heartBeatTimer = new Timer();
-        heartBeatTimer.schedule(new TimerTask()
+        if (heartBeatTimer == null)
         {
-            @Override
-            public void run()
+            heartBeatTimer = new Timer();
+            heartBeatTimer.schedule(new TimerTask()
             {
-                heartBeatCountDown--;
-                if (heartBeatCountDown <= 0)
+                @Override
+                public void run()
                 {
-                    connection.sentHeartBeat();
-                    heartBeatCountDown = 240;
+                    heartBeatCountDown--;
+                    System.out.println("heartbeat time: " + heartBeatCountDown);
+                    if (heartBeatCountDown <= 0)
+                    {
+                        connection.sentHeartBeat();
+                        heartBeatCountDown = 240;
+                    }
                 }
-            }
-        }, 1000, 1000);
+            }, 1000, 1000);
+        }
     }
 
     @Override

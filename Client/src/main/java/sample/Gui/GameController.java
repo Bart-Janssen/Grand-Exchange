@@ -61,7 +61,7 @@ public class GameController extends Controller implements IGameGui, Initializabl
     {
         listViewMessages.setStyle("-fx-font: 8pt \"Arial\"; -fx-padding: 0px; -fx-border: none");
         messages = super.getMessages();
-        listViewMessages.getItems().setAll(messages);
+        Platform.runLater(() -> listViewMessages.getItems().setAll(messages));
         if (messages.size() > 7) listViewMessages.scrollTo(messages.get(messages.size() - 1));
     }
 

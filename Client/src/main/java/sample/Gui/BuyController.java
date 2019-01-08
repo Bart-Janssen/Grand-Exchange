@@ -240,7 +240,7 @@ public class BuyController extends Controller implements IBuyGui, Initializable
         {
             selectedOffer = offers.get(id);
             headerImage.setFill(new ImagePattern(new Image(selectedOffer.getItem().getIconPath())));
-            headerLevel.setText("LeveL: " + selectedOffer.getItem().getItemLevel());
+            headerLevel.setText("Level: " + selectedOffer.getItem().getItemLevel());
             headerPrice.setText("Price: " + super.getCalculateLogic().checkPriceInput(Integer.toString(selectedOffer.getPrice()), selectedOffer.getPrice()));
             headerName.setText("Name: " + selectedOffer.getItem().getName());
             headerHealth.setText("Health: " + selectedOffer.getItem().getItemHealth() + "%");

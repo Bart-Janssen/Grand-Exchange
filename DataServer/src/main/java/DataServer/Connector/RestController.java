@@ -34,7 +34,7 @@ public class RestController
     public Response test(@PathParam("idAsString") String idAsString)
     {
         int id = Integer.parseInt(idAsString);
-        return Response.status(200).entity(new Gson().toJson(logic.TEST(id))).build();//TODO: moet naar database itself
+        return Response.status(200).entity(new Gson().toJson(logic.TEST(id))).build();
     }
 
     @GET
@@ -42,7 +42,7 @@ public class RestController
     @Consumes("application/json")
     public Response getSellingOffers()
     {
-        return Response.status(200).entity(new Gson().toJson(logic.getSellingOffers())).build();//TODO: moet naar database itself
+        return Response.status(200).entity(new Gson().toJson(logic.getSellingOffers())).build();
     }
 
     @PUT
@@ -67,8 +67,6 @@ public class RestController
         MarketOffer offer = new Gson().fromJson(offerAsJson, MarketOffer.class);
         String buyerIdAsJson = new Gson().toJson(postObjects.get(1));
         int buyerId = new Gson().fromJson(buyerIdAsJson, int.class);
-
-        //MarketOffer offer = new Gson().fromJson(postObjectsAsString, MarketOffer.class);
         return logic.buyItem(offer, buyerId) ? Response.status(200).entity("Success").build() : Response.status(400).entity("Failed").build();
     }
 

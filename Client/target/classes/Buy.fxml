@@ -26,7 +26,7 @@
             <RowConstraints maxHeight="410.0" minHeight="10.0" prefHeight="410.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane fx:id="itemsScrollPane" hbarPolicy="NEVER" prefHeight="392.0" prefWidth="295.0" stylesheets="@Buy.css" GridPane.rowIndex="4">
+            <ScrollPane fx:id="itemsScrollPane" hbarPolicy="NEVER" prefHeight="392.0" prefWidth="300.0" stylesheets="@Buy.css" GridPane.rowIndex="4">
                <styleClass>
                   <String fx:value="decrement-button" />
                   <String fx:value="increment-button" />

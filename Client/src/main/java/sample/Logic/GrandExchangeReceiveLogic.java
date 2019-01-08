@@ -94,7 +94,7 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
                 ((IBackPackGui)controller).deletedItem(webSocketMessage.getMessage());
                 break;
             case CANCEL_OFFER:
-                ((IBackPackGui)controller).canceledOrder(webSocketMessage.getMessage());
+                controller.appendChat(webSocketMessage.getMessage());
                 break;
             case GET_MARKET_OFFERS_COUNT:
                 ((IBackPackGui)controller).setMarketOfferCount(Integer.parseInt(webSocketMessage.getMessage()));

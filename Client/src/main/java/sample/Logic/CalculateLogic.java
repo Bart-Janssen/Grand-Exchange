@@ -19,17 +19,17 @@ public class CalculateLogic implements ICalculateLogic
                 if (newPrice.length() <= 10)
                 {
                     if (newPrice.contains(".")) newPrice = newPrice.replace(".", "");
-                    if (Long.parseLong(newPrice) < Integer.MAX_VALUE)
+                    if (Long.parseLong(newPrice) <= Integer.MAX_VALUE)
                     {
                         newPrice = NumberFormat.getIntegerInstance().format(Integer.parseInt(newPrice));
                         return newPrice;
                     }
                 }
-                newPrice = Integer.toString(Integer.MAX_VALUE);
+                newPrice = checkPriceInput(Integer.toString(Integer.MAX_VALUE), oldPrice);
                 return newPrice;
             }
         }
-        return Integer.toString(oldPrice);
+        return checkPriceInput(Integer.toString(oldPrice), oldPrice);
     }
 
     public String makeMessageWithDate(String message)

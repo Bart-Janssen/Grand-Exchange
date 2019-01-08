@@ -62,28 +62,31 @@ public class MarketController extends Controller implements IMarketGui, Initiali
 
     private void changeSoldStatus()
     {
-        ArrayList<Integer> indexes = new ArrayList<>();
-        for (int soldItemId : soldItemIds)
+        Platform.runLater(() ->
         {
-            for (int i = 0; i < offers.size(); i++)
+            ArrayList<Integer> indexes = new ArrayList<>();
+            for (int soldItemId : soldItemIds)
             {
-                if (soldItemId == offers.get(i).getItem().getId()) indexes.add(i);
-            }
-        }
-        for (int index : indexes)
-        {
-            for (Node node : ((GridPane)gridMarket.getChildren().get(index)).getChildren())
-            {
-                if (node instanceof Label)
+                for (int i = 0; i < offers.size(); i++)
                 {
-                    if (node.getStyle().equals(soldStatusBarGray)) node.setStyle(soldStatusBarGreen);
-                }
-                if (node instanceof Button)
-                {
-                    if (((Button)node).getText().equals(cancel))((Button) node).setText(remove);
+                    if (soldItemId == offers.get(i).getItem().getId()) indexes.add(i);
                 }
             }
-        }
+            for (int index : indexes)
+            {
+                for (Node node : ((GridPane) gridMarket.getChildren().get(index)).getChildren())
+                {
+                    if (node instanceof Label)
+                    {
+                        if (node.getStyle().equals(soldStatusBarGray)) node.setStyle(soldStatusBarGreen);
+                    }
+                    if (node instanceof Button)
+                    {
+                        if (((Button) node).getText().equals(cancel)) ((Button) node).setText(remove);
+                    }
+                }
+            }
+        });
     }
 
 
@@ -151,8 +154,9 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 cancelButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e->
                 {
                     super.getSendLogic().cancelOffer(offers.get(id));
+                    if (itemIsSold) soldItemIds.remove(id);
                     offers.remove(id);
-                    super.openForm(((Stage)marketForm.getScene().getWindow()),"Backpack");
+                    fillMarket();
                 });
 
                 soldStatusBar = new Label();

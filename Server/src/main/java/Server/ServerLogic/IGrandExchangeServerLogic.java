@@ -12,7 +12,7 @@ public interface IGrandExchangeServerLogic
     int calculateItemPrice(User user, Item item);
     ArrayList<MarketOffer> getSellOffers();
     ArrayList<Item> getBackPackItems(int userId);
-    ArrayList<Item> generateNewWeapon(int userId);
+    ArrayList<Item> generateItem(int userId);
     boolean deleteItemFromBackPack(Item item, int userId);
     ArrayList<MarketOffer> getMarketOffers(int userId);
     boolean cancelOffer(MarketOffer offer);

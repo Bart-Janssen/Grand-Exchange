@@ -6,4 +6,9 @@ public class Armor extends Item
     {
         super(id, itemLevel, attackStyle, name);
     }
+
+    public Armor(int id, int level, AttackStyle attackStyle, String name, int health, String date)
+    {
+        super(id, level, attackStyle, name, health, date);
+    }
 }

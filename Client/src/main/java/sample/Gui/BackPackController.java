@@ -58,12 +58,6 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     }
 
     @Override
-    public void canceledOrder(String message)
-    {
-        super.appendChat(message);
-    }
-
-    @Override
     public void setMarketOfferCount(int count)
     {
         marketOfferCount = count;

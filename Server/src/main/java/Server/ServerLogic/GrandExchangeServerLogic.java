@@ -74,7 +74,44 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     }
 
     @Override
-    public ArrayList<Item> generateNewWeapon(int userId)
+    public ArrayList<Item> generateItem(int userId)
+    {
+        boolean weapon = new Random().nextBoolean();
+        if (weapon) return generateNewWeapon(userId);
+        return generateNewArmor(userId);
+    }
+
+    private ArrayList<Item> generateNewArmor(int userId)
+    {
+        String[] names = {"Body", "Legs", "Helmet", "Shield"};
+        int nameIndex = new Random().nextInt(names.length);
+
+        int index = new Random().nextInt(AttackStyle.values().length);
+        AttackStyle attackStyle = AttackStyle.values()[index];
+        System.out.println("Attack style enum: " + attackStyle);
+
+        int level = new Random().nextInt(200) + 1;
+        System.out.println("level: " + level);
+
+        String name = names[nameIndex];
+        System.out.println("Name: " + name);
+
+        int health = new Random().nextInt(100);
+        System.out.println("Health: " + health);
+
+        int day = new Random().nextInt(150);
+        int days = -day;
+        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+        Calendar calendar = Calendar.getInstance();
+        date = getDate(days, date, dateFormat, calendar);
+        System.out.println("Date: " + date);
+        databaseServer.addItemToBackPack(new Armor(-1, level, attackStyle, name, health, date), userId);
+        return getBackPackItems(userId);
+    }
+
+    private ArrayList<Item> generateNewWeapon(int userId)
     {
         int index = new Random().nextInt(AttackStyle.values().length);
         AttackStyle attackStyle = AttackStyle.values()[index];
