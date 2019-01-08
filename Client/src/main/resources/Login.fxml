@@ -2,14 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.control.PasswordField?>
-<GridPane fx:id="loginForm" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.LoginController">
+<GridPane fx:id="loginForm" alignment="center" hgap="10" style="-fx-background-color: rgb(51,40,38);" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.LoginController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -17,15 +18,18 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="300.0" prefWidth="300.0">
+      <Pane prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: rgb(51,40,38);">
          <children>
-            <Button fx:id="buttonLogin" layoutX="179.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonLogin_Click" text="Login" />
-            <TextField fx:id="textFieldUsername" layoutX="76.0" layoutY="49.0" onKeyPressed="#textFieldUsername_KeyPress" />
-            <PasswordField fx:id="textFieldPassword" layoutX="76.0" layoutY="97.0" onKeyPressed="#textFieldPassword_KeyPress" prefWidth="149.0" />
-            <Label layoutX="76.0" layoutY="32.0" text="Username" />
-            <Label layoutX="76.0" layoutY="80.0" text="Password" />
-            <Label fx:id="labelLoginFailed" layoutX="119.0" layoutY="177.0" text="Login failed" visible="false"/>
-            <Label layoutX="81.0" layoutY="127.0" onMousePressed="#labelRegister_Click" text="Register"  style="-fx-underline: true;"/>
+            <Button fx:id="buttonLogin" layoutX="179.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonLogin_Click" style="-fx-background-color: gray;" text="Login">
+               <effect>
+                  <InnerShadow color="#392f2f" />
+               </effect></Button>
+            <TextField fx:id="textFieldUsername" layoutX="76.0" layoutY="49.0" onKeyPressed="#textFieldUsername_KeyPress" style="-fx-background-color: rgb(39,30,29); -fx-text-fill: rgb(180, 180, 180);" />
+            <PasswordField fx:id="textFieldPassword" layoutX="76.0" layoutY="97.0" onKeyPressed="#textFieldPassword_KeyPress" prefWidth="149.0" style="-fx-background-color: rgb(39,30,29); -fx-text-fill: rgb(180, 180, 180);" />
+            <Label layoutX="76.0" layoutY="32.0" style="-fx-text-fill: rgb(180, 180, 180);" text="Username" />
+            <Label layoutX="76.0" layoutY="80.0" style="-fx-text-fill: rgb(180, 180, 180);" text="Password" />
+            <Label fx:id="labelLoginFailed" layoutX="119.0" layoutY="177.0" style="-fx-text-fill: rgb(180, 180, 180);" text="Login failed" visible="false" />
+            <Label layoutX="81.0" layoutY="127.0" onMousePressed="#labelRegister_Click" style="-fx-text-fill: rgb(180, 180, 180);" text="Register" />
          </children>
       </Pane>
    </children>

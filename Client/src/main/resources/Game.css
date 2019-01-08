@@ -1,0 +1,11 @@
+.list-view .list-cell:even 
+{
+	-fx-background-color: rgb(57,45,40);
+	-fx-text-fill: rgb(180, 180, 180);
+}
+
+.list-view .list-cell:odd 
+{
+	-fx-background-color: rgb(51,40,38);
+	-fx-text-fill: rgb(180, 180, 180);
+}

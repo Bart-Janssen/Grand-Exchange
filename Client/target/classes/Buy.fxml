@@ -19,14 +19,15 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="291.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="22.0" minHeight="22.0" prefHeight="22.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="291.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="291.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="27.0" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="22.0" minHeight="22.0" prefHeight="22.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="410.0" minHeight="10.0" prefHeight="410.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane fx:id="itemsScrollPane" hbarPolicy="NEVER" prefHeight="392.0" prefWidth="300.0" stylesheets="@Buy.css" GridPane.rowIndex="4">
+            <ScrollPane fx:id="itemsScrollPane" hbarPolicy="NEVER" prefHeight="392.0" prefWidth="300.0" stylesheets="@Buy.css" GridPane.rowIndex="5">
                <styleClass>
                   <String fx:value="decrement-button" />
                   <String fx:value="increment-button" />

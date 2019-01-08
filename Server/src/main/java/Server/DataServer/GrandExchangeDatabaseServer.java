@@ -38,6 +38,7 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
         catch (Exception ex)
         {
             ex.printStackTrace();
+            return null;
         }
         return null;
     }

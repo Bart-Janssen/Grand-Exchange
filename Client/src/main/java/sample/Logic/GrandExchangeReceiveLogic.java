@@ -53,6 +53,7 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
 
     private void handleServerMessage(String jsonMessage)
     {
+
         final WebSocketMessage webSocketMessage;
         try
         {
@@ -123,13 +124,17 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
 
     private void login(WebSocketMessage webSocketMessage)
     {
+        if (webSocketMessage.getUser() == null)
+        {
+            ((ILoginGui)controller).loginFailed();
+            System.out.println("failed login");
+            return;
+        }
         if (webSocketMessage.getUser().isLoggedIn())
         {
             controller.appendChat(webSocketMessage.getMessage());
             controller.setUser(webSocketMessage.getUser());
             ((ILoginGui)controller).callGameGui();
-            return;
         }
-        ((ILoginGui)controller).loginFailed();
     }
 }

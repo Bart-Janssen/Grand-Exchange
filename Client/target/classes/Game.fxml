@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="mainGrid" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.GameController">
+<GridPane fx:id="mainGrid" alignment="center" hgap="10" style="-fx-background-color: rgb(51,40,38);" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.GameController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -17,16 +19,32 @@
       <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="144.0" />
    </rowConstraints>
    <children>
-      <Pane prefHeight="300.0" prefWidth="500.0">
+      <Pane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: rgb(51,40,38);">
          <children>
-            <Button fx:id="buttonOpenBackpack" layoutX="382.0" layoutY="52.0" mnemonicParsing="false" onAction="#buttonOpenBackpack_Click" text="Open backpack" />
-            <Button fx:id="buttonOpenMarket" layoutX="388.0" layoutY="93.0" mnemonicParsing="false" onAction="#buttonOpenMarket_Click" text="Open market" />
-            <Button fx:id="buttonGenerateRandomWeapon" layoutX="376.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonGenerateRandomWeapon_Click" text="Generate weapon" />
-            <Button fx:id="buttonLogout" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonLogout_Click" text="Logout" />
-            <Label fx:id="labelName" layoutX="14.0" layoutY="56.0" text="Name: " />
-            <Label fx:id="labelLevel" layoutX="14.0" layoutY="77.0" text="Level: " />
-            <Label fx:id="labelCoins" layoutX="14.0" layoutY="97.0" text="Coins: " />
+            <Button fx:id="buttonOpenBackpack" layoutX="388.0" layoutY="52.0" mnemonicParsing="false" onAction="#buttonOpenBackpack_Click" style="-fx-background-color: gray;" text="Open backpack">
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+            <Button fx:id="buttonOpenMarket" layoutX="400.0" layoutY="85.0" mnemonicParsing="false" onAction="#buttonOpenMarket_Click" style="-fx-background-color: gray;" text="Open market">
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+            <Button fx:id="buttonGenerateRandomWeapon" layoutX="376.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonGenerateRandomWeapon_Click" style="-fx-background-color: gray;" text="Generate weapon">
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+            <Button fx:id="buttonLogout" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonLogout_Click" style="-fx-background-color: gray;" text="Logout">
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+            <Label fx:id="labelName" layoutX="14.0" layoutY="56.0" style="-fx-background-color: rgb(51,40,38); -fx-text-fill: rgb(180, 180, 180);" text="Name: " />
+            <Label fx:id="labelLevel" layoutX="14.0" layoutY="77.0" style="-fx-background-color: rgb(51,40,38); -fx-text-fill: rgb(180, 180, 180);" text="Level: " />
+            <Label fx:id="labelCoins" layoutX="14.0" layoutY="97.0" style="-fx-background-color: rgb(51,40,38); -fx-text-fill: rgb(180, 180, 180);" text="Coins: " />
          </children></Pane>
-      <ListView fx:id="listViewMessages" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+      <ListView fx:id="listViewMessages" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(51,40,38); -fx-text-fill: rgb(180, 180, 180);" stylesheets="@Game.css" GridPane.rowIndex="1">
+         <styleClass>
+            <String fx:value="list-cell" />
+            <String fx:value="list-view" />
+         </styleClass></ListView>
    </children>
 </GridPane>

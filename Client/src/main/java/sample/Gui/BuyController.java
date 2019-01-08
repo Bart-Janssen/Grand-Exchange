@@ -3,10 +3,14 @@ package sample.Gui;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -31,12 +35,14 @@ public class BuyController extends Controller implements IBuyGui, Initializable
     public ScrollPane itemsScrollPane;
     private GridPane offerSpace;
     private GridPane allOffers;
+    private Label messageLabel;
     private Label headerLevel;
     private Label headerPrice;
     private Label headerName;
     private Label headerHealth;
     private Label headerStyle;
     private Rectangle headerImage;
+    private static final String YOU_CANNOT_AFFORD_THIS_ITEM = "You cannot afford this item.";
 
     public BuyController()
     {
@@ -141,7 +147,11 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             offerSpace.setStyle("-fx-background-color: rgb(51,40,38)");
             offerSpace.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
             {
-                if (e.getButton() == MouseButton.PRIMARY) fillBuyOffer(id);
+                if (e.getButton() == MouseButton.PRIMARY)
+                {
+                    fillBuyOffer(id);
+                    messageLabel.setText("");
+                }
                 e.consume();
             });
 
@@ -166,18 +176,23 @@ public class BuyController extends Controller implements IBuyGui, Initializable
     {
         Platform.runLater(() ->
         {
-            Label coll0Space = new Label();
-            coll0Space.setPrefWidth(60);
+            messageLabel = new Label("");
+            messageLabel.setStyle("-fx-alignment: center; -fx-text-fill: rgb(180, 180, 180)");
             GridPane searchHeader = new GridPane();
             searchHeader.setStyle("-fx-background-color: rgb(51,40,38)");
             searchHeader.setVgap(5);
             TextField searchTextField = new TextField();
-            searchTextField.setStyle("-fx-text-fill: rgb(180, 180, 180); -fx-background-color: rgb(39,30,29); -fx-alignment: center");
+            searchTextField.setStyle("-fx-text-fill: rgb(180, 180, 180); -fx-background-color: rgb(39,30,29); -fx-alignment: center; -fx-border-color: none");
             searchTextField.addEventFilter(KeyEvent.KEY_PRESSED, e ->
             {
-                if (e.getCode().equals(KeyCode.ENTER)) getSendLogic().getSearchOffers(searchTextField.getText());
+                if (e.getCode().equals(KeyCode.ENTER))
+                {
+                    messageLabel.setText("");
+                    getSendLogic().getSearchOffers(searchTextField.getText());
+                }
             });
             Label coll3Space = new Label();
+            coll3Space.setFont(new Font(1));
             coll3Space.setPrefWidth(60);
             searchTextField.setPrefWidth(200);
 
@@ -186,7 +201,7 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             headerImage.setWidth(80);
             headerImage.setFill(Color.rgb(39, 30, 29));
 
-            searchHeader.add(coll0Space, 0, 0);
+            mainGrid.add(messageLabel, 0, 0);
             GridPane headerTextGrid = new GridPane();
             headerTextGrid.setHgap(5);
             headerLevel = new Label();
@@ -207,25 +222,39 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             headerTextGrid.add(headerStyle, 1, 4);
 
             Button buttonBuy = new Button("Buy");
+            buttonBuy.setStyle("-fx-background-color: gray; -fx-alignment: center;");
+            buttonBuy.setEffect(new InnerShadow());
             buttonBuy.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
             {
-                if (super.getUser().getCoins() >= selectedOffer.getPrice())
+                if (selectedOffer != null)
                 {
-                    super.getSendLogic().buyItem(selectedOffer);
+                    if (super.getUser().getCoins() >= selectedOffer.getPrice())
+                    {
+                        super.getSendLogic().buyItem(selectedOffer);
+                    }
+                    else
+                    {
+                        messageLabel.setText(YOU_CANNOT_AFFORD_THIS_ITEM);
+                        super.appendChat(YOU_CANNOT_AFFORD_THIS_ITEM);
+                    }
+                    return;
                 }
-                else
-                {
-                    super.appendChat("You cannot afford this item.");
-                }
+                messageLabel.setText("Select an item first.");
             });
 
             searchHeader.add(coll3Space, 0, 0);
             searchHeader.add(headerImage, 1, 2);
             searchHeader.add(headerTextGrid, 2, 2);
 
-            mainGrid.add(searchHeader, 0, 0);
-            mainGrid.add(buttonBuy, 0, 1);
-            mainGrid.add(searchTextField, 0, 2);
+            GridPane.setHalignment(buttonBuy, HPos.CENTER);
+            GridPane.setValignment(buttonBuy, VPos.TOP);
+            GridPane.setHalignment(messageLabel, HPos.CENTER);
+
+
+
+            mainGrid.add(searchHeader, 0, 1);
+            mainGrid.add(buttonBuy, 0, 2);
+            mainGrid.add(searchTextField, 0, 3);
 
             allOffers = new GridPane();
             allOffers.setVgap(5);

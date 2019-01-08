@@ -8,6 +8,7 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -130,6 +131,8 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
             gridPanePrice.setHgap(5);
 
             buttonSell = new Button("Sell");
+            buttonSell.setStyle("-fx-background-color: gray");
+            buttonSell.setEffect(new InnerShadow());
             buttonSell.addEventFilter(MouseEvent.MOUSE_CLICKED, e->
             {
                 super.getSendLogic().sellItem(offer);
@@ -143,7 +146,7 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
 
             newPrice = new TextField(super.getCalculateLogic().checkPriceInput(Integer.toString(offer.getPrice()), offer.getPrice()));
             newPrice.setMaxWidth(100);
-            newPrice.setStyle("-fx-padding: 0px; -fx-focus-color: transparent; -fx-text-fill: rgb(180, 180, 180); -fx-background-color: rgb(51,40,38); -fx-alignment: center;");
+            newPrice.setStyle("-fx-padding: 0px; -fx-focus-color: transparent; -fx-text-fill: rgb(180, 180, 180); -fx-background-color: rgb(51,40,38); -fx-alignment: center; -fx-border-color: rgb(39,30,29);");
             newPrice.addEventFilter(KeyEvent.KEY_PRESSED, e->
             {
                 if (e.getCode().equals(KeyCode.ENTER)) buttonSell.requestFocus();

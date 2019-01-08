@@ -1,11 +1,16 @@
 package sample.Gui;
 
+import com.sun.javafx.geom.BaseBounds;
+import com.sun.javafx.geom.transform.BaseTransform;
+import com.sun.javafx.scene.BoundsAccessor;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -136,6 +141,8 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 gridPane.setHgap(5);
 
                 cancelButton = new Button(itemIsSold ? remove : cancel);
+                cancelButton.setStyle("-fx-background-color: gray");
+                cancelButton.setEffect(new InnerShadow());
                 level = new Label("Level: " + offers.get(i).getItem().getItemLevel());
                 level.setTextFill(Color.rgb(180, 180, 180));
                 style = new Label("Style: " + offers.get(i).getItem().getAttackStyle().toString().substring(0,1).toUpperCase() + offers.get(i).getItem().getAttackStyle().toString().substring(1).toLowerCase());
@@ -186,6 +193,8 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 gridCol0.setPrefWidth(100);
 
                 buyButton = new Button("Buy");
+                buyButton.setEffect(new InnerShadow());
+                buyButton.setStyle("-fx-background-color: gray;");
                 buyButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e-> super.openForm(((Stage)marketForm.getScene().getWindow()),"Buy"));
 
                 gridPane.add(gridCol0, 0, 0);

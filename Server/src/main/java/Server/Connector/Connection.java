@@ -295,9 +295,7 @@ public class Connection
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
             messageToUser.addItem(webSocketMessage.getItems().get(0));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
-            return;
         }
-        System.out.println("User is not logged in!");
     }
 
     private void login(WebSocketMessage webSocketMessage, Session currentUserSession)
@@ -322,11 +320,7 @@ public class Connection
     {
         for (WebSocketMessage webSocketMessage : pendingSells)
         {
-            if (sessionAndUser.get(currentUserSession).getUser().getId() == webSocketMessage.getOffers().get(0).getUserId())
-            {
-                System.out.println("aids " + new Gson().toJson(webSocketMessage));
-                currentUserSession.getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
-            }
+            if (sessionAndUser.get(currentUserSession).getUser().getId() == webSocketMessage.getOffers().get(0).getUserId()) currentUserSession.getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
         }
     }
 

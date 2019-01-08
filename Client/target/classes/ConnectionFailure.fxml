@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="backPackForm" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.ConnectionFailureController">
+<GridPane fx:id="backPackForm" alignment="center" hgap="10" style="-fx-background-color: rgb(51,40,38);" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Gui.ConnectionFailureController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -14,10 +14,10 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="300.0" prefWidth="300.0">
+      <Pane prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: rgb(51,40,38);">
          <children>
-            <Label layoutX="41.0" layoutY="67.0" text="Connection failed, trying to reconnect in: " />
-            <Label fx:id="labelTime" layoutX="137.0" layoutY="103.0" text="Time" />
+            <Label layoutY="67.0" prefHeight="17.0" prefWidth="300.0" style="-fx-text-fill: rgb(180, 180, 180); -fx-alignment: center;" text="Connection failed, trying to reconnect in: " />
+            <Label fx:id="labelTime" layoutY="103.0" prefHeight="17.0" prefWidth="300.0" style="-fx-text-fill: rgb(180, 180, 180); -fx-alignment: center;" text="Time" />
          </children></Pane>
    </children>
 </GridPane>
