@@ -67,7 +67,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     {
         Platform.runLater(() ->
         {
-            for (int x = 0; x < backPack.size(); x++)
+            for (int i = 0; i < backPack.size(); i++)
             {
                 ContextMenu rightClickMenu = new ContextMenu();
                 rightClickMenu.addEventFilter(MouseEvent.MOUSE_RELEASED, event ->
@@ -76,7 +76,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
                 });
                 rightClickMenu.getItems().add(new MenuItem("Sell"));
                 rightClickMenu.getItems().add(new MenuItem("Destroy"));
-                int id = x;
+                int id = i;
                 rightClickMenu.setOnAction(event ->
                 {
                     switch (((MenuItem)event.getTarget()).getText())
@@ -89,7 +89,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
                             break;
                     }
                 });
-                gridPaneBackPack.add(createRectangleItem(rightClickMenu, id), x % 4, (int) Math.floor((double) x / 4), 1, 1);
+                gridPaneBackPack.add(createRectangleItem(rightClickMenu, id), i % 4, (int) Math.floor((double) i / 4), 1, 1);
             }
         });
     }
@@ -109,6 +109,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
             tooltip.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
             Tooltip.install(rectangle, tooltip);
         });
+        System.out.println(backPack.get(id).getName() + " icon: " + backPack.get(id).getIconPath());
         rectangle.setFill(new ImagePattern(new Image(backPack.get(id).getIconPath())));
         return rectangle;
     }

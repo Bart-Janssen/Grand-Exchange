@@ -26,8 +26,6 @@ public class RestController
         return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity("error").build();
     }
 
-
-
     @GET
     @Path("/test/{idAsString}/")
     @Consumes("application/json")

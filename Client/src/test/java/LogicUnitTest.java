@@ -1,89 +1,187 @@
 import org.junit.Before;
+import org.junit.Test;
+import sample.Factory.ClientFactory;
 import sample.Logic.GrandExchangeSendLogic;
+import sample.Logic.ICalculateLogic;
+import sample.Logic.IGrandExchangeSendLogic;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class LogicUnitTest
 {
-    GrandExchangeSendLogic logic;
+    private ICalculateLogic logic;
+    private String input;
+    private int itemPrice;
 
     @Before
     public void setup()
     {
-        //logic = new GrandExchangeSendLogic(null, null);//ClientFactory.getInstance().makeNewIGrandExchangeLogic(null, WebSocketType.WEBSOCKETSERVER);
-    }
-
-    /*@Test
-    public void testDateWeaponState90Days()
-    {
-        int amount = 90;
-        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-        Calendar calendar = Calendar.getInstance();
-        try
-        {
-            calendar.setTime(dateFormat.parse(date));
-            calendar.add(Calendar.DATE, amount);
-            date = dateFormat.format(calendar.getTime());
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        Item armor = new Armor(100, 15 , AttackStyle.MAGIC);
-        armor.setObtainDate(date);
-       /* try
-        {
-            armor.setObtainDate(new SimpleDateFormat("dd MM yyyy").format(new SimpleDateFormat("dd MM yyyy").parse("04 04 2019")));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        /*assertEquals(600, logic.calculateDateWeaponState(armor));
-    }*/
-
-   /* @Test
-    public void testDateWeaponState0Days()
-    {
-        int amount = 0;
-        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-        Calendar calendar = Calendar.getInstance();
-        try
-        {
-            calendar.setTime(dateFormat.parse(date));
-            calendar.add(Calendar.DATE, amount);
-            date = dateFormat.format(calendar.getTime());
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        Item armor = new Weapon(100, 15 , AttackStyle.MAGIC);
-        armor.setObtainDate(date);
-        assertEquals(1500, logic.calculateDateWeaponState(armor));
+        logic = ClientFactory.getInstance().makeNewCalculateLogic();
     }
 
     @Test
-    public void testSellArmor5Days()
+    public void testPriceInputValid()
     {
-        int amount = 5;
-        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-        Calendar calendar = Calendar.getInstance();
-        try
-        {
-            calendar.setTime(dateFormat.parse(date));
-            calendar.add(Calendar.DATE, amount);
-            date = dateFormat.format(calendar.getTime());
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        Item armor = new Armor(150, 100 , AttackStyle.MELEE);
-        armor.setDamagedState(8);
-        armor.setObtainDate(date);
-        assertEquals(1305000, logic.sellItem(armor));
-    }*/
+        input = "15000";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("15.000", result);
+    }
+
+    @Test
+    public void testPriceInputNotValid()
+    {
+        input = "not valid price";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testPriceValidInputHigherThenIntLength()
+    {
+        input = "123456789123456";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("2.147.483.647", result);
+    }
+
+    @Test
+    public void testPriceInputNotValidNegative()
+    {
+        input = "-1";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testLetter_K_ForThousand()
+    {
+        input = "20k";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("20.000", result);
+    }
+
+    @Test
+    public void testCapitalLetter_K_ForThousand()
+    {
+        input = "20K";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("20.000", result);
+    }
+
+    @Test
+    public void testLetter_M_ForMillion()
+    {
+        input = "20m";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("20.000.000", result);
+    }
+
+    @Test
+    public void testCapitalLetter_M_ForMillion()
+    {
+        input = "20M";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("20.000.000", result);
+    }
+
+    @Test
+    public void testMultiple_K_Letters()
+    {
+        input = "20kk";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testMultipleCapital_K_Letters()
+    {
+        input = "20KK";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testMultiple_M_Letters()
+    {
+        input = "20mm";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testMultipleCapital_M_Letters()
+    {
+        input = "20MM";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testLetter_K_OnWrongPlace()
+    {
+        input = "2k0";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testLetter_M_OnWrongPlace()
+    {
+        input = "2m0";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testDecimalInput()
+    {
+        input = "10,0";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
+
+    @Test
+    public void testValidPriceWithDotsInInput()
+    {
+        input = "20.000";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("20.000", result);
+    }
+
+    @Test
+    public void testValidInputWithDotOnWrongPlace()
+    {
+        input = "10.00";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("1.000", result);
+    }
+
+    @Test
+    public void testUnValidInputExtremelyLongInput()
+    {
+        input = "sdkjhfdjhgkshkjsdhfgsildgujfiksdgflksdjgflkdsjgklsdjgklsdjgklsdjgsdkjhfdjhgkshkjsdhfgsildgujfiksdgflksdjgflkdsjgklsdjg" +
+                "klsdjgklsdjgsdkjhfdjhgkshkjsdhfgsildgujfiksdgflksdjgflkdsjgklsdjgklsdjgklsdjgsdkjhfdjhgkshkjsdhfgsildgujfiksdgflksdjgf" +
+                "lkdsjgklsdjgklsdjgklsdjgsdkjhfdjhgkshkjsdhfgsildgujfiksdgflksdjgflkdsjgklsdjgklsdjgklsdjgsdkjhfdjhgkshkjsdhfgsildgujfi" +
+                "ksdgflksdjgflkdsjgklsdjgklsdjgklsdjgsdkjhfdjhgkshkjsdhfgsildgujfiksdgflksdjgflkdsjgklsdjgklsdjgklsdjgzkfcjksdhjkshfsdj";
+        itemPrice = 10000;
+        String result = logic.checkPriceInput(input, itemPrice);
+        assertEquals("10.000", result);
+    }
 }

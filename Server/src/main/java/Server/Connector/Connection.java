@@ -290,7 +290,6 @@ public class Connection
             int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItems().get(0));
             webSocketMessage.getItems().get(0).setPrice(price);
             messageToUser.addMarketOffer(new MarketOffer(-1, -1, price, webSocketMessage.getItems().get(0), MarketOfferType.SELL));
-            //messageToUser.setMessage("");//new Gson().toJson();
             System.out.println(sessionAndUser.get(currentUserSession).getUser().getId());
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
             messageToUser.addItem(webSocketMessage.getItems().get(0));

@@ -8,13 +8,14 @@ import java.util.TimerTask;
 public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
 {
     private IConnection connection;
-    private int heartBeatCountDown = 240;
+    private static int heartBeatCountDown = 240;
     private static Timer heartBeatTimer = null;
 
     public GrandExchangeSendLogic(IConnection webSocketConnection)
     {
         this.connection = webSocketConnection;
         startHeartbeatTimer();
+        heartBeatCountDown = 240;
     }
 
     private void startHeartbeatTimer()

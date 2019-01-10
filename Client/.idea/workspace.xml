@@ -3,29 +3,30 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Gui/BuyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Gui/BuyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Gui/MarketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Gui/MarketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Gui/PriceConfirmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Gui/PriceConfirmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Buy.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Buy.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ConnectionFailure.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ConnectionFailure.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ConnectionFailure.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ConnectionFailure.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeReceiveLogic$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeReceiveLogic$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeReceiveLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeReceiveLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Gui/BackPackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Gui/BackPackController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeSendLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeSendLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Body.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Helmet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Legs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Shield.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/LogicUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LogicUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Body.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Helmet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Legs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Shield.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Gui/BackPackController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Gui/BackPackController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeSendLogic$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeSendLogic$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeSendLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sample/Logic/GrandExchangeSendLogic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DataServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Connector/RestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/src/main/java/DataServer/Connector/RestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DataServer/target/classes/DataServer/Connector/RestController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/main/java/Server/Connector/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/main/java/Server/Connector/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/main/java/Server/DataServer/GrandExchangeDatabaseServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/main/java/Server/ServerLogic/GrandExchangeServerLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/target/classes/Server/Connector/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/target/classes/Server/Connector/Connection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/target/classes/Server/DataServer/GrandExchangeDatabaseServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/target/classes/Server/ServerLogic/GrandExchangeServerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/target/classes/Server/ServerLogic/GrandExchangeServerLogic.class" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -120,16 +121,17 @@
     <session id="220057511">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="60" />
+          <entry key="project.closed" value="66" />
           <entry key="project.open.time.0" value="8" />
-          <entry key="project.open.time.1" value="43" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.1" value="44" />
+          <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.2" value="5" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="4" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="61" />
+          <entry key="project.opened" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -137,14 +139,14 @@
           <entry key="css" value="61" />
           <entry key="dummy" value="48" />
           <entry key="fxml" value="288" />
-          <entry key="java" value="35067" />
+          <entry key="java" value="37933" />
           <entry key="regexp" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="62" />
-          <entry key="JAVA" value="35066" />
+          <entry key="JAVA" value="37932" />
           <entry key="PLAIN_TEXT" value="48" />
           <entry key="RegExp" value="23" />
           <entry key="XML" value="288" />
@@ -155,7 +157,7 @@
           <entry key="class" value="2" />
           <entry key="css" value="6" />
           <entry key="fxml" value="67" />
-          <entry key="java" value="458" />
+          <entry key="java" value="465" />
           <entry key="png" value="3" />
         </counts>
       </usages-collector>
@@ -164,7 +166,7 @@
           <entry key="CLASS" value="2" />
           <entry key="CSS" value="6" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="458" />
+          <entry key="JAVA" value="465" />
           <entry key="XML" value="67" />
         </counts>
       </usages-collector>
@@ -176,71 +178,59 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/GameController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeSendLogic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-58">
-              <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-              <folding>
-                <element signature="e#690#691#0" expanded="true" />
-                <element signature="e#749#750#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="61">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/ConnectionFailure.fxml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1853">
+              <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/Connector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/MarketController.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/LogicUnitTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1292">
-              <caret line="47" column="36" lean-forward="true" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+            <state relative-caret-position="2754">
+              <caret line="170" column="26" lean-forward="true" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#303#304#0" expanded="true" />
+                <element signature="e#339#340#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/Login.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/CalculateLogic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/Buy.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/Game.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/PriceConfirmController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
+            <state relative-caret-position="418">
+              <caret line="157" column="63" selection-start-line="157" selection-start-column="63" selection-end-line="157" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -257,13 +247,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/BuyController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3277">
-              <caret line="224" column="59" selection-start-line="224" selection-start-column="59" selection-end-line="224" selection-end-column="59" />
+            <state relative-caret-position="466">
+              <caret line="127" column="81" lean-forward="true" selection-start-line="127" selection-start-column="81" selection-end-line="127" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10587#10588#0" expanded="true" />
-                <element signature="e#10668#10669#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/ICalculateLogic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -272,7 +269,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/Game.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -306,7 +303,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/sample/Gui/sameLogicGui.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/SameLogicGui.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/Gui.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/ConnectonFailureController.java" />
@@ -344,9 +340,7 @@
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/IMarketGui.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/IGameGui.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/GameController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sample/Gui/BackPackController.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/IBackPackGui.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeSendLogic.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Logic/CalculateLogic.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ConnectionFailure.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java" />
@@ -357,6 +351,9 @@
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/MarketController.java" />
         <option value="$PROJECT_DIR$/src/main/java/sample/Gui/PriceConfirmController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Game.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/sample/Gui/BackPackController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeSendLogic.java" />
+        <option value="$PROJECT_DIR$/src/test/java/LogicUnitTest.java" />
       </list>
     </option>
   </component>
@@ -396,9 +393,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -501,6 +496,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -513,11 +510,11 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546705338939" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547106196549" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last.edited.regexp" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Server" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -548,7 +545,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.LogicUnitTest">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -615,11 +612,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogicUnitTest.testRegisterPlayerNameNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicUnitTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Client" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LogicUnitTest" />
-      <option name="METHOD_NAME" value="testRegisterPlayerNameNull" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
@@ -629,11 +626,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogicUnitTest.testSellArmor5Days" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicUnitTest.testLetter_K_ForThousand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Client" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LogicUnitTest" />
-      <option name="METHOD_NAME" value="testSellArmor5Days" />
+      <option name="METHOD_NAME" value="testLetter_K_ForThousand" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicUnitTest.testUnValidInputExtremelyLongInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LogicUnitTest" />
+      <option name="METHOD_NAME" value="testUnValidInputExtremelyLongInput" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicUnitTest.testValidPriceWithDotsInInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LogicUnitTest" />
+      <option name="METHOD_NAME" value="testValidPriceWithDotsInInput" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
@@ -674,15 +699,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.LogicUnitTest.testLetter_K_ForThousand" />
+      <item itemvalue="JUnit.LogicUnitTest.testValidPriceWithDotsInInput" />
+      <item itemvalue="JUnit.LogicUnitTest.test" />
+      <item itemvalue="JUnit.LogicUnitTest.testUnValidInputExtremelyLongInput" />
       <item itemvalue="JUnit.LogicUnitTest" />
-      <item itemvalue="JUnit.LogicUnitTest.testRegisterPlayerNameNull" />
-      <item itemvalue="JUnit.LogicUnitTest.testSellArmor5Days" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LogicUnitTest.testSellArmor5Days" />
         <item itemvalue="JUnit.LogicUnitTest" />
-        <item itemvalue="JUnit.LogicUnitTest.testRegisterPlayerNameNull" />
+        <item itemvalue="JUnit.LogicUnitTest.testUnValidInputExtremelyLongInput" />
+        <item itemvalue="JUnit.LogicUnitTest.test" />
+        <item itemvalue="JUnit.LogicUnitTest.testValidPriceWithDotsInInput" />
+        <item itemvalue="JUnit.LogicUnitTest.testLetter_K_ForThousand" />
       </list>
     </recent_temporary>
   </component>
@@ -762,43 +791,49 @@
       <workItem from="1546956128407" duration="1603000" />
       <workItem from="1546957843809" duration="2144000" />
       <workItem from="1546959996727" duration="8302000" />
+      <workItem from="1547017533569" duration="11000" />
+      <workItem from="1547017569406" duration="1545000" />
+      <workItem from="1547023613480" duration="1170000" />
+      <workItem from="1547031108550" duration="1138000" />
+      <workItem from="1547049355414" duration="2172000" />
+      <workItem from="1547103782924" duration="2412000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 26m 16s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testPriceInputNotValid - 2019.01.10 at 08h 22m 50s.xml">
+      <configuration name="LogicUnitTest.testPriceInputNotValid" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 27m 07s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testPriceValidInputHigherThenIntLength - 2019.01.10 at 08h 22m 59s.xml">
+      <configuration name="LogicUnitTest.testPriceValidInputHigherThenIntLength" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 27m 26s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testPriceInputNotValidNegative - 2019.01.10 at 08h 23m 03s.xml">
+      <configuration name="LogicUnitTest.testPriceInputNotValidNegative" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 28m 16s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testLetter_K_ForThousand - 2019.01.10 at 08h 23m 04s.xml">
+      <configuration name="LogicUnitTest.testLetter_K_ForThousand" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 28m 34s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testValidPriceWithDotsInInput - 2019.01.10 at 08h 35m 59s.xml">
+      <configuration name="LogicUnitTest.testValidPriceWithDotsInInput" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 29m 12s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_test - 2019.01.10 at 08h 36m 57s.xml">
+      <configuration name="LogicUnitTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 29m 30s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testUnValidInputExtreamlyLongInput - 2019.01.10 at 08h 39m 26s.xml">
+      <configuration name="LogicUnitTest.testUnValidInputExtreamlyLongInput" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 32m 02s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testUnValidInputExtreamlyLongInput - 2019.01.10 at 08h 39m 34s.xml">
+      <configuration name="LogicUnitTest.testUnValidInputExtreamlyLongInput" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 13h 33m 07s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest_testUnValidInputExtremelyLongInput - 2019.01.10 at 08h 40m 29s.xml">
+      <configuration name="LogicUnitTest.testUnValidInputExtremelyLongInput" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LogicUnitTest_testSellArmor5Days - 2018.11.06 at 14h 22m 39s.xml">
-      <configuration name="LogicUnitTest.testSellArmor5Days" configurationId="JUnit" />
+    <history-entry file="LogicUnitTest - 2019.01.10 at 08h 42m 10s.xml">
+      <configuration name="LogicUnitTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="353706000" />
+    <option name="totallyTimeSpent" value="362154000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -813,7 +848,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17217484" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17537314" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -867,13 +902,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/application/Platform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-common/9.4.7.v20170914/websocket-common-9.4.7.v20170914.jar!/org/eclipse/jetty/websocket/common/events/annotated/CallableMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -972,13 +1000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/ICalculateLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="47" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sample/Models/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1049,24 +1070,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/Connector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/IBackPackGui.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeSendLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1077,13 +1084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/CalculateLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sample/Models/MarketOfferType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1091,9 +1091,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Body.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Body.png" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/BackPack.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -1101,13 +1099,6 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1132,52 +1123,36 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/BackPackController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-718">
-          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1168#1169#0" expanded="true" />
-            <element signature="e#1251#1252#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-58">
+        <state relative-caret-position="374">
           <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-          <folding>
-            <element signature="e#690#691#0" expanded="true" />
-            <element signature="e#749#750#0" expanded="true" />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Buy.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Buy.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ConnectionFailure.fxml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Game.css">
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/MarketController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        <state relative-caret-position="816">
+          <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/BackPackController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1168#1169#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1189,24 +1164,13 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/BuyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3277">
-          <caret line="224" column="59" selection-start-line="224" selection-start-column="59" selection-end-line="224" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10587#10588#0" expanded="true" />
-            <element signature="e#10668#10669#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Buy.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/PriceConfirmController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/Game.fxml">
       <provider editor-type-id="text-editor">
@@ -1216,12 +1180,79 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/MarketController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Buy.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1292">
-          <caret line="47" column="36" lean-forward="true" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+        <state relative-caret-position="442">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Game.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/BuyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="127" column="81" lean-forward="true" selection-start-line="127" selection-start-column="81" selection-end-line="127" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Gui/PriceConfirmController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="157" column="63" selection-start-line="157" selection-start-column="63" selection-end-line="157" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/ICalculateLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeSendLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/GrandExchangeReceiveLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1853">
+          <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/Connector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sample/Logic/CalculateLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/LogicUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2754">
+          <caret line="170" column="26" lean-forward="true" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
+          <folding>
+            <element signature="e#303#304#0" expanded="true" />
+            <element signature="e#339#340#0" expanded="true" />
           </folding>
         </state>
       </provider>

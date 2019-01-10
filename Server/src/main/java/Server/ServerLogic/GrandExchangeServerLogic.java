@@ -83,17 +83,25 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
 
     private ArrayList<Item> generateNewArmor(int userId)
     {
-        String[] names = {"Body", "Legs", "Helmet", "Shield"};
-        int nameIndex = new Random().nextInt(names.length);
+        ArrayList<String[]> names = new ArrayList<>();
+        String[] ranged = {"RANGED", "RangedBody", "RangedLegs", "RangedCoif", "RangedShield"};
+        String[] melee = {"MELEE", "MeleeBody", "MeleeLegs", "MeleeHelmet", "MeleeShield"};
+        String[] magic = {"MAGIC", "MagicBody", "MagicLegs", "MagicHat", "MagicShield"};
+        names.add(ranged);
+        names.add(melee);
+        names.add(magic);
 
-        int index = new Random().nextInt(AttackStyle.values().length);
-        AttackStyle attackStyle = AttackStyle.values()[index];
+        int typeIndex = new Random().nextInt(names.size());
+
+        int nameIndex = new Random().nextInt(names.get(typeIndex).length - 1) + 1;
+
+        AttackStyle attackStyle = AttackStyle.valueOf(names.get(typeIndex)[0]);
         System.out.println("Attack style enum: " + attackStyle);
 
         int level = new Random().nextInt(200) + 1;
         System.out.println("level: " + level);
 
-        String name = names[nameIndex];
+        String name = names.get(typeIndex)[nameIndex];
         System.out.println("Name: " + name);
 
         int health = new Random().nextInt(100);
