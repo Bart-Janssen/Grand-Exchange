@@ -50,6 +50,12 @@ public class RegisterController extends Controller implements IRegisterGui
             labelRegisterFailed.setText("Password need to have at least 8 characters");
             return;
         }
+        if (textFieldUsername.getLength() < 1)
+        {
+            labelRegisterFailed.setVisible(true);
+            labelRegisterFailed.setText("Username cannot be empty");
+            return;
+        }
         if (!textFieldPassword.getText().equals(textFieldReTypePassword.getText()))
         {
             labelRegisterFailed.setVisible(true);

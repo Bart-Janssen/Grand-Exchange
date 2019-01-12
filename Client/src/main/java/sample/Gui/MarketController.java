@@ -1,6 +1,7 @@
 package sample.Gui;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -157,7 +158,14 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 cancelButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e->
                 {
                     super.getSendLogic().cancelOffer(offers.get(id));
-                    if (soldItemIds.contains(offers.get(id).getItem().getId())) soldItemIds.remove(id);
+                    for (int index = 0; index < FXCollections.observableArrayList(soldItemIds).size(); index++)
+                    {
+                        if (soldItemIds.get(index) == offers.get(id).getItem().getId())
+                        {
+                            soldItemIds.remove(index);
+                            break;
+                        }
+                    }
                     offers.remove(id);
                     fillMarket();
                 });

@@ -2,6 +2,8 @@ package DataServer.Database;
 
 import DataServer.Models.Logger;
 import DataServer.SharedServerModels.*;
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -18,18 +20,26 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         this.sqlPassword = sqlPassword;
     }
 
+    private boolean verifyHash(String password, String hash)
+    {
+        return BCrypt.checkpw(password, hash);
+    }
+
     public User login(User user)
     {
-        String query = "SELECT * FROM user WHERE user.name LIKE ? AND user.password LIKE ?";
+        String query = "SELECT * FROM user WHERE user.name LIKE ?";//" AND user.password LIKE ?";
         try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword); PreparedStatement statement = connection.prepareStatement(query))
         {
             statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
+            //statement.setString(2, user.getPassword());
             try (ResultSet resultSet = statement.executeQuery())
             {
-                if (resultSet.next())
+                while (resultSet.next())
                 {
-                    return new User(resultSet.getString("name"), "", resultSet.getInt("level"), resultSet.getInt("id"), resultSet.getInt("coins"));
+                    if (verifyHash(user.getPassword(), resultSet.getString("password")))
+                    {
+                        return new User(resultSet.getString("name"), "", resultSet.getInt("level"), resultSet.getInt("id"), resultSet.getInt("coins"));
+                    }
                 }
             }
             return null;

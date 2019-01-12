@@ -4,6 +4,8 @@ import DataServer.Database.IDatabaseConnection;
 import DataServer.SharedServerModels.Item;
 import DataServer.SharedServerModels.MarketOffer;
 import DataServer.SharedServerModels.User;
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.ArrayList;
 
 public class DataServerLogic implements IDataServerLogic
@@ -17,12 +19,19 @@ public class DataServerLogic implements IDataServerLogic
 
     public User login(User user)
     {
+
         return database.login(user);
     }
 
     public String register(User user)
     {
+        user.setPassword(hash(user.getPassword()));
         return database.register(user);
+    }
+
+    private String hash(String password)
+    {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     @Override

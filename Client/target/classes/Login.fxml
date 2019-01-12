@@ -28,7 +28,7 @@
             <PasswordField fx:id="textFieldPassword" layoutX="76.0" layoutY="97.0" onKeyPressed="#textFieldPassword_KeyPress" prefWidth="149.0" style="-fx-background-color: rgb(39,30,29); -fx-text-fill: rgb(180, 180, 180);" />
             <Label layoutX="76.0" layoutY="32.0" style="-fx-text-fill: rgb(180, 180, 180);" text="Username" />
             <Label layoutX="76.0" layoutY="80.0" style="-fx-text-fill: rgb(180, 180, 180);" text="Password" />
-            <Label fx:id="labelLoginFailed" layoutX="119.0" layoutY="177.0" style="-fx-text-fill: rgb(180, 180, 180);" text="Login failed" visible="false" />
+            <Label fx:id="labelLoginFailed" alignment="CENTER" layoutY="177.0" prefHeight="17.0" prefWidth="300.0" style="-fx-text-fill: rgb(180, 180, 180);" text="Login failed" visible="false" />
             <Label layoutX="81.0" layoutY="127.0" onMousePressed="#labelRegister_Click" style="-fx-text-fill: rgb(180, 180, 180);" text="Register" />
          </children>
       </Pane>

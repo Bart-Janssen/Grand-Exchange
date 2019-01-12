@@ -26,7 +26,7 @@ public class RestController
     {
         if (user == null) return Response.status(400).entity("400").build();
         User authenticatedUser = logic.login(user);
-        return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity(ERROR).build();
+        return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity(null).build();
     }
 
     @POST

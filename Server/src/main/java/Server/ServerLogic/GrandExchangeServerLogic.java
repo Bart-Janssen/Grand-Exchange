@@ -243,7 +243,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
                 pricesCount++;
             }
         }
-        if (totalPrices != item.getPrice()) item.setPrice(totalPrices / pricesCount);
+        if (totalPrices != item.getPrice() && totalPrices > 0) item.setPrice(totalPrices / pricesCount);
     }
 
     private void calculateWeaponHealth(Item item)

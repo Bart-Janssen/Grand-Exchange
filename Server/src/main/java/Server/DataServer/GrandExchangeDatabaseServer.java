@@ -40,7 +40,6 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
         }
         catch (Exception ex)
         {
-            new Logger().log(ex);
             return null;
         }
         return null;

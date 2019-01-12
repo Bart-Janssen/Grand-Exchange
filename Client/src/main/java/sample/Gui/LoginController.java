@@ -1,5 +1,6 @@
 package sample.Gui;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -21,17 +22,29 @@ public class LoginController extends Controller implements ILoginGui
 
     public void buttonLogin_Click()
     {
-        super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
+        login();
     }
 
     public void textFieldUsername_KeyPress(KeyEvent keyEvent)
     {
-        if (keyEvent.getCode() == KeyCode.ENTER) super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
+        if (keyEvent.getCode() == KeyCode.ENTER) login();
+    }
+
+    private void login()
+    {
+        if (!textFieldUsername.getText().isEmpty() || !textFieldPassword.getText().isEmpty())
+        {
+            super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
+            labelLoginFailed.setVisible(false);
+            return;
+        }
+        labelLoginFailed.setText("Fields may not be empty");
+        labelLoginFailed.setVisible(true);
     }
 
     public void textFieldPassword_KeyPress(KeyEvent keyEvent)
     {
-        if (keyEvent.getCode() == KeyCode.ENTER) super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
+        if (keyEvent.getCode() == KeyCode.ENTER) login();
     }
 
     @Override
@@ -43,7 +56,11 @@ public class LoginController extends Controller implements ILoginGui
     @Override
     public void loginFailed()
     {
-        labelLoginFailed.setVisible(true);
+        Platform.runLater(() ->
+        {
+            labelLoginFailed.setText("Login failed");
+            labelLoginFailed.setVisible(true);
+        });
     }
 
     public void labelRegister_Click()
