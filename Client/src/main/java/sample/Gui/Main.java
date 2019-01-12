@@ -24,7 +24,7 @@ public class Main extends Application
     private static boolean connected = false;
 
     @Override
-    public void start(Stage primaryStage) throws Exception
+    public void start(Stage primaryStage)
     {
         startAndConnectApplication(primaryStage, server);
     }

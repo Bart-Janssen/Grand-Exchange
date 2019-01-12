@@ -1,14 +1,13 @@
 package Server.DataServer;
 
 import Server.SharedClientModels.*;
-
 import java.util.ArrayList;
 
 public class HashMapDatabase implements IGrandExchangeDatabaseServer
 {
-    ArrayList<MarketOffer> sellOffers = new ArrayList<>();
-    ArrayList<MarketOffer> buyOffers = new ArrayList<>();
-    ArrayList<User> users = new ArrayList<>();
+    private ArrayList<MarketOffer> sellOffers = new ArrayList<>();
+    private ArrayList<MarketOffer> buyOffers = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
 
     public HashMapDatabase()
     {

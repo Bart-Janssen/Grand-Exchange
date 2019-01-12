@@ -51,7 +51,7 @@ public class WebSocketConnection implements IConnection
     @Override
     public void sentHeartBeat()
     {
-        System.out.println("Heart beat sent.");
+        new Logger().print("Heart beat sent.");
         WebSocketMessage webSocketMessage = new WebSocketMessage();
         webSocketMessage.setOperation(MessageType.HEARTBEAT);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));

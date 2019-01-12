@@ -1,6 +1,6 @@
 package Server.Connector;
 
-import Server.Connector.Connection;
+import Server.Models.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -30,7 +30,7 @@ public class Main
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
         }
     }
 }

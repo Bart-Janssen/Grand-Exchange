@@ -1,7 +1,6 @@
 package sample.Gui;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -91,9 +90,6 @@ public class BuyController extends Controller implements IBuyGui, Initializable
 
     private void fillItemGrid()
     {
-        //donker: rgb(39,30,29)
-        //licht: rgb(51,40,38)
-
         fillHeader();
         fillItems();
         Platform.runLater(() -> itemsScrollPane.setContent(allOffers));
@@ -249,8 +245,6 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             GridPane.setValignment(buttonBuy, VPos.TOP);
             GridPane.setHalignment(messageLabel, HPos.CENTER);
 
-
-
             mainGrid.add(searchHeader, 0, 1);
             mainGrid.add(buttonBuy, 0, 2);
             mainGrid.add(searchTextField, 0, 3);
@@ -276,7 +270,7 @@ public class BuyController extends Controller implements IBuyGui, Initializable
         });
     }
 
-    public void buttonBack_Click(ActionEvent actionEvent)
+    public void buttonBack_Click()
     {
         super.openForm(((Stage)mainGrid.getScene().getWindow()),"Market");
     }

@@ -1,7 +1,6 @@
 package sample.Gui;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,7 +22,7 @@ public class RegisterController extends Controller implements IRegisterGui
         super.getReceiveLogic().setController(this);
     }
 
-    public void buttonRegister_Click(ActionEvent actionEvent)
+    public void buttonRegister_Click()
     {
         register();
     }
@@ -54,7 +53,7 @@ public class RegisterController extends Controller implements IRegisterGui
         super.getSendLogic().register(textFieldUsername.getText(), textFieldPassword.getText());
     }
 
-    public void buttonBack_Click(ActionEvent actionEvent)
+    public void buttonBack_Click()
     {
         super.openForm(((Stage)registerForm.getScene().getWindow()),"Login");
     }

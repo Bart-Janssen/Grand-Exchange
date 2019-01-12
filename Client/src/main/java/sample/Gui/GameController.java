@@ -1,7 +1,6 @@
 package sample.Gui;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -25,23 +24,23 @@ public class GameController extends Controller implements IGameGui, Initializabl
         super.getReceiveLogic().setController(this);
     }
 
-    public void buttonOpenBackpack_Click(ActionEvent actionEvent)
+    public void buttonOpenBackpack_Click()
     {
         super.openForm(((Stage)mainGrid.getScene().getWindow()),"Backpack");
     }
 
-    public void buttonOpenMarket_Click(ActionEvent actionEvent)
+    public void buttonOpenMarket_Click()
     {
         super.openForm(((Stage)mainGrid.getScene().getWindow()),"Market");
     }
 
-    public void buttonGenerateRandomWeapon_Click(ActionEvent actionEvent)
+    public void buttonGenerateRandomWeapon_Click()
     {
         super.openForm(((Stage)mainGrid.getScene().getWindow()),"Backpack");
         super.getSendLogic().generateNewWeapon();
     }
 
-    public void buttonLogout_Click(ActionEvent actionEvent)
+    public void buttonLogout_Click()
     {
         super.openForm(((Stage)mainGrid.getScene().getWindow()), "Login");
         super.getSendLogic().logout();

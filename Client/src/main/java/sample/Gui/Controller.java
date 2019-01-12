@@ -58,11 +58,7 @@ public abstract class Controller
 
     public void appendChat(String message)
     {
-        if (message != null)
-        {
-            Controller.messages.add(getCalculateLogic().makeMessageWithDate(message));
-            System.out.println("CONTROLLER: " + message);
-        }
+        if (message != null) Controller.messages.add(getCalculateLogic().makeMessageWithDate(message));
     }
 
     ArrayList<String> getMessages()

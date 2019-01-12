@@ -1,6 +1,7 @@
 package Server.ServerLogic;
 
 import Server.DataServer.IGrandExchangeDatabaseServer;
+import Server.Models.Logger;
 import Server.SharedClientModels.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,10 +14,12 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
 {
     private IGrandExchangeDatabaseServer databaseServer;
     private static final int WEAPON_BROKEN_STATE = -1;
+    private static final int FULL_WEAPON_HEALTH = 100;
     private static final int HALF = 2;
     private static final int DATE_MULTIPLIER = 15;
     private static final int START_COINS_AMOUNT = 1000;
     private static final int START_LEVEL = 1;
+    private static final String DATE_FORMAT = "dd MM yyyy";
 
     public GrandExchangeServerLogic(IGrandExchangeDatabaseServer databaseServer)
     {
@@ -41,16 +44,16 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         if (item.getItemHealth() == 0) return WEAPON_BROKEN_STATE;
 
         calculateWeaponPrice(user, item);
-        System.out.println("Wep price: " + item.getPrice());
+        new Logger().print("Wep price: " + item.getPrice());
 
         calculateDatePrice(item);
-        System.out.println("date price: " + item.getPrice());
+        new Logger().print("date price: " + item.getPrice());
 
         calculateWeaponHealth(item);
-        System.out.println("Wep health: " + item.getPrice());
+        new Logger().print("Wep health: " + item.getPrice());
 
         calculateAverageMarketSellingItemPrice(item);
-        System.out.println("MarketSelling price: " + item.getPrice());
+        new Logger().print("MarketSelling price: " + item.getPrice());
 
         return item.getPrice();
     }
@@ -90,25 +93,25 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         int nameIndex = new Random().nextInt(names.get(typeIndex).length - 1) + 1;
 
         AttackStyle attackStyle = AttackStyle.valueOf(names.get(typeIndex)[0]);
-        System.out.println("Attack style enum: " + attackStyle);
+        new Logger().print("Attack style enum: " + attackStyle);
 
         int level = new Random().nextInt(200) + 1;
-        System.out.println("level: " + level);
+        new Logger().print("level: " + level);
 
         String name = names.get(typeIndex)[nameIndex];
-        System.out.println("Name: " + name);
+        new Logger().print("Name: " + name);
 
-        int health = new Random().nextInt(100);
-        System.out.println("Health: " + health);
+        int health = new Random().nextInt(FULL_WEAPON_HEALTH);
+        new Logger().print("Health: " + health);
 
         int day = new Random().nextInt(150);
         int days = -day;
-        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
+        String date = new SimpleDateFormat(DATE_FORMAT).format(Calendar.getInstance().getTime());
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         Calendar calendar = Calendar.getInstance();
         date = getDate(days, date, dateFormat, calendar);
-        System.out.println("Date: " + date);
+        new Logger().print("Date: " + date);
         databaseServer.addItemToBackPack(new Armor(-1, level, attackStyle, name, health, date), userId);
         return getBackPackItems(userId);
     }
@@ -117,26 +120,26 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     {
         int index = new Random().nextInt(AttackStyle.values().length);
         AttackStyle attackStyle = AttackStyle.values()[index];
-        System.out.println("Attack style enum: " + attackStyle);
+        new Logger().print("Attack style enum: " + attackStyle);
 
         int level = new Random().nextInt(200) + 1;
-        System.out.println("level: " + level);
+        new Logger().print("level: " + level);
 
         String[] names = {"Bow", "Sword", "Staff"};
         String name = names[index];
-        System.out.println("Name: " + name);
+        new Logger().print("Name: " + name);
 
-        int health = new Random().nextInt(100);
-        System.out.println("Health: " + health);
+        int health = new Random().nextInt(FULL_WEAPON_HEALTH);
+        new Logger().print("Health: " + health);
 
         int day = new Random().nextInt(150);
         int days = -day;
-        String date = new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime());
+        String date = new SimpleDateFormat(DATE_FORMAT).format(Calendar.getInstance().getTime());
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         Calendar calendar = Calendar.getInstance();
         date = getDate(days, date, dateFormat, calendar);
-        System.out.println("Date: " + date);
+        new Logger().print("Date: " + date);
         databaseServer.addItemToBackPack(new Weapon(-1, level, attackStyle, name, health, date), userId);
         return getBackPackItems(userId);
     }
@@ -195,19 +198,19 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         }
         catch (ParseException e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
         }
         return date;
     }
 
     private void calculateDatePrice(Item item)
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         long difference;
         int defaultPrice = DATE_MULTIPLIER * item.getAttackStyle().getValue() * item.getItemLevel();
         try
         {
-            difference = TimeUnit.DAYS.convert(dateFormat.parse(new SimpleDateFormat("dd MM yyyy").format(Calendar.getInstance().getTime())).getTime() - dateFormat.parse(item.getObtainDate()).getTime(), TimeUnit.MILLISECONDS);
+            difference = TimeUnit.DAYS.convert(dateFormat.parse(new SimpleDateFormat(DATE_FORMAT).format(Calendar.getInstance().getTime())).getTime() - dateFormat.parse(item.getObtainDate()).getTime(), TimeUnit.MILLISECONDS);
             if (difference <= 10)
             {
                 item.setPrice(item.getPrice() + defaultPrice);
@@ -223,7 +226,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         }
         catch (ParseException e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
         }
         item.setPrice(item.getPrice() + defaultPrice);
     }
@@ -245,8 +248,8 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
 
     private void calculateWeaponHealth(Item item)
     {
-        if (item.getItemHealth() == 100) return;
-        item.setPrice((item.getPrice() / 100) * item.getItemHealth());
+        if (item.getItemHealth() == FULL_WEAPON_HEALTH) return;
+        item.setPrice((item.getPrice() / FULL_WEAPON_HEALTH) * item.getItemHealth());
     }
 
     private void calculateWeaponPrice(User user, Item item)
@@ -254,12 +257,10 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         int defaultPrice = user.getLevel() + item.getItemLevel();
         if (canPlayerWieldItem(user, item))
         {
-            System.out.println("Can wear");
             defaultPrice += item.getItemLevel() * item.getAttackStyle().getValue() * item.getAttackStyle().getValue();
             item.setPrice(item.getPrice() + defaultPrice);
             return;
         }
-        System.out.println("can't wear");
         defaultPrice += (int)(item.getItemLevel() * item.getAttackStyle().getValue() * item.getAttackStyle().getValue() * 0.75);//75 percent
         item.setPrice(item.getPrice() + defaultPrice);
     }

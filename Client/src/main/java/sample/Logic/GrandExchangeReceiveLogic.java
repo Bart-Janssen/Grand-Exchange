@@ -136,7 +136,6 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
         if (webSocketMessage.getUser() == null)
         {
             ((ILoginGui)controller).loginFailed();
-            System.out.println("failed login");
             return;
         }
         if (webSocketMessage.getUser().isLoggedIn())

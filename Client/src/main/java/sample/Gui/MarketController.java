@@ -1,8 +1,6 @@
 package sample.Gui;
 
-import com.google.gson.Gson;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -24,7 +22,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
 {
     private static ArrayList<MarketOffer> offers = new ArrayList<>();
     private static ArrayList<Integer> soldItemIds = new ArrayList<>();
-    private static final int maxOfferSpace = 3;
+    private static final int MAX_OFFER_SPACE = 3;
 
     public GridPane marketForm;
     public GridPane gridMarket;
@@ -180,7 +178,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 gridMarket.add(gridPane, i,0);
             }
 
-            for (int i = offers.size(); i < maxOfferSpace; i++)
+            for (int i = offers.size(); i < MAX_OFFER_SPACE; i++)
             {
                 gridPane = new GridPane();
                 gridPane.setStyle("-fx-background-color: rgb(51,40,38)");

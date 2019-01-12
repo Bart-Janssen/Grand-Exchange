@@ -4,7 +4,6 @@ import DataServer.Database.IDatabaseConnection;
 import DataServer.SharedServerModels.Item;
 import DataServer.SharedServerModels.MarketOffer;
 import DataServer.SharedServerModels.User;
-
 import java.util.ArrayList;
 
 public class DataServerLogic implements IDataServerLogic
@@ -29,9 +28,7 @@ public class DataServerLogic implements IDataServerLogic
     @Override
     public ArrayList<Item> getBackPackItems(int userId)
     {
-        ArrayList<Item> items = database.getBackPackItems(userId);
-        //TODO:
-        return items;
+        return database.getBackPackItems(userId);
     }
 
     @Override

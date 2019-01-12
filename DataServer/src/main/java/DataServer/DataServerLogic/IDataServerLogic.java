@@ -3,7 +3,6 @@ package DataServer.DataServerLogic;
 import DataServer.SharedServerModels.Item;
 import DataServer.SharedServerModels.MarketOffer;
 import DataServer.SharedServerModels.User;
-
 import java.util.ArrayList;
 
 public interface IDataServerLogic

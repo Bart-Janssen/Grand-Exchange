@@ -29,7 +29,6 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
                 public void run()
                 {
                     heartBeatCountDown--;
-                    System.out.println("heartbeat time: " + heartBeatCountDown);
                     if (heartBeatCountDown <= 0)
                     {
                         connection.sentHeartBeat();

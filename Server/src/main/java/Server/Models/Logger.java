@@ -1,4 +1,4 @@
-package sample.Models;
+package Server.Models;
 
 public class Logger
 {

@@ -2,17 +2,16 @@ package Server.Connector;
 
 import Server.Factory.ServerFactory;
 import Server.Models.DatabaseServerType;
+import Server.Models.Logger;
 import Server.Models.WebSocketMessage;
 import Server.ServerLogic.IGrandExchangeServerLogic;
 import Server.SharedClientModels.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import javafx.collections.FXCollections;
-
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,7 +26,7 @@ public class Connection
     @OnOpen
     public void onConnect(Session session)
     {
-        System.out.println("[WebSocket Connected] SessionID: " + session.getId());
+        new Logger().print("[WebSocket Connected] SessionID: " + session.getId());
         session.setMaxIdleTimeout(300000);
         sessionAndUser.put(session, null);
     }
@@ -41,7 +40,7 @@ public class Connection
     @OnClose
     public void onClose(CloseReason reason, Session session)
     {
-        System.out.println("[WebSocket Session ID] : " + session.getId() + " [Socket Closed]: " + reason);
+        new Logger().print("[WebSocket Session ID] : " + session.getId() + " [Socket Closed]: " + reason);
         try
         {
             session.close();
@@ -61,7 +60,7 @@ public class Connection
     @OnError
     public void onError(Throwable cause, Session session)
     {
-        System.out.println("[WebSocket Session ID] : " + session.getId() + "[ERROR]: ");
+        new Logger().print("[WebSocket Session ID] : " + session.getId() + "[ERROR]: ");
         cause.printStackTrace(System.err);
     }
 
@@ -74,7 +73,7 @@ public class Connection
         }
         catch (JsonSyntaxException ex)
         {
-            System.out.println("[WebSocket ERROR: cannot parse Json message " + jsonMessage);
+            new Logger().print("[WebSocket ERROR: cannot parse Json message " + jsonMessage);
             return;
         }
         MessageType operation = webSocketMessage.getOperation();
@@ -114,7 +113,7 @@ public class Connection
                 deleteItemFromBackPack(webSocketMessage, currentUserSession);
                 break;
             case HEARTBEAT:
-                System.out.println("[Heartbeat] : " + currentUserSession.getId() + " is still alive.");
+                new Logger().print("[Heartbeat] : " + currentUserSession.getId() + " is still alive.");
                 break;
             case GET_MARKET_OFFERS_COUNT:
                 getMarketOfferCount(currentUserSession);
@@ -136,10 +135,6 @@ public class Connection
     {
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
-            System.out.println("buyer coins server before: "  + sessionAndUser.get(currentUserSession).getUser().getCoins());
-            System.out.println("buyer coins database before: "  + getUserCoins(sessionAndUser.get(currentUserSession).getUser().getId()));
-            System.out.println("seller coins database before: " + getUserCoins(webSocketMessage.getOffers().get(0).getUserId()));
-
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.BUY_ITEM);
             messageToUser.setMessage("You don't have enough coins.");
@@ -148,7 +143,7 @@ public class Connection
                 if (logic.buyItem(webSocketMessage.getOffers().get(0), sessionAndUser.get(currentUserSession).getUser().getId()))
                 {
                     sessionAndUser.get(currentUserSession).getUser().setCoins(getUserCoins(sessionAndUser.get(currentUserSession).getUser().getId()));
-                    messageToUser.setMessage("Successfully bought " + webSocketMessage.getOffers().get(0).getItem().getName() + ", it's added to your inventory.");//TODO user add and reset in client
+                    messageToUser.setMessage("Successfully bought " + webSocketMessage.getOffers().get(0).getItem().getName() + ", it's added to your inventory.");
                     messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
                 }
             }
@@ -167,22 +162,16 @@ public class Connection
         {
             if (sessionAndUser.get(sellerSession).getUser().getId() == webSocketMessage.getOffers().get(0).getUserId())
             {
-                sessionAndUser.get(sellerSession).getUser().setCoins(getUserCoins(sessionAndUser.get(sellerSession).getUser().getId()));//TODO add user reset to client
+                sessionAndUser.get(sellerSession).getUser().setCoins(getUserCoins(sessionAndUser.get(sellerSession).getUser().getId()));
                 messageToUser.setUser(sessionAndUser.get(sellerSession).getUser());
-                //sessionAndUser.get(sellerSession).getUser().setCoins(sessionAndUser.get(sellerSession).getUser().getCoins() - webSocketMessage.getOffers().get(0).getPrice());//TODO
                 sellerSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
-                System.out.println("User is actually online");
-
-                System.out.println("buyer coins server after: "  + sessionAndUser.get(currentUserSession).getUser().getCoins());
-                System.out.println("buyer coins database after: "  + getUserCoins(sessionAndUser.get(currentUserSession).getUser().getId()));
-                System.out.println("seller coins database after: " + getUserCoins(webSocketMessage.getOffers().get(0).getUserId()));
                 return;
             }
         }
         messageToUser.addMarketOffer(webSocketMessage.getOffers().get(0));
         messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
         pendingSells.add(messageToUser);
-        System.out.println("Seller is not online!");
+        new Logger().print("Seller is not online!");
     }
 
     private void getSearchOffers(WebSocketMessage webSocketMessage, Session currentUserSession)
@@ -255,7 +244,6 @@ public class Connection
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.GET_MARKET_OFFERS);
             messageToUser.setMarketOffers(offers);
-            System.out.println(new Gson().toJson(offers));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
     }
@@ -275,7 +263,6 @@ public class Connection
             messageToUser.setMessage("There has placed a new " + webSocketMessage.getOffers().get(0).getItem().getName() + " on the market.");
             for (Session session : getKeysByValue(sessionAndUser))
             {
-                System.out.println("sent");
                 if (session != currentUserSession) session.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
             }
         }
@@ -288,17 +275,11 @@ public class Connection
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.CANCEL_OFFER);
             messageToUser.setMessage("Failed to cancel offer.");
-            System.out.println(new Gson().toJson(webSocketMessage.getOffers().get(0)));
             if (logic.cancelOffer(webSocketMessage.getOffers().get(0))) messageToUser.setMessage("Successfully canceled offer.");
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
             for (WebSocketMessage pendingWebSocketMessage : FXCollections.observableArrayList(pendingSells))
             {
-                System.out.println("pending id: " + pendingWebSocketMessage.getUser().getId() + " en session user id: " + sessionAndUser.get(currentUserSession).getUser().getId());
-                if (pendingWebSocketMessage.getOffers().get(0).getUserId() == sessionAndUser.get(currentUserSession).getUser().getId())
-                {
-                    pendingSells.remove(pendingWebSocketMessage);
-                    System.out.println("pending removed ");
-                }
+                if (pendingWebSocketMessage.getOffers().get(0).getUserId() == sessionAndUser.get(currentUserSession).getUser().getId()) pendingSells.remove(pendingWebSocketMessage);
             }
         }
     }
@@ -313,7 +294,6 @@ public class Connection
             int price = logic.calculateItemPrice(sessionAndUser.get(currentUserSession).getUser(), webSocketMessage.getItems().get(0));
             webSocketMessage.getItems().get(0).setPrice(price);
             messageToUser.addMarketOffer(new MarketOffer(-1, -1, price, webSocketMessage.getItems().get(0), MarketOfferType.SELL));
-            System.out.println(sessionAndUser.get(currentUserSession).getUser().getId());
             if (price == -1) messageToUser.setMessage("Cannot sell item, item needs to be repaired first.");
             messageToUser.addItem(webSocketMessage.getItems().get(0));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
@@ -352,7 +332,6 @@ public class Connection
         String message = logic.register(webSocketMessage.getUser());
         messageToUser.setOperation(MessageType.REGISTER);
         messageToUser.setMessage(message);
-        System.out.println("msg: " + messageToUser.getMessage());
         currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
     }
 }

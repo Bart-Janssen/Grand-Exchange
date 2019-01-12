@@ -3,5 +3,5 @@ package DataServer.Models;
 public enum DatabaseType
 {
     MYSQL,
-    HashMapDatabase
+    HASHMAP_DATABASE
 }

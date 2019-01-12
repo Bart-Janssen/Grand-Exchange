@@ -24,7 +24,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     public GridPane backPackForm;
     public GridPane gridPaneBackPack;
     private static ArrayList<Item> backPack = new ArrayList<>();
-    private final static int maxMarketOffers = 3;
+    private final static int MAX_MARKET_OFFERS = 3;
     private static int marketOfferCount;
 
     public BackPackController()
@@ -109,14 +109,13 @@ public class BackPackController extends Controller implements IBackPackGui, Init
             tooltip.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
             Tooltip.install(rectangle, tooltip);
         });
-        System.out.println(backPack.get(id).getName() + " icon: " + backPack.get(id).getIconPath());
         rectangle.setFill(new ImagePattern(new Image(backPack.get(id).getIconPath())));
         return rectangle;
     }
 
     private void sell(int id)
     {
-        if (marketOfferCount < maxMarketOffers)
+        if (marketOfferCount < MAX_MARKET_OFFERS)
         {
             PriceConfirmController.setItem(backPack.get(id));
             super.openForm(((Stage)backPackForm.getScene().getWindow()), "PriceConfirm");

@@ -1,13 +1,12 @@
 package DataServer.Database;
 
+import DataServer.Models.Logger;
 import DataServer.SharedServerModels.*;
-import com.google.gson.Gson;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class MySqlDatabaseConnection implements IDatabaseConnection
 {
-    private Connection con = null;
     private String sqlDatabase;
     private String sqlUsername;
     private String sqlPassword;
@@ -22,60 +21,44 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
     public User login(User user)
     {
         String query = "SELECT * FROM user WHERE user.name LIKE ? AND user.password LIKE ?";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next())
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next())
             {
-                User authenticatedUser = new User(rs.getString("name"), "", rs.getInt("level"), rs.getInt("id"), rs.getInt("coins"));
-                closeConnection(con);
-                return authenticatedUser;
+                return new User(resultSet.getString("name"), "", resultSet.getInt("level"), resultSet.getInt("id"), resultSet.getInt("coins"));
             }
-            closeConnection(con);
             return null;
 
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
             return null;
-        }
-        finally
-        {
-            closeConnection(con);
         }
     }
 
     public String register(User user)
     {
-        System.out.println(new Gson().toJson(user));
         String query =
                 "INSERT INTO user (name, password, level, coins) " +
                 "VALUES (?, ?, ?, ?)";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
-            stmt.setInt(3, user.getLevel());
-            stmt.setInt(4, user.getCoins());
-            stmt.executeUpdate();
-            closeConnection(con);
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setInt(3, user.getLevel());
+            statement.setInt(4, user.getCoins());
+            statement.executeUpdate();
             return "Registered successfully";
         }
         catch(Exception e)
         {
-            closeConnection(con);
             return e.getMessage().contains("Duplicate") ? "User already exists" : "Registering failed";
-        }
-        finally
-        {
-            closeConnection(con);
         }
     }
 
@@ -88,24 +71,19 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
                 "INNER JOIN user ON item.userId = user.id " +
                 "INNER JOIN attackstyle ON item.attackStyleId = attackstyle.id " +
                 "WHERE user.id LIKE ? AND item.onMarket LIKE 0 ";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, userId);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next())
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
             {
-                items.add(new Item(rs.getInt("id"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("type").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getString("obtainDate")));
+                items.add(new Item(resultSet.getInt("id"), resultSet.getInt("level"), AttackStyle.valueOf(resultSet.getString("type").toUpperCase()), resultSet.getString("name"), resultSet.getInt("health"), resultSet.getString("obtainDate")));
             }
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-        }
-        finally
-        {
-            closeConnection(con);
+            new Logger().log(e);
         }
         return items;
     }
@@ -116,29 +94,22 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         String query =
                 "INSERT INTO item (name, obtainDate, health, level, attackStyleId, userId, onMarket) " +
                 "VALUES (?, ?, ?, ?, (SELECT attackStyle.id FROM attackStyle WHERE attackStyle.type = ?), ?, 0) ";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, item.getName());
-            stmt.setString(2, item.getObtainDate());
-            stmt.setInt(3, item.getItemHealth());
-            stmt.setInt(4, item.getItemLevel());
-            stmt.setString(5, item.getAttackStyle().toString());
-            stmt.setInt(6, userId);
-            stmt.executeUpdate();
-            closeConnection(con);
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, item.getName());
+            statement.setString(2, item.getObtainDate());
+            statement.setInt(3, item.getItemHealth());
+            statement.setInt(4, item.getItemLevel());
+            statement.setString(5, item.getAttackStyle().toString());
+            statement.setInt(6, userId);
+            statement.executeUpdate();
             return true;
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-            closeConnection(con);
+            new Logger().log(e);
             return false;
-        }
-        finally
-        {
-            closeConnection(con);
         }
     }
 
@@ -146,22 +117,17 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
     public boolean deleteItemFromBackPack(int itemId, int userId)
     {
         String query = "DELETE FROM item WHERE item.id LIKE ? AND item.UserId LIKE ?";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, itemId);
-            stmt.setInt(2, userId);
-            stmt.executeUpdate();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, itemId);
+            statement.setInt(2, userId);
+            statement.executeUpdate();
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
             return false;
-        }
-        finally
-        {
-            closeConnection(con);
         }
         return true;
     }
@@ -176,26 +142,21 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
                 "INNER JOIN item ON marketoffer.itemId = item.id " +
                 "INNER JOIN attackStyle ON item.attackStyleId = attackStyle.id " +
                 "WHERE marketoffer.userId LIKE ?";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, userId);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next())
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
             {
-                offers.add(new MarketOffer(rs.getInt("id"), rs.getInt("userId"), rs.getInt("price"),
-                                new Item(rs.getInt("itemId"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("attackStyleType").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getString("obtainDate")),
-                        MarketOfferType.valueOf(rs.getString("type").toUpperCase())));
+                offers.add(new MarketOffer(resultSet.getInt("id"), resultSet.getInt("userId"), resultSet.getInt("price"),
+                                new Item(resultSet.getInt("itemId"), resultSet.getInt("level"), AttackStyle.valueOf(resultSet.getString("attackStyleType").toUpperCase()), resultSet.getString("name"), resultSet.getInt("health"), resultSet.getString("obtainDate")),
+                        MarketOfferType.valueOf(resultSet.getString("type").toUpperCase())));
             }
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-        }
-        finally
-        {
-            closeConnection(con);
+            new Logger().log(e);
         }
         return offers;
     }
@@ -206,27 +167,20 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         String query =
                 "INSERT INTO marketoffer (price, userId, itemId, offerTypeId) " +
                 "VALUES (?, ?, ?, (SELECT offertype.id FROM offertype WHERE offertype.type LIKE ?))";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, offer.getPrice());
-            stmt.setInt(2, offer.getUserId());
-            stmt.setInt(3, offer.getItem().getId());
-            stmt.setString(4, offer.getType().toString());
-            stmt.executeUpdate();
-            closeConnection(con);
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, offer.getPrice());
+            statement.setInt(2, offer.getUserId());
+            statement.setInt(3, offer.getItem().getId());
+            statement.setString(4, offer.getType().toString());
+            statement.executeUpdate();
             return true;
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-            closeConnection(con);
+            new Logger().log(e);
             return false;
-        }
-        finally
-        {
-            closeConnection(con);
         }
     }
 
@@ -234,19 +188,16 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
     public boolean cancelOffer(int offerId)
     {
         String query = "DELETE FROM marketoffer WHERE marketoffer.id LIKE ?";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, offerId);
-            stmt.executeUpdate();
-            closeConnection(con);
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, offerId);
+            statement.executeUpdate();
             return true;
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-            closeConnection(con);
+            new Logger().log(e);
             return false;
         }
     }
@@ -261,27 +212,22 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
                         "INNER JOIN item ON marketoffer.itemId = item.id " +
                         "INNER JOIN attackStyle ON item.attackStyleId = attackStyle.id " +
                         "WHERE offertype.type LIKE 'SELL' AND item.name LIKE ? AND marketoffer.userId NOT LIKE ? AND item.onMarket LIKE 1";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, "%" + searchQuery + "%");
-            stmt.setInt(2, userId);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next())
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + searchQuery + "%");
+            statement.setInt(2, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
             {
-                offers.add(new MarketOffer(rs.getInt("id"), rs.getInt("userId"), rs.getInt("price"),
-                        new Item(rs.getInt("itemId"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("attackStyleType").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getString("obtainDate")),
-                        MarketOfferType.valueOf(rs.getString("type").toUpperCase())));
+                offers.add(new MarketOffer(resultSet.getInt("id"), resultSet.getInt("userId"), resultSet.getInt("price"),
+                        new Item(resultSet.getInt("itemId"), resultSet.getInt("level"), AttackStyle.valueOf(resultSet.getString("attackStyleType").toUpperCase()), resultSet.getString("name"), resultSet.getInt("health"), resultSet.getString("obtainDate")),
+                        MarketOfferType.valueOf(resultSet.getString("type").toUpperCase())));
             }
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-        }
-        finally
-        {
-            closeConnection(con);
+            new Logger().log(e);
         }
         return offers;
     }
@@ -292,24 +238,19 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         int coins = -1;
         String query =
                 "SELECT coins FROM user WHERE user.id LIKE ?";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next())
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next())
             {
-                coins = rs.getInt("coins");
+                coins = resultSet.getInt("coins");
             }
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-        }
-        finally
-        {
-            closeConnection(con);
+            new Logger().log(e);
         }
         return coins;
     }
@@ -324,24 +265,21 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
                         "INNER JOIN item ON marketoffer.itemId = item.id " +
                         "INNER JOIN attackStyle ON item.attackStyleId = attackStyle.id " +
                         "WHERE offertype.type LIKE 'SELL'";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next())
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
             {
-                offers.add(new MarketOffer(rs.getInt("id"), rs.getInt("userId"), rs.getInt("price"),
-                        new Item(rs.getInt("itemId"), rs.getInt("level"), AttackStyle.valueOf(rs.getString("attackStyleType").toUpperCase()), rs.getString("name"), rs.getInt("health"), rs.getString("obtainDate")),
-                        MarketOfferType.valueOf(rs.getString("type").toUpperCase())));
+                offers.add(new MarketOffer(resultSet.getInt("id"), resultSet.getInt("userId"), resultSet.getInt("price"),
+                        new Item(resultSet.getInt("itemId"), resultSet.getInt("level"), AttackStyle.valueOf(resultSet.getString("attackStyleType").toUpperCase()), resultSet.getString("name"), resultSet.getInt("health"), resultSet.getString("obtainDate")),
+                        MarketOfferType.valueOf(resultSet.getString("type").toUpperCase())));
             }
-            closeConnection(con);
             return offers;
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-            closeConnection(con);
+            new Logger().log(e);
         }
         return offers;
     }
@@ -358,41 +296,26 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         String queryUpdateCoinsBuyer =
                 "UPDATE user SET user.coins = (user.coins - ?) " +
                 "WHERE user.id LIKE ?";
-        try
+        try (Connection connection = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword))
         {
-            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
-            PreparedStatement stmt = con.prepareStatement(queryUpdateUser);
-            stmt.setInt(1, buyerId);
-            stmt.setInt(2, offer.getItem().getId());
-            stmt.executeUpdate();
-            stmt = con.prepareStatement(queryUpdateCoinsSeller);
-            stmt.setInt(1, offer.getPrice());
-            stmt.setInt(2, offer.getUserId());
-            stmt.executeUpdate();
-            stmt = con.prepareStatement(queryUpdateCoinsBuyer);
-            stmt.setInt(1, offer.getPrice());
-            stmt.setInt(2, buyerId);
-            stmt.executeUpdate();
-            closeConnection(con);
+            PreparedStatement statement = connection.prepareStatement(queryUpdateUser);
+            statement.setInt(1, buyerId);
+            statement.setInt(2, offer.getItem().getId());
+            statement.executeUpdate();
+            statement = connection.prepareStatement(queryUpdateCoinsSeller);
+            statement.setInt(1, offer.getPrice());
+            statement.setInt(2, offer.getUserId());
+            statement.executeUpdate();
+            statement = connection.prepareStatement(queryUpdateCoinsBuyer);
+            statement.setInt(1, offer.getPrice());
+            statement.setInt(2, buyerId);
+            statement.executeUpdate();
             return true;
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-            closeConnection(con);
+            new Logger().log(e);
             return false;
-        }
-    }
-
-    private void closeConnection(Connection connection)
-    {
-        try
-        {
-            connection.close();
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
         }
     }
 }

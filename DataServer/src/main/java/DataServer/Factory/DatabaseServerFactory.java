@@ -24,7 +24,7 @@ public class DatabaseServerFactory
         {
             case MYSQL:
                 return new DataServerLogic(new MySqlDatabaseConnection("jdbc:mysql://localhost:3306/trademarket", "root", ""));
-            case HashMapDatabase:
+            case HASHMAP_DATABASE:
                 return new DataServerLogic(new HashMapDatabase());
             default:
                 return null;

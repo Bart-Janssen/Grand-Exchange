@@ -12,20 +12,19 @@ public class ConnectionFailureController extends Controller implements Observer
 {
     public Label labelTime;
     private int time = 6;
-    private static final Timer timer = new Timer();
+    private static final Timer TIMER = new Timer();
 
     public ConnectionFailureController()
     {
         Connector connector = Connector.getInstance();
         connector.addObserver(this);
-        timer.schedule(new TimerTask()
+        TIMER.schedule(new TimerTask()
         {
             @Override
             public void run()
             {
                 time--;
                 setLabelTime(time);
-                System.out.println(time);
                 if (time <= 0)
                 {
                     connector.run();
@@ -51,7 +50,7 @@ public class ConnectionFailureController extends Controller implements Observer
         if ((boolean)arg)
         {
             restartMain();
-            timer.cancel();
+            TIMER.cancel();
         }
     }
 }

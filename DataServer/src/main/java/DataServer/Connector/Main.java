@@ -1,5 +1,6 @@
 package DataServer.Connector;
 
+import DataServer.Models.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -28,7 +29,7 @@ public class Main
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
         }
         finally
         {
