@@ -15,6 +15,8 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     private static final int WEAPON_BROKEN_STATE = -1;
     private static final int HALF = 2;
     private static final int DATE_MULTIPLIER = 15;
+    private static final int START_COINS_AMOUNT = 1000;
+    private static final int START_LEVEL = 1;
 
     public GrandExchangeServerLogic(IGrandExchangeDatabaseServer databaseServer)
     {
@@ -50,15 +52,7 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
         calculateAverageMarketSellingItemPrice(item);
         System.out.println("MarketSelling price: " + item.getPrice());
 
-        calculateAverageMarketBuyingItemPrice(user, item);
-        System.out.println("MarketBuying price: " + item.getPrice());
-
         return item.getPrice();
-    }
-
-    private void calculateAverageMarketBuyingItemPrice(User user, Item item)
-    {
-
     }
 
     @Override
@@ -175,6 +169,20 @@ public class GrandExchangeServerLogic implements IGrandExchangeServerLogic
     public boolean buyItem(MarketOffer marketOffer, int buyerId)
     {
         return databaseServer.buyItem(marketOffer,buyerId);
+    }
+
+    @Override
+    public String register(User user)
+    {
+        user.setLevel(START_LEVEL);
+        user.setCoins(START_COINS_AMOUNT);
+        return databaseServer.register(user);
+    }
+
+    @Override
+    public int getUserCoins(int id)
+    {
+        return databaseServer.getUserCoins(id);
     }
 
     private String getDate(int days, String date, SimpleDateFormat dateFormat, Calendar calendar)

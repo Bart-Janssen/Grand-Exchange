@@ -1,8 +1,6 @@
 package sample.Logic;
 
 import com.google.gson.Gson;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import javafx.application.Platform;
 import sample.Gui.*;
 import sample.Models.*;
 import javax.websocket.*;
@@ -61,7 +59,7 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
             return;
         }
         MessageType type = webSocketMessage.getOperation();
@@ -70,10 +68,14 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
             case LOGIN:
                 login(webSocketMessage);
                 break;
+            case REGISTER:
+                ((IRegisterGui)controller).registeringEvent(webSocketMessage.getMessage());
+                break;
             case SELL_ITEM:
                 ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers(), webSocketMessage.getMessage());
                 break;
             case BUY_ITEM:
+                controller.setUser(webSocketMessage.getUser());
                 ((IBuyGui)controller).switchToBackPack(webSocketMessage.getMessage());
                 break;
             case SOLD:
@@ -106,19 +108,26 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
             case NEW_OFFER_PLACED_ON_MARKET:
                 addMessageToChat(webSocketMessage);
                 break;
+                default:
+                    break;
         }
     }
 
     private void addMessageToChat(WebSocketMessage webSocketMessage)
     {
         controller.appendChat(webSocketMessage.getMessage());
-        if (controller instanceof IGameGui)  ((IGameGui)controller).addMessages();
+        if (controller instanceof IGameGui) ((IGameGui)controller).addMessages();
     }
 
     private void itemSold(WebSocketMessage webSocketMessage)
     {
+        controller.setUser(webSocketMessage.getUser());
         addMessageToChat(webSocketMessage);
-        if (controller instanceof IMarketGui) ((IMarketGui)controller).setItemToSoldStatus(webSocketMessage.getItems().get(0).getId());
+        if (controller instanceof IMarketGui)
+        {
+            ((IMarketGui)controller).setItemToSoldStatus(webSocketMessage.getItems().get(0).getId());
+            return;
+        }
         MarketController.addSoldItem(webSocketMessage.getItems().get(0).getId());
     }
 

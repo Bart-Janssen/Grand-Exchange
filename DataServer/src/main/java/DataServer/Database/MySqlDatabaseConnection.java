@@ -50,9 +50,33 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         }
     }
 
-    public void register(User user)
+    public String register(User user)
     {
-
+        System.out.println(new Gson().toJson(user));
+        String query =
+                "INSERT INTO user (name, password, level, coins) " +
+                "VALUES (?, ?, ?, ?)";
+        try
+        {
+            con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.setInt(3, user.getLevel());
+            stmt.setInt(4, user.getCoins());
+            stmt.executeUpdate();
+            closeConnection(con);
+            return "Registered successfully";
+        }
+        catch(Exception e)
+        {
+            closeConnection(con);
+            return e.getMessage().contains("Duplicate") ? "User already exists" : "Registering failed";
+        }
+        finally
+        {
+            closeConnection(con);
+        }
     }
 
     @Override
@@ -263,20 +287,20 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
     }
 
     @Override
-    public ArrayList<User> TEST(int id)
+    public int getUserCoins(int id)
     {
-        ArrayList<User> offers = new ArrayList<>();
+        int coins = -1;
         String query =
-                "SELECT * FROM user WHERE user.id LIKE ?";
+                "SELECT coins FROM user WHERE user.id LIKE ?";
         try
         {
             con = DriverManager.getConnection(sqlDatabase, sqlUsername, sqlPassword);
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next())
+            if (rs.next())
             {
-                offers.add(new User(rs.getString("name"), rs.getString("password"), rs.getInt("level"), rs.getInt("id"), rs.getInt("coins")));
+                coins = rs.getInt("coins");
             }
         }
         catch(Exception e)
@@ -287,7 +311,7 @@ public class MySqlDatabaseConnection implements IDatabaseConnection
         {
             closeConnection(con);
         }
-        return offers;
+        return coins;
     }
 
     @Override

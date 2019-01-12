@@ -8,8 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 public class UnitTestLogic
 {
@@ -213,5 +213,21 @@ public class UnitTestLogic
             e.printStackTrace();
         }
         return date;
+    }
+
+    @Test
+    public void testLogin()
+    {
+        User user = new User("username", "password", 100, -1, -1);
+        User authenticatedUser = logic.login(user);
+        assertNotNull(authenticatedUser);
+    }
+
+    @Test
+    public void testLoginFailed()
+    {
+        User user = new User("", "", 100, -1, -1);
+        User authenticatedUser = logic.login(user);
+        assertNull(authenticatedUser);
     }
 }

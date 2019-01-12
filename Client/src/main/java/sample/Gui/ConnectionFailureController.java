@@ -8,7 +8,7 @@ import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ConnectionFailureController extends Controller implements IConnectionFailureController, Observer
+public class ConnectionFailureController extends Controller implements Observer
 {
     public Label labelTime;
     private int time = 6;

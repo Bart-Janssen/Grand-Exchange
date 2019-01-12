@@ -17,4 +17,5 @@ public interface IGrandExchangeSendLogic
     void getMarketOffersCount();
     void getSearchOffers(String searchQuery);
     void buyItem(MarketOffer offer);
+    void register(String username, String password);
 }

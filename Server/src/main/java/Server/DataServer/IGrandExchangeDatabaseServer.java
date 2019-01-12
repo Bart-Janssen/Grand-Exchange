@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface IGrandExchangeDatabaseServer
 {
     User login(User user);
-    void register(User user);
+    String register(User user);
     ArrayList<MarketOffer> getSellingOffers();
     boolean sellItem(MarketOffer offer);
     ArrayList<Item> getBackPackItems(int userId);
@@ -18,4 +18,5 @@ public interface IGrandExchangeDatabaseServer
     boolean cancelOffer(MarketOffer offer);
     ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId);
     boolean buyItem(MarketOffer marketOffer, int buyerId);
+    int getUserCoins(int id);
 }

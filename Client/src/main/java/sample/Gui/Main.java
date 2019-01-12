@@ -2,17 +2,12 @@ package sample.Gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Factory.ClientFactory;
 import sample.Logic.Connector;
 import sample.Logic.IGrandExchangeReceiveLogic;
+import sample.Models.Logger;
 import sample.Models.UserSession;
 import sample.Models.WebSocketType;
 import javax.websocket.ContainerProvider;
@@ -22,10 +17,9 @@ import java.net.URI;
 
 public class Main extends Application
 {
-    private static IGrandExchangeReceiveLogic logic = ClientFactory.getInstance().makeNewGrandExchangeReceiveLogic(WebSocketType.WEBSOCKETSERVER);
+    private static IGrandExchangeReceiveLogic logic = ClientFactory.getInstance().makeNewGrandExchangeReceiveLogic(WebSocketType.WEB_SOCKET_SERVER);
     private static Stage stage;
     private static String server = "ws://localhost:6667/grandExchangeServer/";
-    private static Connector connector;
     private static boolean connectionFailedFormRunning = false;
     private static boolean connected = false;
 
@@ -66,7 +60,7 @@ public class Main extends Application
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
         }
         stage.show();
         Main.stage = stage;
@@ -78,12 +72,12 @@ public class Main extends Application
     {
         try
         {
-            connector = Connector.getInstance();
+            Connector connector = Connector.getInstance();
             connector.setSever(logic, server);
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            new Logger().log(ex);
         }
     }
 

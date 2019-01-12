@@ -111,4 +111,10 @@ public class GrandExchangeSendLogic implements IGrandExchangeSendLogic
     {
         connection.buyItem(offer);
     }
+
+    @Override
+    public void register(String username, String password)
+    {
+        connection.register(new User(username, password));
+    }
 }

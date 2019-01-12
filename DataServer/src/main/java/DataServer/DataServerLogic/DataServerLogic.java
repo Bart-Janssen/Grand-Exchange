@@ -21,9 +21,9 @@ public class DataServerLogic implements IDataServerLogic
         return database.login(user);
     }
 
-    public void register(User user)
+    public String register(User user)
     {
-
+        return database.register(user);
     }
 
     @Override
@@ -77,9 +77,9 @@ public class DataServerLogic implements IDataServerLogic
     }
 
     @Override
-    public ArrayList<User> TEST(int id)//TODO:
+    public int getUserCoins(int id)
     {
-        return database.TEST(id);
+        return database.getUserCoins(id);
     }
 
     @Override

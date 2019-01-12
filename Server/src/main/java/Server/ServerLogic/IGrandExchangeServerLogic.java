@@ -18,4 +18,6 @@ public interface IGrandExchangeServerLogic
     boolean cancelOffer(MarketOffer offer);
     ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId);
     boolean buyItem(MarketOffer marketOffer, int buyerId);
+    String register(User user);
+    int getUserCoins(int id);
 }

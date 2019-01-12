@@ -44,9 +44,21 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     }
 
     @Override
-    public void register(User user)
+    public String register(User user)
     {
-
+        System.out.println(new Gson().toJson(user));
+        HttpPost httpPost = new HttpPost(serverLocation + "/register");
+        httpPost.addHeader("content-type", "application/json");
+        try
+        {
+            httpPost.setEntity(new StringEntity(new Gson().toJson(user)));
+            return EntityUtils.toString(HttpClients.createDefault().execute(httpPost).getEntity());
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return "Registering failed";
+        }
     }
 
     @Override
@@ -147,6 +159,22 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
             ex.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public int getUserCoins(int id)
+    {
+        HttpGet httpGet = new HttpGet(serverLocation + "/getUserCoins/" + id);
+        httpGet.addHeader("content-type", "application/json");
+        try
+        {
+            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), Integer.class);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return -1;
     }
 
     @Override

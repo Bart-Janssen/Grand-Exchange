@@ -2,5 +2,5 @@ package sample.Models;
 
 public enum WebSocketType
 {
-    WEBSOCKETSERVER
+    WEB_SOCKET_SERVER
 }

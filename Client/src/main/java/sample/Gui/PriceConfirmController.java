@@ -21,14 +21,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.Models.Item;
 import sample.Models.MarketOffer;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PriceConfirmController extends Controller implements IPriceConfirmGui, Initializable
 {
     private static MarketOffer offer;
-    private static Item temperaryItem;
+    private static Item temporaryItem;
 
     public GridPane priceConfirmForm;
     public GridPane gridPanePrice;
@@ -53,16 +52,16 @@ public class PriceConfirmController extends Controller implements IPriceConfirmG
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        super.getSendLogic().calculateItemPrice(temperaryItem);
-        temperaryItem = null;
+        super.getSendLogic().calculateItemPrice(temporaryItem);
+        temporaryItem = null;
     }
 
     public static void setItem(Item item)
     {
-        temperaryItem = item;
+        temporaryItem = item;
     }
 
-    public void buttonBack_Click(ActionEvent actionEvent)
+    public void buttonBack_Click()
     {
         super.openForm(((Stage)priceConfirmForm.getScene().getWindow()),"BackPack");
     }

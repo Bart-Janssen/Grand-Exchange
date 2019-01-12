@@ -1,15 +1,12 @@
 package sample.Gui;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.scene.BoundsAccessor;
+import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.Effect;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -58,11 +55,13 @@ public class MarketController extends Controller implements IMarketGui, Initiali
         soldItemIds.add(id);
     }
 
+
     @Override
     public void setItemToSoldStatus(int id)
     {
         addSoldItem(id);
         changeSoldStatus();
+        soldItemIds.remove(id);
     }
 
     private void changeSoldStatus()
@@ -94,7 +93,6 @@ public class MarketController extends Controller implements IMarketGui, Initiali
         });
     }
 
-
     private boolean checkIfItemsSold(int index)
     {
         for (int soldItemId : soldItemIds)
@@ -118,7 +116,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
         fillMarket();
     }
 
-    public void buttonBack_Click(ActionEvent actionEvent)
+    public void buttonBack_Click()
     {
         super.openForm(((Stage)marketForm.getScene().getWindow()),"Game");
     }
@@ -161,7 +159,7 @@ public class MarketController extends Controller implements IMarketGui, Initiali
                 cancelButton.addEventFilter(MouseEvent.MOUSE_CLICKED, e->
                 {
                     super.getSendLogic().cancelOffer(offers.get(id));
-                    if (itemIsSold) soldItemIds.remove(id);
+                    if (soldItemIds.contains(offers.get(id).getItem().getId())) soldItemIds.remove(id);
                     offers.remove(id);
                     fillMarket();
                 });

@@ -83,6 +83,9 @@ public class Connection
             case LOGIN:
                 login(webSocketMessage, currentUserSession);
                 break;
+            case REGISTER:
+                register(webSocketMessage, currentUserSession);
+                break;
             case LOGOUT:
                 logout(currentUserSession);
                 break;
@@ -119,13 +122,24 @@ public class Connection
             case GET_SEARCH_OFFERS:
                 getSearchOffers(webSocketMessage, currentUserSession);
                 break;
+                default:
+                    break;
         }
+    }
+
+    private int getUserCoins(int id)
+    {
+        return logic.getUserCoins(id);
     }
 
     private void buyItem(WebSocketMessage webSocketMessage, Session currentUserSession)
     {
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
+            System.out.println("buyer coins server before: "  + sessionAndUser.get(currentUserSession).getUser().getCoins());
+            System.out.println("buyer coins database before: "  + getUserCoins(sessionAndUser.get(currentUserSession).getUser().getId()));
+            System.out.println("seller coins database before: " + getUserCoins(webSocketMessage.getOffers().get(0).getUserId()));
+
             WebSocketMessage messageToUser = new WebSocketMessage();
             messageToUser.setOperation(MessageType.BUY_ITEM);
             messageToUser.setMessage("You don't have enough coins.");
@@ -133,7 +147,9 @@ public class Connection
             {
                 if (logic.buyItem(webSocketMessage.getOffers().get(0), sessionAndUser.get(currentUserSession).getUser().getId()))
                 {
-                    messageToUser.setMessage("Successfully bought " + webSocketMessage.getOffers().get(0).getItem().getName() + ", it's added to your inventory.");
+                    sessionAndUser.get(currentUserSession).getUser().setCoins(getUserCoins(sessionAndUser.get(currentUserSession).getUser().getId()));
+                    messageToUser.setMessage("Successfully bought " + webSocketMessage.getOffers().get(0).getItem().getName() + ", it's added to your inventory.");//TODO user add and reset in client
+                    messageToUser.setUser(sessionAndUser.get(currentUserSession).getUser());
                 }
             }
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
@@ -151,8 +167,15 @@ public class Connection
         {
             if (sessionAndUser.get(sellerSession).getUser().getId() == webSocketMessage.getOffers().get(0).getUserId())
             {
+                sessionAndUser.get(sellerSession).getUser().setCoins(getUserCoins(sessionAndUser.get(sellerSession).getUser().getId()));//TODO add user reset to client
+                messageToUser.setUser(sessionAndUser.get(sellerSession).getUser());
+                //sessionAndUser.get(sellerSession).getUser().setCoins(sessionAndUser.get(sellerSession).getUser().getCoins() - webSocketMessage.getOffers().get(0).getPrice());//TODO
                 sellerSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
                 System.out.println("User is actually online");
+
+                System.out.println("buyer coins server after: "  + sessionAndUser.get(currentUserSession).getUser().getCoins());
+                System.out.println("buyer coins database after: "  + getUserCoins(sessionAndUser.get(currentUserSession).getUser().getId()));
+                System.out.println("seller coins database after: " + getUserCoins(webSocketMessage.getOffers().get(0).getUserId()));
                 return;
             }
         }
@@ -308,7 +331,7 @@ public class Connection
             webSocketMessage.setUser(user);
             messageToUser.setUser(user);
             messageToUser.setMessage("Welcome to the 'Game'!");
-            sessionAndUser.put(currentUserSession, webSocketMessage);//TODO naar register
+            sessionAndUser.put(currentUserSession, webSocketMessage);
             sessionAndUser.get(currentUserSession).getUser().setLoggedIn(true);
         }
         currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
@@ -323,8 +346,13 @@ public class Connection
         }
     }
 
-    private void register()
+    private void register(WebSocketMessage webSocketMessage, Session currentUserSession)
     {
-        //TODO: this
+        WebSocketMessage messageToUser = new WebSocketMessage();
+        String message = logic.register(webSocketMessage.getUser());
+        messageToUser.setOperation(MessageType.REGISTER);
+        messageToUser.setMessage(message);
+        System.out.println("msg: " + messageToUser.getMessage());
+        currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
     }
 }

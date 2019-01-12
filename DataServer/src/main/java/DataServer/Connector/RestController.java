@@ -26,13 +26,24 @@ public class RestController
         return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity("error").build();
     }
 
-    @GET
-    @Path("/test/{idAsString}/")
+    @POST
+    @Path("/register")
     @Consumes("application/json")
-    public Response test(@PathParam("idAsString") String idAsString)
+    @Produces("application/json")
+    public Response Register(User user)
+    {
+        if (user == null) return Response.status(400).entity("Registering failed").build();
+        String message = logic.register(user);
+        return Response.status(400).entity(message).build();
+    }
+
+    @GET
+    @Path("/getUserCoins/{idAsString}/")
+    @Consumes("application/json")
+    public Response getUserCoins(@PathParam("idAsString") String idAsString)
     {
         int id = Integer.parseInt(idAsString);
-        return Response.status(200).entity(new Gson().toJson(logic.TEST(id))).build();
+        return Response.status(200).entity(new Gson().toJson(logic.getUserCoins(id))).build();
     }
 
     @GET

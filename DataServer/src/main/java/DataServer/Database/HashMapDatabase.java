@@ -46,9 +46,9 @@ public class HashMapDatabase implements IDatabaseConnection
     }
 
     @Override
-    public void register(User user)
+    public String register(User user)
     {
-
+        return "";
     }
 
     @Override
@@ -100,9 +100,9 @@ public class HashMapDatabase implements IDatabaseConnection
     }
 
     @Override
-    public ArrayList<User> TEST(int id) //TODO:
+    public int getUserCoins(int id)
     {
-        return null;
+        return 0;
     }
 
     @Override

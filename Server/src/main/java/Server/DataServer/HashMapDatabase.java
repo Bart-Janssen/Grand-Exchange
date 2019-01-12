@@ -12,7 +12,7 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
 
     public HashMapDatabase()
     {
-        users.add(new User("", ""));
+        users.add(new User("username", "password"));
 
         sellOffers.add(new MarketOffer(1, 0, 496360, new Item(1, 80, AttackStyle.MELEE, "Sword"), MarketOfferType.SELL));
         sellOffers.add(new MarketOffer(1, 0, 507599, new Item(1, 165, AttackStyle.MAGIC, "Staff"), MarketOfferType.SELL));
@@ -52,9 +52,10 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     }
 
     @Override
-    public void register(User user)
+    public String register(User user)
     {
         users.add(user);
+        return "success";
     }
 
     @Override
@@ -110,5 +111,11 @@ public class HashMapDatabase implements IGrandExchangeDatabaseServer
     public boolean buyItem(MarketOffer marketOffer, int buyerId)
     {
         return false;
+    }
+
+    @Override
+    public int getUserCoins(int id)
+    {
+        return 0;
     }
 }

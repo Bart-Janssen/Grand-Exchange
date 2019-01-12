@@ -60,9 +60,19 @@ public class User
         this.id = id;
     }
 
+    public void setLevel(int level)
+    {
+        this.level = level;
+    }
+
     public int getLevel()
     {
         return level;
+    }
+
+    public void setCoins(int coins)
+    {
+        this.coins = coins;
     }
 
     public int getCoins()

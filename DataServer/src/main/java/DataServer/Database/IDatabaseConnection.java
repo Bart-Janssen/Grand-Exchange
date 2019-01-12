@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface IDatabaseConnection
 {
     User login(User user);
-    void register(User user);
+    String register(User user);
     ArrayList<Item> getBackPackItems(int userId);
     boolean addItemToBackPack(Item item, int userId);
     boolean deleteItemFromBackPack(int itemId, int userId);
@@ -17,7 +17,6 @@ public interface IDatabaseConnection
     boolean cancelOffer(int offerId);
     ArrayList<MarketOffer> getSearchOffers(String searchQuery, int userId);
     boolean buyItem(MarketOffer offer, int buyerId);
-
-    ArrayList<User> TEST(int id);//TODO:
+    int getUserCoins(int id);
     ArrayList<MarketOffer> getSellingOffers();
 }

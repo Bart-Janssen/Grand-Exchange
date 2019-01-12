@@ -1,11 +1,9 @@
 package sample.Gui;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -21,7 +19,7 @@ public class LoginController extends Controller implements ILoginGui
         super.getReceiveLogic().setController(this);
     }
 
-    public void buttonLogin_Click(ActionEvent actionEvent)
+    public void buttonLogin_Click()
     {
         super.getSendLogic().login(textFieldUsername.getText(), textFieldPassword.getText());
     }
@@ -48,9 +46,8 @@ public class LoginController extends Controller implements ILoginGui
         labelLoginFailed.setVisible(true);
     }
 
-    public void labelRegister_Click(MouseEvent mouseEvent)
+    public void labelRegister_Click()
     {
-        System.out.println("Register clicked");
-        //TODO: register form aanmaken
+        super.openForm(((Stage)loginForm.getScene().getWindow()),"Register");
     }
 }

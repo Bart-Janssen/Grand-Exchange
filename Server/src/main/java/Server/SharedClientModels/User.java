@@ -58,4 +58,14 @@ public class User
     {
         return coins;
     }
+
+    public void setCoins(int coins)
+    {
+        this.coins = coins;
+    }
+
+    public void setLevel(int level)
+    {
+        this.level = level;
+    }
 }

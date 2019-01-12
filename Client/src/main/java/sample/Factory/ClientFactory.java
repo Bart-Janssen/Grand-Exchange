@@ -20,7 +20,7 @@ public class ClientFactory
     {
         switch (type)
         {
-            case WEBSOCKETSERVER:
+            case WEB_SOCKET_SERVER:
                 return GrandExchangeReceiveLogic.getInstance();
             default:
                 return null;
@@ -31,7 +31,7 @@ public class ClientFactory
     {
         switch (type)
         {
-            case WEBSOCKETSERVER:
+            case WEB_SOCKET_SERVER:
                 return new GrandExchangeSendLogic(new WebSocketConnection());
             default:
                 return null;
