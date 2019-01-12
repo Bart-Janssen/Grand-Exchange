@@ -41,6 +41,9 @@ public class BuyController extends Controller implements IBuyGui, Initializable
     private Label headerStyle;
     private Rectangle headerImage;
     private static final String YOU_CANNOT_AFFORD_THIS_ITEM = "You cannot afford this item.";
+    private static final String DARK_BROWN = "-fx-background-color: rgb(51,40,38)";
+    private static final String BROWN = "-fx-background-color: rgb(57,45,40)";
+    private static final Color WHITE_TEXT = Color.rgb(180, 180, 180);
 
     public BuyController()
     {
@@ -57,7 +60,7 @@ public class BuyController extends Controller implements IBuyGui, Initializable
     public void fillOffers(ArrayList<MarketOffer> offers)
     {
         this.offers = offers;
-        if (offers.size() == 0)
+        if (offers.isEmpty())
         {
             noItemsFound();
             return;
@@ -119,15 +122,15 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             GridPane textGrid = new GridPane();
             textGrid.setHgap(5);
             Label level = new Label("Level: " + offers.get(id).getItem().getItemLevel());
-            level.setTextFill(Color.rgb(180, 180, 180));
+            level.setTextFill(WHITE_TEXT);
             Label price = new Label("Price: " + super.getCalculateLogic().checkPriceInput(Integer.toString(offers.get(i).getPrice()), offers.get(i).getPrice()));
-            price.setTextFill(Color.rgb(180, 180, 180));
+            price.setTextFill(WHITE_TEXT);
             Label name = new Label("Name: " + offers.get(i).getItem().getName());
-            name.setTextFill(Color.rgb(180, 180, 180));
+            name.setTextFill(WHITE_TEXT);
             Label health = new Label("Health: " + offers.get(i).getItem().getItemHealth() + "%");
-            health.setTextFill(Color.rgb(180, 180, 180));
+            health.setTextFill(WHITE_TEXT);
             Label style = new Label("Style: " + offers.get(i).getItem().getAttackStyle().toString().substring(0,1).toUpperCase() + offers.get(i).getItem().getAttackStyle().toString().substring(1).toLowerCase());
-            style.setTextFill(Color.rgb(180, 180, 180));
+            style.setTextFill(WHITE_TEXT);
 
             textGrid.add(level, 1, 0);
             textGrid.add(price, 1, 1);
@@ -139,7 +142,7 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             offerSpace.add(image, 1, 1);
             offerSpace.add(textGrid, 2, 1);
             offerSpace.add(col3Space, 0, 2);
-            offerSpace.setStyle("-fx-background-color: rgb(51,40,38)");
+            offerSpace.setStyle(DARK_BROWN);
             offerSpace.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
             {
                 if (e.getButton() == MouseButton.PRIMARY)
@@ -154,12 +157,12 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             GridPane finalOfferSpace = offerSpace;
             offerSpace.addEventHandler(MouseEvent.MOUSE_ENTERED, e ->
             {
-                finalOfferSpace.setStyle("-fx-background-color: rgb(57,45,40)");
+                finalOfferSpace.setStyle(BROWN);
                 e.consume();
             });
             offerSpace.addEventHandler(MouseEvent.MOUSE_EXITED, e ->
             {
-                finalOfferSpace.setStyle("-fx-background-color: rgb(51,40,38)");
+                finalOfferSpace.setStyle(DARK_BROWN);
                 e.consume();
             });
 
@@ -174,7 +177,7 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             messageLabel = new Label("");
             messageLabel.setStyle("-fx-alignment: center; -fx-text-fill: rgb(180, 180, 180)");
             GridPane searchHeader = new GridPane();
-            searchHeader.setStyle("-fx-background-color: rgb(51,40,38)");
+            searchHeader.setStyle(DARK_BROWN);
             searchHeader.setVgap(5);
             TextField searchTextField = new TextField();
             searchTextField.setStyle("-fx-text-fill: rgb(180, 180, 180); -fx-background-color: rgb(39,30,29); -fx-alignment: center; -fx-border-color: none");
@@ -200,15 +203,15 @@ public class BuyController extends Controller implements IBuyGui, Initializable
             GridPane headerTextGrid = new GridPane();
             headerTextGrid.setHgap(5);
             headerLevel = new Label();
-            headerLevel.setTextFill(Color.rgb(180, 180, 180));
+            headerLevel.setTextFill(WHITE_TEXT);
             headerPrice = new Label();
-            headerPrice.setTextFill(Color.rgb(180, 180, 180));
+            headerPrice.setTextFill(WHITE_TEXT);
             headerName = new Label();
-            headerName.setTextFill(Color.rgb(180, 180, 180));
+            headerName.setTextFill(WHITE_TEXT);
             headerHealth = new Label();
-            headerHealth.setTextFill(Color.rgb(180, 180, 180));
+            headerHealth.setTextFill(WHITE_TEXT);
             headerStyle = new Label();
-            headerStyle.setTextFill(Color.rgb(180, 180, 180));
+            headerStyle.setTextFill(WHITE_TEXT);
 
             headerTextGrid.add(headerLevel, 1, 0);
             headerTextGrid.add(headerPrice, 1, 1);

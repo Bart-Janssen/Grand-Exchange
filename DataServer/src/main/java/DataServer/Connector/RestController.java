@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class RestController
 {
     private IDataServerLogic logic = DatabaseServerFactory.getInstance().makeNewServerLogic(DatabaseType.MYSQL);
+    private static final String ERROR = "error";
+    private static final String SUCCESS = "Success";
+    private static final String FAILED = "Failed";
 
     @POST
     @Path("/login")
@@ -23,7 +26,7 @@ public class RestController
     {
         if (user == null) return Response.status(400).entity("400").build();
         User authenticatedUser = logic.login(user);
-        return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity("error").build();
+        return authenticatedUser != null ? Response.status(200).entity(new Gson().toJson(authenticatedUser)).build() : Response.status(400).entity(ERROR).build();
     }
 
     @POST
@@ -61,7 +64,7 @@ public class RestController
     public Response sellItem(String postObjectAsString)
     {
         MarketOffer offer = new Gson().fromJson(postObjectAsString, MarketOffer.class);
-        return logic.sellItem(offer) ? Response.status(200).entity("Success").build() : Response.status(400).entity("Failed").build();
+        return logic.sellItem(offer) ? Response.status(200).entity(SUCCESS).build() : Response.status(400).entity(FAILED).build();
     }
 
     @PUT
@@ -76,7 +79,7 @@ public class RestController
         MarketOffer offer = new Gson().fromJson(offerAsJson, MarketOffer.class);
         String buyerIdAsJson = new Gson().toJson(postObjects.get(1));
         int buyerId = new Gson().fromJson(buyerIdAsJson, int.class);
-        return logic.buyItem(offer, buyerId) ? Response.status(200).entity("Success").build() : Response.status(400).entity("Failed").build();
+        return logic.buyItem(offer, buyerId) ? Response.status(200).entity(SUCCESS).build() : Response.status(400).entity(FAILED).build();
     }
 
     @DELETE
@@ -85,7 +88,7 @@ public class RestController
     @Produces("application/json")
     public Response cancelOffer(@PathParam("marketOfferIdAsString") String marketOfferIdAsString)
     {
-        return logic.cancelOffer(Integer.parseInt(marketOfferIdAsString)) ? Response.status(200).entity("Success").build() : Response.status(200).entity("Failed").build();
+        return logic.cancelOffer(Integer.parseInt(marketOfferIdAsString)) ? Response.status(200).entity(SUCCESS).build() : Response.status(200).entity(FAILED).build();
     }
 
     @GET
@@ -95,7 +98,7 @@ public class RestController
     {
         int id = Integer.parseInt(idAsString);
         ArrayList<Item> items = logic.getBackPackItems(id);
-        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity("error").build();
+        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity(ERROR).build();
     }
 
     @GET
@@ -105,7 +108,7 @@ public class RestController
     {
         int id = Integer.parseInt(idAsString);
         ArrayList<MarketOffer> items = logic.getMarketOffers(id);
-        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity("error").build();
+        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity(ERROR).build();
     }
 
     @GET
@@ -115,7 +118,7 @@ public class RestController
     {
         int userId = Integer.parseInt(userIdAsString);
         ArrayList<MarketOffer> items = logic.getSearchOffers(searchQuery, userId);
-        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity("error").build();
+        return items != null ? Response.status(200).entity(new Gson().toJson(items)).build() : Response.status(400).entity(ERROR).build();
     }
 
     @POST
@@ -130,7 +133,7 @@ public class RestController
         String userIdAsJson = new Gson().toJson(postObjects.get(1));
         int userId = new Gson().fromJson(userIdAsJson, int.class);
         if (item == null) return Response.status(400).entity("400").build();
-        return logic.addItemToBackPack(item, userId) ? Response.status(200).entity(new Gson().toJson("200")).build() : Response.status(400).entity("error").build();
+        return logic.addItemToBackPack(item, userId) ? Response.status(200).entity(new Gson().toJson("200")).build() : Response.status(400).entity(ERROR).build();
     }
 
     @DELETE

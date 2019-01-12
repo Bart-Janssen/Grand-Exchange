@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
@@ -20,16 +21,17 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     private String serverLocation = "http://localhost:8090/GrandExchangeRestController";
     private static final String CONTENT_TYPE  = "content-type";
     private static final String APPLICATION_JSON = "application/json";
+    private static final String SUCCESS = "Success";
 
     @Override
     public User login(User user)
     {
         HttpPost httpPost = new HttpPost(serverLocation + "/login");
         httpPost.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
             httpPost.setEntity(new StringEntity(new Gson().toJson(user)));
-            User authenticatedUser = new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpPost).getEntity()), User.class);
+            User authenticatedUser = new Gson().fromJson(EntityUtils.toString(httpClient.execute(httpPost).getEntity()), User.class);
             if (authenticatedUser != null)
             {
                 user.setLoggedIn(true);
@@ -49,10 +51,10 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpPost httpPost = new HttpPost(serverLocation + "/register");
         httpPost.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
             httpPost.setEntity(new StringEntity(new Gson().toJson(user)));
-            return EntityUtils.toString(HttpClients.createDefault().execute(httpPost).getEntity());
+            return EntityUtils.toString(httpClient.execute(httpPost).getEntity());
         }
         catch (Exception ex)
         {
@@ -66,15 +68,15 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpGet httpGet = new HttpGet(serverLocation + "/getSellingOffers");
         httpGet.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
-            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
+            return new Gson().fromJson(EntityUtils.toString(httpClient.execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
         }
         catch (Exception ex)
         {
             new Logger().log(ex);
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -82,10 +84,10 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpPut httpPut = new HttpPut(serverLocation + "/sellItem");
         httpPut.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
             httpPut.setEntity(new StringEntity(new Gson().toJson(offer)));
-            if (EntityUtils.toString(HttpClients.createDefault().execute(httpPut).getEntity()).equals("Success")) return true;
+            if (EntityUtils.toString(httpClient.execute(httpPut).getEntity()).equals(SUCCESS)) return true;
         }
         catch (Exception ex)
         {
@@ -102,10 +104,10 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
         postObjects.add(buyerId);
         HttpPut httpPut = new HttpPut(serverLocation + "/buyItem");
         httpPut.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
             httpPut.setEntity(new StringEntity(new Gson().toJson(postObjects)));
-            if (EntityUtils.toString(HttpClients.createDefault().execute(httpPut).getEntity()).equals("Success")) return true;
+            if (EntityUtils.toString(httpClient.execute(httpPut).getEntity()).equals(SUCCESS)) return true;
         }
         catch (Exception ex)
         {
@@ -119,9 +121,9 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpDelete httpDelete = new HttpDelete(serverLocation + "/cancelOffer/" + offer.getId());
         httpDelete.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
-            if (EntityUtils.toString(HttpClients.createDefault().execute(httpDelete).getEntity()).equals("Success")) return true;
+            if (EntityUtils.toString(httpClient.execute(httpDelete).getEntity()).equals(SUCCESS)) return true;
         }
         catch (Exception ex)
         {
@@ -135,15 +137,15 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpGet httpGet = new HttpGet(serverLocation + "/getSearchOffers/" + searchQuery + "/" + userId);
         httpGet.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
-            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
+            return new Gson().fromJson(EntityUtils.toString(httpClient.execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
         }
         catch (Exception ex)
         {
             new Logger().log(ex);
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -151,9 +153,9 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpGet httpGet = new HttpGet(serverLocation + "/getUserCoins/" + id);
         httpGet.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
-            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), Integer.class);
+            return new Gson().fromJson(EntityUtils.toString(httpClient.execute(httpGet).getEntity()), Integer.class);
         }
         catch (Exception ex)
         {
@@ -167,15 +169,15 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpGet httpGet = new HttpGet(serverLocation + "/getBackPackItems/" + userId);
         httpGet.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
-            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), new TypeToken<ArrayList<Item>>(){}.getType());
+            return new Gson().fromJson(EntityUtils.toString(httpClient.execute(httpGet).getEntity()), new TypeToken<ArrayList<Item>>(){}.getType());
         }
         catch (Exception ex)
         {
             new Logger().log(ex);
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -186,10 +188,10 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
         postObjects.add(userId);
         HttpPost httpPost = new HttpPost(serverLocation + "/addItemToBackPack");
         httpPost.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
             httpPost.setEntity(new StringEntity(new Gson().toJson(postObjects)));
-            HttpClients.createDefault().execute(httpPost);
+            httpClient.execute(httpPost);
         }
         catch (Exception ex)
         {
@@ -202,9 +204,9 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpDelete httpDelete = new HttpDelete(serverLocation + "/deleteItemFromBackPack/" + Integer.toString(item.getId()) + "/" + Integer.toString(userId));
         httpDelete.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
-            if (Boolean.parseBoolean(EntityUtils.toString(HttpClients.createDefault().execute(httpDelete).getEntity()))) return true;
+            if (Boolean.parseBoolean(EntityUtils.toString(httpClient.execute(httpDelete).getEntity()))) return true;
         }
         catch (Exception ex)
         {
@@ -218,14 +220,14 @@ public class GrandExchangeDatabaseServer implements IGrandExchangeDatabaseServer
     {
         HttpGet httpGet = new HttpGet(serverLocation + "/getMarketOffers/" + userId);
         httpGet.addHeader(CONTENT_TYPE, APPLICATION_JSON);
-        try
+        try (CloseableHttpClient httpClient = HttpClients.createDefault())
         {
-            return new Gson().fromJson(EntityUtils.toString(HttpClients.createDefault().execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
+            return new Gson().fromJson(EntityUtils.toString(httpClient.execute(httpGet).getEntity()), new TypeToken<ArrayList<MarketOffer>>(){}.getType());
         }
         catch (Exception ex)
         {
             new Logger().log(ex);
         }
-        return null;
+        return new ArrayList<>();
     }
 }

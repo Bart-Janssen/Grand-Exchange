@@ -28,7 +28,7 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
     @OnOpen
     public void onWebSocketConnect()
     {
-        System.out.println("[Connected to server]");
+        new Logger().print("[Connected to server]");
     }
 
     @OnMessage
@@ -40,13 +40,13 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
     @OnClose
     public void onWebSocketClose(CloseReason reason)
     {
-        System.out.println("[Closed] : " + reason);
+        new Logger().print("[Closed] : " + reason);
     }
 
     @OnError
     public void onWebSocketError(Throwable cause)
     {
-        System.out.println("[ERROR] : " + cause.getMessage());
+        new Logger().print("[ERROR] : " + cause.getMessage());
     }
 
     private void handleServerMessage(String jsonMessage)
@@ -90,7 +90,7 @@ public class GrandExchangeReceiveLogic implements IGrandExchangeReceiveLogic
             case GET_MARKET_OFFERS:
                 ((IMarketGui)controller).addItemsToMarket(webSocketMessage.getOffers(), webSocketMessage.getMessage());
                 break;
-            case GENERATE_NEW_WEAPON:
+            case GENERATE_NEW_ITEM:
                 ((IBackPackGui)controller).addItemsToBackPack(webSocketMessage.getItems());
                 break;
             case DELETE_ITEM_FROM_BACKPACK:

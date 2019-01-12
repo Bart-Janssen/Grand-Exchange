@@ -44,7 +44,7 @@ public class GameController extends Controller implements IGameGui, Initializabl
     {
         super.openForm(((Stage)mainGrid.getScene().getWindow()), "Login");
         super.getSendLogic().logout();
-        messages.clear();
+        GameController.messages.clear();
         super.clearMessages();
     }
 
@@ -59,7 +59,7 @@ public class GameController extends Controller implements IGameGui, Initializabl
     public void addMessages()
     {
         listViewMessages.setStyle("-fx-font: 8pt \"Arial\"; -fx-padding: 0px; -fx-border: none");
-        messages = super.getMessages();
+        GameController.messages = super.getMessages();
         Platform.runLater(() -> listViewMessages.getItems().setAll(messages));
         if (messages.size() > 7) listViewMessages.scrollTo(messages.get(messages.size() - 1));
     }

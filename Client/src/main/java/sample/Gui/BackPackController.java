@@ -24,7 +24,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
     public GridPane backPackForm;
     public GridPane gridPaneBackPack;
     private static ArrayList<Item> backPack = new ArrayList<>();
-    private final static int MAX_MARKET_OFFERS = 3;
+    private static final int MAX_MARKET_OFFERS = 3;
     private static int marketOfferCount;
 
     public BackPackController()
@@ -33,7 +33,7 @@ public class BackPackController extends Controller implements IBackPackGui, Init
         super.getSendLogic().getMarketOffersCount();
     }
 
-    public void buttonBack_Click(ActionEvent actionEvent)
+    public void buttonBack_Click()
     {
         super.openForm(((Stage)backPackForm.getScene().getWindow()),"Game");
     }
@@ -87,6 +87,8 @@ public class BackPackController extends Controller implements IBackPackGui, Init
                         case "Destroy":
                             destroy(id);
                             break;
+                            default:
+                                break;
                     }
                 });
                 gridPaneBackPack.add(createRectangleItem(rightClickMenu, id), i % 4, (int) Math.floor((double) i / 4), 1, 1);

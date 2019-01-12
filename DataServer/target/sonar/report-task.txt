@@ -2,5 +2,5 @@ projectKey=groupId:DataServer
 serverUrl=http://localhost:9000
 serverVersion=7.3.0.15553
 dashboardUrl=http://localhost:9000/dashboard?id=groupId%3ADataServer
-ceTaskId=AWg4pPCXu1E7AxsXr4hV
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWg4pPCXu1E7AxsXr4hV
+ceTaskId=AWhCotwzDFDw3Gjnw8_g
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWhCotwzDFDw3Gjnw8_g

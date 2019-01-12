@@ -44,7 +44,7 @@ public class WebSocketConnection implements IConnection
     public void generateNewWeapon()
     {
         WebSocketMessage webSocketMessage = new WebSocketMessage();
-        webSocketMessage.setOperation(MessageType.GENERATE_NEW_WEAPON);
+        webSocketMessage.setOperation(MessageType.GENERATE_NEW_ITEM);
         UserSession.getInstance().getSession().getAsyncRemote().sendText(new Gson().toJson(webSocketMessage));
     }
 

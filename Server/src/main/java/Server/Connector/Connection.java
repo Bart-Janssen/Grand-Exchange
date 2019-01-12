@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @ServerEndpoint(value="/grandExchangeServer/")
 public class Connection
 {
-    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.REST);//TODO: database server to rest
+    private IGrandExchangeServerLogic logic = ServerFactory.getInstance().makeNewGrandExchangeServerLogic(DatabaseServerType.REST);
 
     private static HashMap<Session, WebSocketMessage> sessionAndUser = new HashMap<>();
     private static ArrayList<WebSocketMessage> pendingSells = new ArrayList<>();
@@ -48,7 +48,7 @@ public class Connection
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            new Logger().log(e);
         }
     }
 
@@ -61,7 +61,6 @@ public class Connection
     public void onError(Throwable cause, Session session)
     {
         new Logger().print("[WebSocket Session ID] : " + session.getId() + "[ERROR]: ");
-        cause.printStackTrace(System.err);
     }
 
     private void handleMessageFromClient(String jsonMessage, Session currentUserSession)
@@ -106,8 +105,8 @@ public class Connection
             case GET_MARKET_OFFERS:
                 getMarketOffers(currentUserSession);
                 break;
-            case GENERATE_NEW_WEAPON:
-                generateNewWeapon(currentUserSession);
+            case GENERATE_NEW_ITEM:
+                generateNewItem(currentUserSession);
                 break;
             case DELETE_ITEM_FROM_BACKPACK:
                 deleteItemFromBackPack(webSocketMessage, currentUserSession);
@@ -213,12 +212,12 @@ public class Connection
         }
     }
 
-    private void generateNewWeapon(Session currentUserSession)
+    private void generateNewItem(Session currentUserSession)
     {
         if (sessionAndUser.get(currentUserSession).getUser().isLoggedIn())
         {
             WebSocketMessage messageToUser = new WebSocketMessage();
-            messageToUser.setOperation(MessageType.GENERATE_NEW_WEAPON);
+            messageToUser.setOperation(MessageType.GENERATE_NEW_ITEM);
             messageToUser.setItems(logic.generateItem(sessionAndUser.get(currentUserSession).getUser().getId()));
             currentUserSession.getAsyncRemote().sendText(new Gson().toJson(messageToUser));
         }
